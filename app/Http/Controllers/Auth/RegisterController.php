@@ -6,6 +6,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -72,4 +73,11 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+//    public function showCounty($id)
+//    {
+//        $counties = DB::table('county')->plunk('name');
+//        return view('register', ['counties' => $counties]);
+//    }
+
 }

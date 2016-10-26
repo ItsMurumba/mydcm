@@ -179,7 +179,7 @@
                                 <li class="sidenav-dropdown ">
                                     <a class="subnav-toggle" href="#"><i class="fa fa-users"></i> Manage Users <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="/dcm/form/elements"><i class="fa fa-users"></i> Users</a></li>
+                                        <li><a href="/members"><i class="fa fa-users"></i> Users</a></li>
                                         <li><a href="/role"><i class="fa fa-user-plus"></i> Roles</a></li>
                                         <li><a href="/county"><i class="fa fa-map-marker"></i> County</a></li>
                                     </ul>

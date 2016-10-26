@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/dcm/css/app-green.css"/>
     <link rel="stylesheet" href="/dcm/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/dcm/css/font-awesome.css"/>
-    <link rel="stylesheet" href="/dcm/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="/css/jquery.dataTables.min.css"/>
 
 </head>
 <body class="page-header-fixed page-quick-sidebar-over-content ">
@@ -348,9 +348,9 @@
         </div>
     </div>
 </div>
-<script src="/dcm/js/jquery.dataTables.min.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
 <!-- Bootstrap JavaScript -->
-<script src="/dcm/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script src="/dcm/js/vendor.js" type="text/javascript"></script>
 <script src="/dcm/vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
 <script src="/dcm/js/app.js" type="text/javascript"></script>

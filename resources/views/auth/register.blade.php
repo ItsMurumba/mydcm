@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('content')
 <div class="container">
@@ -49,11 +49,12 @@
                                         <strong>{{ $errors->first('county') }}</strong>
                                     </span>
                                 @endif
+
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                            <label for="role" class="col-md-4 control-label">County</label>
+                            <label for="role" class="col-md-4 control-label">Role</label>
 
                             <div class="col-md-6">
                                 <input id="role" type="text" class="form-control" name="role" value="{{ old('role') }}" required>
