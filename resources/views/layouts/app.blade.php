@@ -34,11 +34,12 @@
                         <a href="#" class="dropdown-toggle admin-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <img class="img-circle admin-img" src="/dcm/img/profile1.jpg" alt="">
                         </a>
-                        <ul class="dropdown-menu admin" role="menu">
-                            <li role="presentation" class="dropdown-header">Admin name</li>
-                            <li><a href="profile"><i class="fa fa-info"></i> Profile</a></li>
-                            <li><a href="/dcm/auth/logout"><i class="fa fa-power-off"></i> Logout</a></li>
-                        </ul>
+                        {{--<ul class="dropdown-menu admin" role="menu">--}}
+                            {{--<li role="presentation" class="dropdown-header">Admin name</li>--}}
+                            {{--<li><a href="profile"><i class="fa fa-info"></i> Profile</a></li>--}}
+                            {{--<li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
                     </li>
                 </ul>
             </div>
@@ -133,7 +134,7 @@
                         <ul class="dropdown-menu admin" role="menu">
                             <li role="presentation" class="dropdown-header">Admin name</li>
                             <li><a href="/dcm//profile"><i class="fa fa-info"></i> Profile</a></li>
-                            <li><a href="/dcm/auth/logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
                 </ul>

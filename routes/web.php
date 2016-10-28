@@ -17,11 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 Route::get('/home', 'HomeController@index');
 
-Route::get('/index', function () {
-    return view('index');
-});
+//Route::get('/index', function () {
+//    return view('index');
+//});
+Route::get('/index', 'HomeController@index');
 
 //route for county form
 Route::get('/county', function (){
@@ -39,7 +42,6 @@ Route::post('/roles', 'RolesController@store');
 Route::get('/members', function (){
     return view('members');
 });
-
 //datatables route
 //Route::controller('datatables', 'DatatablesController', [
 //    'anyData'  => 'datatables.data',
