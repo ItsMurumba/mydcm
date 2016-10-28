@@ -27,6 +27,14 @@ Route::get('/index', 'HomeController@index');
 //route for register
 Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@index');
 
+//services
+Route::get('/services', '\App\Http\Controllers\ServicesController@equipments');
+
+//equipment
+Route::get('/equipments', function (){
+    return view('equipments');
+});
+
 //route for county form
 Route::get('/county', function (){
     return view('county');
