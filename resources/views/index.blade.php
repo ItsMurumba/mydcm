@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">County</label>
                                     <div class="col-sm-10">
-                                          {{ Form::select('County', $county, null,  ['class' => 'form-control']) }}
+                                          {{ Form::select('county', $county, null,  ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                                 <hr/>

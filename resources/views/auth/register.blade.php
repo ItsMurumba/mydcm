@@ -42,7 +42,8 @@
                             <label for="county" class="col-md-4 control-label">County</label>
 
                             <div class="col-md-6">
-                                <input id="county" type="text" class="form-control" name="county" value="{{ old('county') }}" required>
+                                {{--<input id="county" type="text" class="form-control" name="county" value="{{ old('county') }}" required>--}}
+                                {{ Form::select('county', $county, null,  ['class' => 'form-control'], ['name' => 'county']) }}
 
                                 @if ($errors->has('county'))
                                     <span class="help-block">
@@ -53,19 +54,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                            <label for="role" class="col-md-4 control-label">Role</label>
-
-                            <div class="col-md-6">
-                                <input id="role" type="text" class="form-control" name="role" value="{{ old('role') }}" required>
-
-                                @if ($errors->has('role'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('role') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                                <input id="role" type="hidden" class="form-control" name="role" value="2" required>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>

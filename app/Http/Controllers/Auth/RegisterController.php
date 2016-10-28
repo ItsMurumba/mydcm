@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\County;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -76,11 +77,11 @@ class RegisterController extends Controller
         ]);
     }
 
-//    public function showCounty($id)
-//    {
-//        $counties = DB::table('county')->plunk('name');
-//        return view('register', ['counties' => $counties]);
-//    }
+ //function used to populate dropdown
+    public function index(){
+//        $county = DB::table('county')->pluck('name','id');
+        $county = County::pluck('name', 'id');
 
-
+        return view('auth.register', ['county'=> $county]);
+    }
 }

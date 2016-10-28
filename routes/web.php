@@ -21,10 +21,11 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index');
 
-//Route::get('/index', function () {
-//    return view('index');
-//});
+
 Route::get('/index', 'HomeController@index');
+
+//route for register
+Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@index');
 
 //route for county form
 Route::get('/county', function (){
@@ -42,16 +43,6 @@ Route::post('/roles', 'RolesController@store');
 Route::get('/members', function (){
     return view('members');
 });
-//datatables route
-//Route::controller('datatables', 'DatatablesController', [
-//    'anyData'  => 'datatables.data',
-//    'getIndex' => 'datatables',
-//]);
-//
-//Route::controller('datatables', 'ProfileController', [
-//    'anyOrders'  => 'datatables.dataOrders',
-//    'anyProperties' => 'datatables.dataProperties',
-//]);
-
+//datatables
 Route::get('/datatables/data', array('middleware' => 'auth', 'uses' => 'DatatablesController@anyData'))->name('datatables.data');
 Route::get('/datatables/index', array('middleware' => 'auth', 'uses' => 'DatatablesController@getIndex'))->name('datatables');
