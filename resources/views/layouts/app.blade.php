@@ -18,11 +18,6 @@
     <link rel="stylesheet" href="/dcm/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/dcm/css/font-awesome.css"/>
     <link rel="stylesheet" href="/css/jquery.dataTables.min.css"/>
-    <link rel="stylesheet" href="/css/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
 
 </head>
 <body class="page-header-fixed page-quick-sidebar-over-content ">
@@ -39,12 +34,12 @@
                         <a href="#" class="dropdown-toggle admin-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <img class="img-circle admin-img" src="/dcm/img/profile1.jpg" alt="">
                         </a>
-                        <ul class="dropdown-menu admin" role="menu">
-                            <li role="presentation" class="dropdown-header">{{ Auth::user()->username }}</li>
-                            <li><a href="profile"><i class="fa fa-info"></i> Profile</a></li>
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a>
-                            </li>
-                        </ul>
+                        {{--<ul class="dropdown-menu admin" role="menu">--}}
+                            {{--<li role="presentation" class="dropdown-header">Admin name</li>--}}
+                            {{--<li><a href="profile"><i class="fa fa-info"></i> Profile</a></li>--}}
+                            {{--<li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
                     </li>
                 </ul>
             </div>
@@ -137,7 +132,7 @@
 <i class="fa fa-angle-down"></i></span>
                         </a>
                         <ul class="dropdown-menu admin" role="menu">
-                            <li role="presentation" class="dropdown-header">{{ Auth::user()->username }}</li>
+                            <li role="presentation" class="dropdown-header">Admin name</li>
                             <li><a href="/dcm//profile"><i class="fa fa-info"></i> Profile</a></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
@@ -170,11 +165,11 @@
                                         <li><a href="/equipments"><i class="fa fa-circle-o"></i> Equipment</a></li>
                                         <li><a href="/services"><i class="fa fa-arrows-v"></i> Service</a></li>
                                         <li><a href="/dcm/ui-element/other-elements"><i class="fa fa-flag-o"></i> Facility</a></li>
-                                        <li><a href="/dcm/ui-element/breadcrumbs"><i class="fa fa-exchange"></i> Staff Category</a></li>
+                                        <li><a href="/staffcategories"><i class="fa fa-exchange"></i> Staff Category</a></li>
                                         <li><a href="/dcm/ui-element/progressbars"><i class="fa fa-angle-double-right"></i> Drugs</a></li>
                                         <li><a href="/dcm/ui-element/alerts"><i class="fa fa-warning"></i> Diseases</a></li>
-                                        <li><a href="/dcm/ui-element/modal"><i class="fa fa-square-o"></i> Projection Factors</a></li>
-                                        <li><a href="/dcm/ui-element/collapse"><i class="fa fa-align-justify"></i> Projections</a></li>
+                                        <li><a href="/projecionf"><i class="fa fa-square-o"></i> Projection Factors</a></li>
+                                        <li><a href="/projections"><i class="fa fa-align-justify"></i> Projections</a></li>
 
                                     </ul>
                                 </li>
@@ -354,29 +349,117 @@
         </div>
     </div>
 </div>
-
 <script src="/js/jquery.dataTables.min.js"></script>
 <!-- Bootstrap JavaScript -->
 <script src="/js/bootstrap.min.js"></script>
 <script src="/dcm/js/vendor.js" type="text/javascript"></script>
 <script src="/dcm/vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
 <script src="/dcm/js/app.js" type="text/javascript"></script>
+<script type="text/javascript">
 
-{{--date picker function--}}
-<script type="text/javascript">
-    $( document ).ready(function() {
-        $( "#datePicker" ).datepicker({
-            changeMonth: true,
-            changeYear: true
-        });
-    });
-</script>
-<script type="text/javascript">
 
     $(function(){
 
+        // Sidebar Charts
+
+        // Pie Chart
+        var chart3 = c3.generate({
+            bindto: '#sidebar-piechart',
+            data: {
+
+                // iris data from R
+                columns: [
+                    ['1', 36],
+                    ['2', 54],
+                    ['3', 12],
+                ],
+                type : 'pie',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },
+            color: {
+                pattern: ['#06c5ac','#3faae3','#ee634c','#6bbd95','#f4cc0b','#9b59b6','#16a085','#c0392b']
+            },
+            pie: {
+                expand: true
+            },
+            size: {
+                width: 140,
+                height: 140
+            },
+            tooltip: {
+                show: false
+            }
+
+        });
 
 
+
+        // Bar Chart
+        var chart6 = c3.generate({
+            bindto: '#sidebar-barchart',
+            data: {
+                columns: [
+                    ['data1', 30, 200, 100, 400, 250, 310, 90, 125, 50]
+                ],
+                type: 'bar'
+            },
+            bar: {
+                width: {
+                    ratio: 0.8
+                }
+            },
+            size: {
+                width: 200,
+                height: 120
+            },
+            tooltip: {
+                show: false
+            },
+            color: {
+                pattern: ['#06c5ac','#3faae3','#ee634c','#6bbd95','#f4cc0b','#9b59b6','#16a085','#c0392b']
+            },
+            axis: {
+                y: {
+                    show: false,
+                    color: '#ffffff'
+                }
+            }
+        });
+
+
+        // Sidebar Tabs
+        $('#navTabs .sidebar-top-nav a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show');
+
+            setTimeout(function(){
+                $('.tab-content-scroller').perfectScrollbar('update');
+            }, 10);
+
+        });
+
+
+
+        $('.subnav-toggle').click(function() {
+            $(this).parent('.sidenav-dropdown').toggleClass('show-subnav');
+            $(this).find('.fa-angle-down').toggleClass('fa-flip-vertical');
+
+            setTimeout(function(){
+                $('.tab-content-scroller').perfectScrollbar('update');
+            }, 500);
+
+        });
+
+        $('.sidenav-toggle').click(function() {
+            $('#app-container').toggleClass('push-right');
+
+            setTimeout(function(){
+                $('.tab-content-scroller').perfectScrollbar('update');
+            }, 500);
+
+        });
 
 
         // Boxed Layout Toggle

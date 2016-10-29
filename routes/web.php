@@ -34,7 +34,20 @@ Route::get('/services', '\App\Http\Controllers\ServicesController@equipments');
 Route::get('/equipments', function (){
     return view('equipments');
 });
-
+//staff-category
+Route::get('/staffcategories', function (){
+    return view('staffcategories');
+});
+Route::post('/staffcategories', 'StaffCategoriesController@store');
+//projection factors
+Route::get('/projectionf', function (){
+    return view('projectionfactors');
+});
+Route::post('/projectionf', 'ProjectionFactorsController@store');
+//projections
+Route::get('/projections', function (){
+    return view('projections');
+});
 //route for county form
 Route::get('/county', function (){
     return view('county');
