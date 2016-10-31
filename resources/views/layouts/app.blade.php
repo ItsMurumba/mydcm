@@ -189,7 +189,7 @@
                                     <a class="subnav-toggle" href="#"><i class="fa fa-pencil"></i> Population <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="/distribution"><i class="fa fa-inbox"></i> Population Distribution</a></li>
-                                        <li><a href="#"><i class="fa fa-pencil-square-o"></i> Population Estimates</a></li>
+                                        <li><a href="/estimates"><i class="fa fa-pencil-square-o"></i> Population Estimates</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidenav-dropdown ">

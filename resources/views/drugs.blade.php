@@ -25,7 +25,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <form method ="post" action="/county" class="form-horizontal">
+                            <form method ="post" action="/drugs" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
@@ -49,7 +49,7 @@
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Unit Cost</label>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Unit Cost(Ksh)</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="unit_cost">
                                     </div>

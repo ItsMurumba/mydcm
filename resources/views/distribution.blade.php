@@ -25,7 +25,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <form method ="post" action="/county" class="form-horizontal">
+                            <form method ="post" action="/distribution" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Age Group</label>
@@ -37,7 +37,8 @@
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-2 control-label">Gender</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="gender">
+                                        {{--<input type="text" class="form-control" name="gender">--}}
+                                        {{Form::select('gender', ['F' => 'Female', 'M' => 'Male'], null, ['placeholder' => 'Pick a gender...'], ['class' => 'form-control'])}}
                                     </div>
                                 </div>
                                 <hr/>

@@ -28,7 +28,8 @@ Route::get('/index', 'HomeController@index');
 Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@index');
 
 //services
-Route::get('/services', '\App\Http\Controllers\ServicesController@equipments');
+Route::get('/services', 'ServicesController@index');
+Route::post('/services', 'ServicesController@store');
 
 //equipment
 Route::get('/equipments', function (){
@@ -36,41 +37,62 @@ Route::get('/equipments', function (){
 });
 Route::post('/equipments', 'EquipmentsController@store');
 
+
 //drugs
 Route::get('/drugs', function (){
     return view('drugs');
 });
+Route::post('/drugs', 'DrugsController@store');
+
 
 //Facility
 Route::get('/facility', 'FacilitiesController@index');
+Route::post('/facility','FacilitiesController@store');
 
 
 //Distribution
 Route::get('/distribution', function (){
     return view('distribution');
 });
+Route::post('/distribution','DistributionsController@store');
+
+
+//estimates
+Route::get('/estimates', 'EstimatesController@index');
+Route::post('/estimates', 'EstimatesController@store');
+
+
 
 //staff-category
 Route::get('/staffcategories', function (){
     return view('staffcategories');
 });
 Route::post('/staffcategories', 'StaffCategoriesController@store');
+
+
 //projection factors
 Route::get('/projectionf', function (){
     return view('projectionfactors');
 });
 Route::post('/projectionf', 'ProjectionFactorsController@store');
+
+
 //projections
 Route::get('/projections', 'ProjectionController@index');
+Route::post('/projections', 'ProjectionController@store');
+
+
 //route for county form
 Route::get('/county', function (){
     return view('county');
 });
 
+
 //diseases
 Route::get('/diseases', function (){
     return view('diseases');
 });
+Route::post('/diseases', 'DiseasesController@store');
 
 //route for role form
 Route::get('/role', function (){

@@ -4,15 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Facilities extends Model
+class Estimates extends Model
 {
     //
-    protected $table= "facility";
+    protected $table= "population_estimates";
     //
     protected $fillable =[
-        'name',
-        'address',
-        'bedcapacity',
+        'population',
+        'population_distribution_id',
         'county_id'
 
     ];

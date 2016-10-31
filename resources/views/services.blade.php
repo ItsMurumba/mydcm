@@ -37,7 +37,7 @@
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-2 control-label">Equipment</label>
                                     <div class="col-sm-10">
-                                        {{ Form::select('equipments', $equipments, null,  ['class' => 'form-control']) }}
+                                        {{ Form::select('equipments', $equipments, null,  ['class' => 'form-control'], ['name' => 'equipments']) }}
                                     </div>
                                 </div>
                                 <hr/>

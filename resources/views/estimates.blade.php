@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Projections </h1>
+                <h1> Population Estimates </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Projections </li>
+                <li class="active"> Population Estimates</li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -25,12 +25,19 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <form method ="post" action="/projections" class="form-horizontal">
+                            <form method ="post" action="/estimates" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Rate</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Population</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="rate">
+                                        <input type="text" class="form-control"  name="population">
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Distribution</label>
+                                    <div class="col-sm-10">
+                                        {{ Form::select('distributions', $distributions, null,  ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                                 <hr/>
@@ -42,14 +49,7 @@
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Projection Factor</label>
-                                    <div class="col-sm-10">
-                                        {{ Form::select('projectionfactors', $projectionfactors, null,  ['class' => 'form-control']) }}
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Add Projections</button>
+                                    <button type="submit" class="btn btn-primary">Add Distribution</button>
                                 </div>
                             </form>
                         </div>
@@ -58,5 +58,4 @@
             </div>
         </div>
     </div>
-
 @endsection
