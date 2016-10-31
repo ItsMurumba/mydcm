@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Equipments </h1>
+                <h1> Facility </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Equipments </li>
+                <li class="active"> Facility </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -25,51 +25,38 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <form method ="post" action="/equipments" class="form-horizontal">
+                            <form method ="post" action="/county" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="equipment">
+                                        <input type="text" class="form-control"  name="name">
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Model</label>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Adress</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="model">
+                                        <input type="text" class="form-control" name="address">
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputtext" class="col-sm-2 control-label">Cost(Ksh.)</label>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Bed Capacity</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="cost">
+                                        <input type="text" class="form-control" name="bed_capacity">
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputtext" class="col-sm-2 control-label">Date</label>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">County</label>
                                     <div class="col-sm-10">
-                                        {{--<input type="text" class="form-control" name="datepicker">--}}
-                                        {{--{{ Form::text('date', '', array('id' => 'datePicker'))}}--}}
-                                        <input class="date form-control" style="width: 300px;" type="text" name="date">
-
-                                        <script type="text/javascript">
-
-                                            $('.date').datepicker({
-
-                                                format: 'yyyy-mm-dd'
-
-                                            });
-
-                                        </script>
-
+                                        {{ Form::select('county', $county, null,  ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Add Equipment</button>
+                                    <button type="submit" class="btn btn-primary">Add Facility</button>
                                 </div>
                             </form>
                         </div>
@@ -78,5 +65,4 @@
             </div>
         </div>
     </div>
-
 @endsection

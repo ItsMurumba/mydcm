@@ -12,7 +12,7 @@ class ServicesController extends Controller
 {
     //
     public function equipments(){
-        $equipments = Equipments::pluck('name', 'id');
+        $equipments = equipments::pluck('name', 'id');
 
         return view('services', ['equipments'=> $equipments]);
     }

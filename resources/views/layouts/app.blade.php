@@ -19,6 +19,18 @@
     <link rel="stylesheet" href="/dcm/css/font-awesome.css"/>
     <link rel="stylesheet" href="/css/jquery.dataTables.min.css"/>
 
+    {{--headers for date picker--}}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
+
 </head>
 <body class="page-header-fixed page-quick-sidebar-over-content ">
 <div id="app-container">
@@ -128,11 +140,11 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle admin-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <img class="img-circle admin-img" src="/dcm/img/profile1.jpg" alt="">&nbsp;&nbsp;&nbsp;<span class="add">Admin&nbsp;
+                            <img class="img-circle admin-img" src="/dcm/img/profile1.jpg" alt="">&nbsp;&nbsp;&nbsp;<span class="add">{{ Auth::user()->username }}&nbsp;
 <i class="fa fa-angle-down"></i></span>
                         </a>
                         <ul class="dropdown-menu admin" role="menu">
-                            <li role="presentation" class="dropdown-header">Admin name</li>
+                            <li role="presentation" class="dropdown-header">{{ Auth::user()->username }}</li>
                             <li><a href="/dcm//profile"><i class="fa fa-info"></i> Profile</a></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
@@ -152,7 +164,7 @@
                                     <img src="/dcm/img/profile1.jpg" alt="" class="img-circle dash-profile"/>
                                 </a>
                                 <div class="t-p">
-                                    <a href="/dcm/profile">Kumar Sanket</a>
+                                    <a href="/dcm/profile">{{ Auth::user()->username }}</a>
                                 </div>
                             </div>
                             <div class="section-heading">Menus</div>
@@ -164,11 +176,11 @@
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="/equipments"><i class="fa fa-circle-o"></i> Equipment</a></li>
                                         <li><a href="/services"><i class="fa fa-arrows-v"></i> Service</a></li>
-                                        <li><a href="/dcm/ui-element/other-elements"><i class="fa fa-flag-o"></i> Facility</a></li>
+                                        <li><a href="/facility"><i class="fa fa-flag-o"></i> Facility</a></li>
                                         <li><a href="/staffcategories"><i class="fa fa-exchange"></i> Staff Category</a></li>
-                                        <li><a href="/dcm/ui-element/progressbars"><i class="fa fa-angle-double-right"></i> Drugs</a></li>
-                                        <li><a href="/dcm/ui-element/alerts"><i class="fa fa-warning"></i> Diseases</a></li>
-                                        <li><a href="/projecionf"><i class="fa fa-square-o"></i> Projection Factors</a></li>
+                                        <li><a href="/drugs"><i class="fa fa-angle-double-right"></i> Drugs</a></li>
+                                        <li><a href="/diseases"><i class="fa fa-warning"></i> Diseases</a></li>
+                                        <li><a href="/projectionf"><i class="fa fa-square-o"></i> Projection Factors</a></li>
                                         <li><a href="/projections"><i class="fa fa-align-justify"></i> Projections</a></li>
 
                                     </ul>
@@ -176,8 +188,8 @@
                                 <li class="sidenav-dropdown ">
                                     <a class="subnav-toggle" href="#"><i class="fa fa-pencil"></i> Population <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="messages/inbox"><i class="fa fa-inbox"></i> Population Distribution</a></li>
-                                        <li><a href="messages/compose"><i class="fa fa-pencil-square-o"></i> Population Estimates</a></li>
+                                        <li><a href="/distribution"><i class="fa fa-inbox"></i> Population Distribution</a></li>
+                                        <li><a href="#"><i class="fa fa-pencil-square-o"></i> Population Estimates</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidenav-dropdown ">
@@ -186,6 +198,14 @@
                                         <li><a href="/members"><i class="fa fa-users"></i> Users</a></li>
                                         <li><a href="/role"><i class="fa fa-user-plus"></i> Roles</a></li>
                                         <li><a href="/county"><i class="fa fa-map-marker"></i> County</a></li>
+                                    </ul>
+                                </li>
+                                <li class="sidenav-dropdown ">
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i> Reports <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <ul class="nav sidenav-sub-menu">
+                                        <li><a href="#"><i class="fa fa-users"></i> Facility</a></li>
+                                        <li><a href="#"><i class="fa fa-user-plus"></i> Diseases</a></li>
+                                        <li><a href="#"><i class="fa fa-map-marker"></i> Activity</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -341,7 +361,7 @@
     <div id="body-container">
         @yield('content')
         <div id="footer-wrap" class="footer">
-            Copyright © 2015 DCM
+            Copyright © 2016 DCM
 <span class="pull-right">
 <a href="javascript:;"><i class="fa fa-facebook-square"></i></a>
 <a href="javascript:;">&nbsp;<i class="fa fa-twitter-square"></i></a>
@@ -355,6 +375,14 @@
 <script src="/dcm/js/vendor.js" type="text/javascript"></script>
 <script src="/dcm/vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
 <script src="/dcm/js/app.js" type="text/javascript"></script>
+
+{{--<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>--}}
+{{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>--}}
+{{--<script>--}}
+    {{--$(document).ready(function() {--}}
+        {{--$('.datepicker').datepicker();--}}
+    {{--});--}}
+{{--</script>--}}
 <script type="text/javascript">
 
 

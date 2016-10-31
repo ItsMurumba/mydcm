@@ -7,7 +7,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\DB;
+
 
 
 class RegisterController extends Controller
@@ -79,7 +79,6 @@ class RegisterController extends Controller
 
  //function used to populate dropdown
     public function index(){
-//        $county = DB::table('county')->pluck('name','id');
         $county = County::pluck('name', 'id');
 
         return view('auth.register', ['county'=> $county]);

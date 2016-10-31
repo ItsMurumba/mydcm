@@ -34,6 +34,22 @@ Route::get('/services', '\App\Http\Controllers\ServicesController@equipments');
 Route::get('/equipments', function (){
     return view('equipments');
 });
+Route::post('/equipments', 'EquipmentsController@store');
+
+//drugs
+Route::get('/drugs', function (){
+    return view('drugs');
+});
+
+//Facility
+Route::get('/facility', 'FacilitiesController@index');
+
+
+//Distribution
+Route::get('/distribution', function (){
+    return view('distribution');
+});
+
 //staff-category
 Route::get('/staffcategories', function (){
     return view('staffcategories');
@@ -45,12 +61,15 @@ Route::get('/projectionf', function (){
 });
 Route::post('/projectionf', 'ProjectionFactorsController@store');
 //projections
-Route::get('/projections', function (){
-    return view('projections');
-});
+Route::get('/projections', 'ProjectionController@index');
 //route for county form
 Route::get('/county', function (){
     return view('county');
+});
+
+//diseases
+Route::get('/diseases', function (){
+    return view('diseases');
 });
 
 //route for role form
