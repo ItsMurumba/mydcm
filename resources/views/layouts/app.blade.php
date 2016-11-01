@@ -168,16 +168,13 @@
                                 </div>
                             </div>
                             <div class="section-heading">Menus</div>
+                            {{--@if {{ Auth::user()->roles_id }}--}}
                             <ul class="nav sidebar-nav ">
                                 <li class=active><a href="/index"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="sidenav-dropdown ">
                                     <a class="subnav-toggle" href="javascript:;"><i class="fa fa-toggle-off"></i> Model Assumptions <i class="fa fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="/equipments"><i class="fa fa-circle-o"></i> Equipment</a></li>
-                                        <li><a href="/services"><i class="fa fa-arrows-v"></i> Service</a></li>
-                                        <li><a href="/facility"><i class="fa fa-flag-o"></i> Facility</a></li>
-                                        <li><a href="/staffcategories"><i class="fa fa-exchange"></i> Staff Category</a></li>
                                         <li><a href="/drugs"><i class="fa fa-angle-double-right"></i> Drugs</a></li>
                                         <li><a href="/diseases"><i class="fa fa-warning"></i> Diseases</a></li>
                                         <li><a href="/projectionf"><i class="fa fa-square-o"></i> Projection Factors</a></li>
@@ -197,18 +194,21 @@
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="/members"><i class="fa fa-users"></i> Users</a></li>
                                         <li><a href="/role"><i class="fa fa-user-plus"></i> Roles</a></li>
-                                        <li><a href="/county"><i class="fa fa-map-marker"></i> County</a></li>
+                                        <li><a href="/staffcategories"><i class="fa fa-exchange"></i> Staff Category</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidenav-dropdown ">
-                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i> Reports <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i> Manage Facilities <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="#"><i class="fa fa-users"></i> Facility</a></li>
-                                        <li><a href="#"><i class="fa fa-user-plus"></i> Diseases</a></li>
-                                        <li><a href="#"><i class="fa fa-map-marker"></i> Activity</a></li>
+                                        <li><a href="/equipments"><i class="fa fa-circle-o"></i> Equipment</a></li>
+                                        <li><a href="/services"><i class="fa fa-arrows-v"></i> Service</a></li>
+                                        <li><a href="/facility"><i class="fa fa-flag-o"></i> Facility</a></li>
+                                        <li><a href="/county"><i class="fa fa-map-marker"></i> County</a></li>
+                                        <li><a href="/diseasecosts"><i class="fa fa-users"></i> Disease Costs</a></li>
                                     </ul>
                                 </li>
                             </ul>
+                            {{--@endif--}}
                         </div>
                         <div role="tabpanel" class="tab-pane" id="comments">
                             <div class="section-heading">Members</div>

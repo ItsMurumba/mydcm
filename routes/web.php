@@ -108,3 +108,14 @@ Route::get('/members', function (){
 //datatables
 Route::get('/datatables/data', array('middleware' => 'auth', 'uses' => 'DatatablesController@anyData'))->name('datatables.data');
 Route::get('/datatables/index', array('middleware' => 'auth', 'uses' => 'DatatablesController@getIndex'))->name('datatables');
+
+
+//datacapture route
+Route::post('/datacapture', function (){
+    return view('datacapture');
+});
+
+
+//disease costs
+Route::get('/diseasecosts', 'DiseaseCostsController@index');
+Route::post('/diseasecosts', 'DiseaseCostsController@store');

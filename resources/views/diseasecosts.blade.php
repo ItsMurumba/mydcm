@@ -1,14 +1,12 @@
 @extends('layouts.app')
 @section('content')
-
-
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Choose DataSet </h1>
+                <h1> Disease Costs </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Data Set </li>
+                <li class="active"> Disease Costs </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -27,29 +25,42 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            {{--{!! Form::open(['url' => 'foo/bar']) !!}--}}
-                            <form method ="post" action="/datacapture" class="form-horizontal">
+                            <form method ="post" action="/diseasecosts" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Disease</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="dataset">
-                                    </div>
-                                </div>
-                                </br>
-                                <hr/>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">County</label>
-                                    <div class="col-sm-10">
-                                          {{ Form::select('county', $county, null,  ['class' => 'form-control']) }}
+                                        {{ Form::select('diseases', $diseases, null,  ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Create DataSet</button>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Consultation Fee(Ksh.)</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="consultation">
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Service Fee(Ksh.)</label>
+                                    <div class="col-sm-10">
+                                        {{--<input type="text" class="form-control" name="servicesfee">--}}
+                                        {{ Form::select('services', $services, null,  ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Drugs Fee(Ksh.)</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="drugsfee">
+                                    </div>
+                                </div>
+                                <hr/>
+                                <input type="hidden" class="form-control" name="total">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Add Disease Cost</button>
                                 </div>
                             </form>
-                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>

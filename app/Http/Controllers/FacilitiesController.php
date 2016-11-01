@@ -31,7 +31,8 @@ class FacilitiesController extends Controller
             'name'    =>'required|unique',
             'address'   =>'required|unique',
             'bed_capacity'       =>'required',
-            'county'       =>'required'
+            'county'       =>'required',
+            'level'       =>'required'
 
 
         ]);
@@ -44,6 +45,7 @@ class FacilitiesController extends Controller
         $Facilities->address = Input::get('address');
         $Facilities->bedcapacity = Input::get('bed_capacity');
         $Facilities->county_id = Input::get('county');
+        $Facilities->level = Input::get('level');
         $Facilities->save();
 
         //redirect

@@ -56,6 +56,13 @@
                                 </div>
                                 <hr/>
                                 <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Level</label>
+                                    <div class="col-sm-10">
+                                        {{Form::select('level', ['1' => 'Level 1', '2' => 'Level 2', '3' => 'Level 3', '4' => 'Level 4', '5' => 'Level 5', '6' => 'Level 6'], null, ['placeholder' => 'Pick a level...', 'class' => 'form-control'])}}
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Add Facility</button>
                                 </div>
                             </form>

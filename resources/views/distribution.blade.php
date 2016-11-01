@@ -38,7 +38,7 @@
                                     <label for="inputPassword3" class="col-sm-2 control-label">Gender</label>
                                     <div class="col-sm-10">
                                         {{--<input type="text" class="form-control" name="gender">--}}
-                                        {{Form::select('gender', ['F' => 'Female', 'M' => 'Male'], null, ['placeholder' => 'Pick a gender...'], ['class' => 'form-control'])}}
+                                        {{Form::select('gender', ['F' => 'Female', 'M' => 'Male'], null, ['placeholder' => 'Pick a gender...', 'class' => 'form-control'])}}
                                     </div>
                                 </div>
                                 <hr/>

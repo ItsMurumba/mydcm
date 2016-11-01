@@ -30,7 +30,8 @@
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Cadre</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="cadre">
+                                        {{--<input type="text" class="form-control"  name="cadre">--}}
+                                        {{Form::select('cadre', ['1' => 'Hospital Dean', '2' => 'Administrator', '3' => 'Surgeon', '4' => 'Normal Specialist', '5' => 'Silent Doctor', '6' => 'Nurse', '7' => 'Physicin Ass' , '8' => 'Intern'], null, ['placeholder' => 'Pick a cadre...', 'class' => 'form-control'])}}
                                     </div>
                                 </div>
                                 <hr/>

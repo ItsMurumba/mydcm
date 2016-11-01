@@ -13,7 +13,7 @@ class Facilities extends Model
         'name',
         'address',
         'bedcapacity',
-        'county_id'
-
+        'county_id',
+        'level'
     ];
 }
