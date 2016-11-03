@@ -28,7 +28,7 @@
                         </div>
                         <div class="panel-body">
                             {{--{!! Form::open(['url' => 'foo/bar']) !!}--}}
-                            <form method ="post" action="/datacapture" class="form-horizontal">
+                            <form method ="post" action="/index" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
@@ -36,7 +36,6 @@
                                         <input type="text" class="form-control"  name="dataset">
                                     </div>
                                 </div>
-                                </br>
                                 <hr/>
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">County</label>
@@ -45,6 +44,44 @@
                                     </div>
                                 </div>
                                 <hr/>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Facility</label>
+                                    <div class="col-sm-10">
+                                        {{ Form::select('facilities', $facilities, null,  ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Disease</label>
+                                    <div class="col-sm-10">
+                                        <select name='diseaseCosts' class = 'form-control'>
+                                            @foreach($diseaseCosts as $diseaseCost)
+                                                <option value="{{ $diseaseCost->diseases_id }}">{{ $diseaseCost->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Age Group</label>
+                                    <div class="col-sm-10">
+                                        {{ Form::select('distributions', $distributions, null,  ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Population</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control"  name="population">
+                                    </div>
+                                </div>
+                                </hr>
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <input type="hidden" class="form-control"  name="user" value="{{ Auth::user()->id }}" placeholder="{{ Auth::user()->id }}">
+                                    </div>
+                                </div>
+                                </hr>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Create DataSet</button>
                                 </div>

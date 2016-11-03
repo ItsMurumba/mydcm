@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index');
 
 
 Route::get('/index', 'HomeController@index');
+Route::post('/index', 'HomeController@store');
 
 //route for register
 Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@index');
