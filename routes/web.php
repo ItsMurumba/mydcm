@@ -12,8 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('login');
 });
+
+//route for register
+Route::get('/registers', '\App\Http\Controllers\Auth\RegisterController@index');
+
+//Route::get('/r', function () {
+//    return view('layouts.register');
+//});
+//Route::get('/r', '\App\Http\Controllers\Auth\RegisterController@index');
+//Route::get('/l', function () {
+//    return view('login');
+//});
 
 Auth::routes();
 
@@ -25,8 +36,6 @@ Route::get('/home', 'HomeController@index');
 Route::get('/index', 'HomeController@index');
 Route::post('/index', 'HomeController@store');
 
-//route for register
-Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@index');
 
 //services
 Route::get('/services', 'ServicesController@index');

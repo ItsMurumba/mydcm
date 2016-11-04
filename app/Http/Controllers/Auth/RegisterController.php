@@ -81,6 +81,6 @@ class RegisterController extends Controller
     public function index(){
         $county = County::pluck('name', 'id');
 
-        return view('auth.register', ['county'=> $county]);
+        return view('register', ['county'=> $county]);
     }
 }
