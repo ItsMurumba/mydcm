@@ -69,13 +69,13 @@
                                     </div>
                                 </div>
                                 <hr/>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Population</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="population">
-                                    </div>
-                                </div>
-                                </hr>
+                                {{--<div class="form-group">--}}
+                                    {{--<label for="inputEmail3" class="col-sm-2 control-label">Population</label>--}}
+                                    {{--<div class="col-sm-10">--}}
+                                        {{--<input type="text" class="form-control"  name="population">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--</hr>--}}
                                 <div class="form-group">
                                     <div class="col-sm-10">
                                         <input type="hidden" class="form-control"  name="user" value="{{ Auth::user()->id }}" placeholder="{{ Auth::user()->id }}">

@@ -28,20 +28,6 @@
                             <form method ="post" action="/estimates" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Population</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="population">
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Distribution</label>
-                                    <div class="col-sm-10">
-                                        {{ Form::select('distributions', $distributions, null,  ['class' => 'form-control']) }}
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-2 control-label">County</label>
                                     <div class="col-sm-10">
                                         {{ Form::select('county', $county, null,  ['class' => 'form-control']) }}
@@ -49,7 +35,35 @@
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Add Distribution</button>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Facility</label>
+                                    <div class="col-sm-10">
+                                        {{ Form::select('facility', $facility, null,  ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Age Group</label>
+                                    <div class="col-sm-10">
+                                        {{ Form::select('distributions', $distributions, null,  ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Disease</label>
+                                    <div class="col-sm-10">
+                                        {{ Form::select('diseases', $diseases, null,  ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Population</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control"  name="population">
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
                         </div>

@@ -12,7 +12,9 @@ class Estimates extends Model
     protected $fillable =[
         'population',
         'population_distribution_id',
-        'county_id'
+        'county_id',
+        'facility_id',
+        'disease_id'
 
     ];
 }

@@ -28,7 +28,7 @@
                             <form method ="post" action="/distribution" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Age Group</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Age Group</br>Format(range:M/F)</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control"  name="age_group">
                                     </div>
