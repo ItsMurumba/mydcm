@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Diseases </h1>
+                <h1> Assign Drugs To Diseases </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Diseases </li>
+                <li class="active"> Drugs Assignment </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -25,24 +25,26 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <form method ="post" action="/diseases" class="form-horizontal">
+                            <form method ="post" action="/drugdisease" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Disease</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="name">
+                                    {{ Form::select('diseases', $diseases, null,  ['placeholder' => 'Pick disease...','class' => 'form-control']) }}
+
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Description</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Drugs</label>
                                     <div class="col-sm-10">
-                                        <textarea type="text" class="form-control" name="description"></textarea>
+                                        {{ Form::select('drugs[]', $drugs, null, ['placeholder' => 'Pick drugs...','class' => 'form-control', 'multiple' => 'multiple']) }}
+
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Add Disease</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
                         </div>

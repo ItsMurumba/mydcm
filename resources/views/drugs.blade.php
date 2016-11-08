@@ -42,16 +42,23 @@
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Unit</label>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Pack Size</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="unit">
+                                        <input type="text" class="form-control" name="pack_size">
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Unit Cost(Ksh)</label>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">No. Of Packs</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="unit_cost">
+                                        <input type="text" class="form-control" name="no_of_packs">
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Price Per Pack(Ksh.)</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="price_per_pack">
                                     </div>
                                 </div>
                                 <hr/>

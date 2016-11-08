@@ -172,13 +172,26 @@
                             <ul class="nav sidebar-nav ">
                                 <li class=active><a href="/index"><i class="fa fa-home"></i> Home</a>
                                 </li>
+                                @if(Auth::user()->roles_id == '1')
+                                <li class="sidenav-dropdown ">
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-pencil"></i> Diseases <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <ul class="nav sidenav-sub-menu">
+                                        <li><a href="/diseases"><i class="fa fa-warning"></i> Diseases</a></li>
+                                        <li><a href="/diseasecosts"><i class="fa fa-users"></i> Disease Costs</a></li>
+                                    </ul>
+                                </li>
+                                <li class="sidenav-dropdown ">
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-pencil"></i> Drugs <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <ul class="nav sidenav-sub-menu">
+                                        <li><a href="/drugs"><i class="fa fa-angle-double-right"></i> Drugs</a></li>
+                                        <li><a href="/drugdisease"><i class="fa fa-warning"></i>  Drugs Assignment</a></li>
+                                    </ul>
+                                </li>
                                 <li class="sidenav-dropdown ">
                                     <a class="subnav-toggle" href="javascript:;"><i class="fa fa-toggle-off"></i> Model Assumptions <i class="fa fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="/drugs"><i class="fa fa-angle-double-right"></i> Drugs</a></li>
-                                        <li><a href="/diseases"><i class="fa fa-warning"></i> Diseases</a></li>
                                         <li><a href="/projectionf"><i class="fa fa-square-o"></i> Projection Factors</a></li>
-                                        <li><a href="/projections"><i class="fa fa-align-justify"></i> Projections</a></li>
+                                        <li><a href="/projections"><i class="fa fa-align-justify"></i> Projection Rates</a></li>
 
                                     </ul>
                                 </li>
@@ -204,7 +217,15 @@
                                         <li><a href="/services"><i class="fa fa-arrows-v"></i> Service</a></li>
                                         <li><a href="/facility"><i class="fa fa-flag-o"></i> Facility</a></li>
                                         <li><a href="/county"><i class="fa fa-map-marker"></i> County</a></li>
-                                        <li><a href="/diseasecosts"><i class="fa fa-users"></i> Disease Costs</a></li>
+                                    </ul>
+                                </li>
+                                @endif
+                                <li class="sidenav-dropdown ">
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Reports <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <ul class="nav sidenav-sub-menu">
+                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Health Care Costs</a></li>
+                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Predictions</a></li>
+
                                     </ul>
                                 </li>
                             </ul>

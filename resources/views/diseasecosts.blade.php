@@ -48,13 +48,13 @@
                                         {{ Form::select('services', $services, null,  ['class' => 'form-control']) }}
                                     </div>
                                 </div>
-                                <hr/>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Drugs Fee(Ksh.)</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="drugsfee">
-                                    </div>
-                                </div>
+                                {{--<hr/>--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label for="inputPassword3" class="col-sm-2 control-label">Drugs Fee(Ksh.)</label>--}}
+                                    {{--<div class="col-sm-10">--}}
+                                        {{--<input type="text" class="form-control" name="drugsfee">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
                                 <hr/>
                                 <input type="hidden" class="form-control" name="total">
                                 <div class="form-group">

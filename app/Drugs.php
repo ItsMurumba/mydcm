@@ -11,8 +11,12 @@ class Drugs extends Model
     protected $fillable =[
         'name',
         'generic_name',
-        'unit',
-        'unit_cost'
+        'pack_size',
+        'no_of_packs',
+        'price_per_pack',
+        'total',
+        'total_units',
+        'price_per_unit'
 
     ];
 }

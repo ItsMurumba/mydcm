@@ -129,3 +129,8 @@ Route::post('/datacapture', function (){
 //disease costs
 Route::get('/diseasecosts', 'DiseaseCostsController@index');
 Route::post('/diseasecosts', 'DiseaseCostsController@store');
+
+
+//drug disease
+Route::get('/drugdisease','DrugDiseasesController@index');
+Route::post('/drugdisease','DrugDiseasesController@store');
