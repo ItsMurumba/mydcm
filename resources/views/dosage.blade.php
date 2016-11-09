@@ -5,10 +5,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Choose DataSet </h1>
+                <h1> Dosage Assignment </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Data Set </li>
+                <li class="active"> Dosage Assignment </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -28,44 +28,26 @@
                         </div>
                         <div class="panel-body">
                             {{--{!! Form::open(['url' => 'foo/bar']) !!}--}}
-                            <form method ="post" action="/index" class="form-horizontal">
+                            <form method ="post" action="/dosage" class="form-horizontal">
                                 {{ csrf_field() }}
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="dataset">
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">County</label>
-                                    <div class="col-sm-10">
-                                          {{ Form::select('county', $county, null,  ['class' => 'form-control']) }}
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Facility</label>
-                                    <div class="col-sm-10">
-                                        {{ Form::select('facilities', $facilities, null,  ['class' => 'form-control']) }}
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Disease</label>
-                                    <div class="col-sm-10">
-                                        <select name='diseaseCosts' class = 'form-control'>
-                                            @foreach($diseaseCosts as $diseaseCost)
-                                                <option value="{{ $diseaseCost->diseases_id }}">{{ $diseaseCost->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <hr/>
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Age Group</label>
                                     <div class="col-sm-10">
                                         {{ Form::select('distributions', $distributions, null,  ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Drug</label>
+                                    <div class="col-sm-10">
+                                        {{ Form::select('drugs', $drugs, null,  ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Dosage(Total Units)</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control"  name="dosage">
                                     </div>
                                 </div>
                                 <hr/>
@@ -76,7 +58,7 @@
                                 </div>
                                 </hr>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Create DataSet</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
                             {!! Form::close() !!}

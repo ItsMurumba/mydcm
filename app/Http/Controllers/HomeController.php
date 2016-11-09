@@ -48,22 +48,34 @@ class HomeController extends Controller
         $DCosts = DB::select(DB::raw("SELECT total FROM disease_costs where diseases_id= '$dCosts'"), array(
             'dCosts' => $dCosts,
             ));
-        $population= Input::get('population');
+//        $population= Input::get('population');
         foreach ($DCosts as $row){
             global $sum;
             $sum= $row->total;
         }
-//    echo $sum;
+        $disease_id=Input::get('diseaseCosts');
+        $population_distribution_id=Input::get('distributions');
+        $Population=DB::select(DB::raw("SELECT population FROM population_estimates WHERE disease_id='$disease_id' AND population_distribution_id='$population_distribution_id' "),array(
+            'disease_id' => $disease_id,
+        ),array(
+            'population_distribution_id' => $population_distribution_id,
+        ));
+
+        foreach ($Population as $row){
+            global $population;
+            $population= $row->population;
+        }
+        echo $population;
+
         $total= ($population * $sum);
-//        echo $total;
-//        die();
+
         $Home = new Home;
         $Home->name = Input::get('dataset');
         $Home->county_id = Input::get('county');
         $Home->facility_id = Input::get('facilities');
         $Home->disease_id = Input::get('diseaseCosts');
         $Home->distribution_id = Input::get('distributions');
-        $Home->population = Input::get('population');
+        $Home->population = $population;
         $Home->total = $total;
         $Home->user_id = Input::get('user');
         $Home->save();

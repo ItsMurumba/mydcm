@@ -134,3 +134,8 @@ Route::post('/diseasecosts', 'DiseaseCostsController@store');
 //drug disease
 Route::get('/drugdisease','DrugDiseasesController@index');
 Route::post('/drugdisease','DrugDiseasesController@store');
+
+
+//dosage
+Route::get('/dosage','DosageController@index');
+Route::post('/dosage','DosageController@store');

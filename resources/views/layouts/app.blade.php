@@ -185,6 +185,7 @@
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="/drugs"><i class="fa fa-angle-double-right"></i> Drugs</a></li>
                                         <li><a href="/drugdisease"><i class="fa fa-warning"></i>  Drugs Assignment</a></li>
+                                        <li><a href="/dosage"><i class="fa fa-angle-double-right"></i> Dosage Assignment</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidenav-dropdown ">
