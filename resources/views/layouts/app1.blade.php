@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="/dcm/js/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,9 +24,21 @@
         .fa-btn {
             margin-right: 6px;
         }
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('/dcm/img/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+        }
     </style>
 </head>
 <body id="app-layout">
+<div class="loader">
+
+</div>
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -73,6 +86,14 @@
 </nav>
 
 @yield('content')
+
+{{--gif script--}}
+
+<script type="javascript">
+    $(window).load(function() {
+        $(".loader").fadeOut("slow");
+    })
+</script>
 
 <!-- JavaScripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>

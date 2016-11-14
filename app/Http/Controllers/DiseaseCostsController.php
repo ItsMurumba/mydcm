@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Diseases;
 use App\DiseaseCosts;
 use App\Services;
+use App\Distributions;
 use Illuminate\Support\Facades\DB;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
@@ -20,12 +21,9 @@ class DiseaseCostsController extends Controller
     //function used to populate dropdown
     public function index(){
         $diseases = Diseases::pluck('name', 'id');
-        $diseases = ['diseases' => $diseases];
         $services = Services::pluck('name', 'cost');
-        $services= ['services' => $services];
-
-
-        return view('diseasecosts',  $services, $diseases);
+        $distributions= Distributions::pluck('age_group','id');
+        return view('diseasecosts')->with(['diseases' => $diseases,'services' => $services,'distributions' => $distributions]);
     }
 
 
@@ -35,24 +33,39 @@ class DiseaseCostsController extends Controller
             'diseases'    =>'required|unique',
             'consultation'   =>'required',
             'services'       =>'required',
-            'drugsfee'       =>'required'
+            'drugsfee'       =>'required',
+            'distributions'   =>'required'
 
 
         ]);
     }
     public function store(Request $request)
     {
-        //store
-        $diseaseId=Input::get('diseases');
-        $drugCosts = DB::select(DB::raw("SELECT SUM( d.price_per_pack ) as SUM FROM drug_disease dd JOIN drug d ON d.id=dd.drug_id WHERE dd.disease_id='$diseaseId'"), array(
-            'diseaseId' => $diseaseId,
-            ));
-        foreach ($drugCosts as $row){
-            global $sum;
-            $sum= $row->SUM;
+        //function for getting the total units per drugs based on the dosage and calculate the total cost
+        $distributions_id=Input::get('distributions');
+        $disease_id=Input::get('diseases');
+        $DrugCosts = DB::select(DB::raw("SELECT ds.dosage, d.price_per_unit FROM dosage ds JOIN drug d ON d.id=ds.drug_id where ds.distribution_id='$distributions_id' AND ds.disease_id='$disease_id'"), array(
+            'distributions_id' => $distributions_id,
+        ), array(
+            'disease_id' => $disease_id,
+        ));
+        global $sum;
+        $sum=0;
+        foreach ($DrugCosts as $row){
+
+            global $dosage;
+            $dosage= $row->dosage;
+
+            global $price;
+            $price=$row->price_per_unit;
+
+            global $product;
+            $product=$dosage*$price;
+            $sum=$sum+$product;
+
         }
-//    echo $sum;
-//        die();
+       
+
         $total= Input::get('consultation')+Input::get('servicesfee')+$sum;
         $DiseaseCosts = new DiseaseCosts;
         $DiseaseCosts->diseases_id = Input::get('diseases');

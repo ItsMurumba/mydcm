@@ -19,20 +19,37 @@
     <link rel="stylesheet" href="/dcm/css/font-awesome.css"/>
     <link rel="stylesheet" href="/css/jquery.dataTables.min.css"/>
 
+
+    {{--<!-- Bootstrap CSS -->--}}
+    {{--<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">--}}
+    {{--<link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">--}}
+
+
     {{--headers for date picker--}}
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    {{--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">--}}
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>--}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{{--gif script--}}
+    <script src="/dcm/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(window).load(function() {
+            $(".loader").fadeOut("slow");
+        })
+    </script>
 </head>
 <body class="page-header-fixed page-quick-sidebar-over-content ">
+<div class="loader"></div>
 <div id="app-container">
     <nav class="navbar navbar-inverse navbar-fixed-top striped-bg" id="top-navbar">
         <div class="container-fluid">
@@ -221,12 +238,14 @@
                                     </ul>
                                 </li>
                                 @endif
+                                <li><a href="/listdataset"><i class="fa fa-map-marker"></i> Predictions</a></li>
                                 <li class="sidenav-dropdown ">
                                     <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Reports <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Health Care Costs</a></li>
-                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Predictions</a></li>
-
+                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Disease Cost</a></li>
+                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Service Cost</a></li>
+                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Consultation Cost</a></li>
+                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Drugs Cost</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -391,6 +410,16 @@
         </div>
     </div>
 </div>
+
+{{--<!-- jQuery -->--}}
+{{--<script src="//code.jquery.com/jquery.js"></script>--}}
+{{--<!-- DataTables -->--}}
+{{--<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>--}}
+{{--<!-- Bootstrap JavaScript -->--}}
+{{--<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>--}}
+
+
+
 <script src="/js/jquery.dataTables.min.js"></script>
 <!-- Bootstrap JavaScript -->
 <script src="/js/bootstrap.min.js"></script>

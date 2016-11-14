@@ -44,15 +44,18 @@ class HomeController extends Controller
     {
         $sum = '';
         //store
+
+        //total cost fetch query
         $dCosts= Input::get('diseaseCosts');
         $DCosts = DB::select(DB::raw("SELECT total FROM disease_costs where diseases_id= '$dCosts'"), array(
             'dCosts' => $dCosts,
             ));
-//        $population= Input::get('population');
         foreach ($DCosts as $row){
             global $sum;
             $sum= $row->total;
         }
+
+        //population fetch query
         $disease_id=Input::get('diseaseCosts');
         $population_distribution_id=Input::get('distributions');
         $Population=DB::select(DB::raw("SELECT population FROM population_estimates WHERE disease_id='$disease_id' AND population_distribution_id='$population_distribution_id' "),array(
@@ -65,8 +68,8 @@ class HomeController extends Controller
             global $population;
             $population= $row->population;
         }
-        echo $population;
 
+        //total cost for disease calculated
         $total= ($population * $sum);
 
         $Home = new Home;

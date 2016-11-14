@@ -139,3 +139,17 @@ Route::post('/drugdisease','DrugDiseasesController@store');
 //dosage
 Route::get('/dosage','DosageController@index');
 Route::post('/dosage','DosageController@store');
+
+
+//Route::controller('datatables', 'DatatablesController', [
+//    'anyData'  => 'members',
+//    'getIndex' => 'members',
+//]);
+
+
+//predictions
+Route::get('/predictions','PredictionsController@index');
+
+
+//datasets
+Route::get('/listdataset','ListdatasetController@index');

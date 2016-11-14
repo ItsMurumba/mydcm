@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Disease Costs </h1>
+                <h1> Disease Costs Predictions </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Disease Costs </li>
+                <li class="active"> Predictions </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -25,7 +25,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <form method ="post" action="/diseasecosts" class="form-horizontal">
+                            <form method ="post" action="/predictions" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Disease</label>
@@ -34,30 +34,32 @@
                                     </div>
                                 </div>
                                 <hr/>
+
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Consultation Fee(Ksh.)</label>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Growth Rate</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="consultation">
+                                        <input type="text" class="form-control" name="growthrate">
+                                        {{--{{ Form::select('growthrate', $growthrate, null,  ['class' => 'form-control']) }}--}}
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Service Fee(Ksh.)</label>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Consultation Increament</label>
                                     <div class="col-sm-10">
-                                        {{--<input type="text" class="form-control" name="servicesfee">--}}
-                                        {{ Form::select('services', $services, null,  ['class' => 'form-control']) }}
+                                        <input type="text" class="form-control" name="consulation">
+                                        {{--{{ Form::select('consultationInc', $consultationInc, null,  ['class' => 'form-control']) }}--}}
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Age Group</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Inflation Rate</label>
                                     <div class="col-sm-10">
-                                        {{ Form::select('distributions', $distributions, null,  ['class' => 'form-control']) }}
+                                        <input type="text" class="form-control" value ="" name="inflation">
                                     </div>
                                 </div>
-                                <input type="hidden" class="form-control" name="total">
+                                </hr>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Add Disease Cost</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
                         </div>

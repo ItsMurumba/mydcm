@@ -86,6 +86,7 @@
 <html lang="en" class="no-js">
 <!--<![endif]-->
 <head>
+    <script src="/dcm/js/jquery.min.js"></script>
     <meta charset="utf-8"/>
     <title>Dynamic Cost Model | Login </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -94,8 +95,22 @@
     <meta content="" name="author"/>
     <link rel="stylesheet" href="/dcm/css/vendor.css"/>
     <link rel="stylesheet" href="/dcm/css/app-green.css"/>
+
+<style>
+    .loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('/dcm/img/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+    }
+</style>
+
 </head>
 <body class="page-header-fixed page-quick-sidebar-over-content ">
+<div class="loader">
 <script src="/dcm/js/vendor.js" type="text/javascript"></script>
 <script src="/dcm/vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
 <script src="/dcm/js/app.js" type="text/javascript"></script>
@@ -104,5 +119,13 @@
         $(".alert-danger").hide();
     });
 </script>
+    {{--gif script--}}
+
+    <script type="text/javascript">
+        $(window).load(function() {
+            $(".loader").fadeOut("slow");
+        })
+    </script>
+
 </body>
 </html>
