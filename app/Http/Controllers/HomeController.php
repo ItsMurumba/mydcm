@@ -10,6 +10,7 @@ use App\Facilities;
 use App\DiseaseCosts;
 use App\Distributions;
 use App\Diseases;
+use App\Http\Controllers\Auth;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -91,13 +92,20 @@ class HomeController extends Controller
 
 
     public function index(){
+        $user= Session::get('user');
+
         $county = County::pluck('name','id');
 
         $facilities = Facilities::pluck('name', 'id');
 
+        $home = DB::select(DB::raw("SELECT id, name FROM data_sets where user_id='$user'"), array(
+            'user' => $user,
+        ));
+
         $diseaseCosts = DB::select(DB::raw('SELECT d.diseases_id, t.name, d.total FROM disease_costs d JOIN disease t ON d.diseases_id =t.id '));
         $distributions = Distributions::pluck('age_group','id');
 
-        return view('index')->with(['county' => $county,'facilities' => $facilities,'diseaseCosts' => $diseaseCosts,'distributions' => $distributions]);
+        return view('index')->with(['home'=> $home,'county' => $county,'facilities' => $facilities,'diseaseCosts' => $diseaseCosts,'distributions' => $distributions]);
     }
+
 }

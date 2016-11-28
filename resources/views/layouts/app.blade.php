@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -238,7 +238,7 @@
                                     </ul>
                                 </li>
                                 @endif
-                                <li><a href="/listdataset"><i class="fa fa-map-marker"></i> Predictions</a></li>
+                                <li><a href="/predictions"><i class="fa fa-map-marker"></i> Predictions</a></li>
                                 <li class="sidenav-dropdown ">
                                     <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Reports <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
@@ -400,6 +400,11 @@
         </div>
     </div>
     <div id="body-container">
+        <?php
+        $user= Auth::user()->id ;
+//                                    echo $user;
+        Session::set('user', $user);
+        ?>
         @yield('content')
         <div id="footer-wrap" class="footer">
             Copyright © 2016 DCM
@@ -410,6 +415,7 @@
         </div>
     </div>
 </div>
+
 
 {{--<!-- jQuery -->--}}
 {{--<script src="//code.jquery.com/jquery.js"></script>--}}

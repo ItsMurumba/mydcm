@@ -148,6 +148,9 @@ Route::post('/dosage','DosageController@store');
 
 
 //predictions
+Route::post('/predictions','PredictionsController@index');
+Route::post('/predictions2','PredictionsController@store');
+
 Route::get('/predictions','PredictionsController@index');
 
 

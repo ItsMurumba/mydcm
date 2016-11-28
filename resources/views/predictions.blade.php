@@ -10,7 +10,6 @@
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
-
         <div class="conter-wrapper">
             <div class="row">
                 <div class="col-md-12">
@@ -25,12 +24,17 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <form method ="post" action="/predictions" class="form-horizontal">
+                            <form method ="post" action="/predictions2" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Disease</label>
                                     <div class="col-sm-10">
-                                        {{ Form::select('diseases', $diseases, null,  ['class' => 'form-control']) }}
+                                        {{--{{ Form::select('diseases', $diseases, null,  ['class' => 'form-control']) }}--}}
+                                        <select name='diseases' class = 'form-control'>
+                                            @foreach($diseases as $diseases)
+                                                <option value="{{ $diseases->disease_id }}">{{ $diseases->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <hr/>
@@ -38,23 +42,27 @@
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-2 control-label">Growth Rate</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="growthrate">
-                                        {{--{{ Form::select('growthrate', $growthrate, null,  ['class' => 'form-control']) }}--}}
+                                        @foreach($growthrate as $growthrate)
+                                            <input type="text" class="form-control" name="growthrate" placeholder="{{ $growthrate->rate }}">
+                                        @endforeach
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-2 control-label">Consultation Increament</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="consulation">
-                                        {{--{{ Form::select('consultationInc', $consultationInc, null,  ['class' => 'form-control']) }}--}}
+                                        @foreach($consultationInc as $consultationInc)
+                                            <input type="text" class="form-control" name="consultationInc"  placeholder="{{ $consultationInc->rate }}">
+                                        @endforeach
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Inflation Rate</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" value ="" name="inflation">
+                                        @foreach($inflation as $inflation)
+                                        <input type="text" class="form-control" value ="" name="inflation" placeholder="{{ $inflation->rate }}">
+                                        @endforeach
                                     </div>
                                 </div>
                                 </hr>
