@@ -30,6 +30,7 @@ class PredictionsController extends Controller
 
         $DSet= Session::get('DataSet');
         $user= Session::get('user');
+        $county= Session::get('county');
         $inflation=Input::get('inflation');
         $growthrate=Input::get('growthrate');
         $consultationinc=Input::get('consultationInc');
@@ -63,6 +64,7 @@ class PredictionsController extends Controller
         $Projected_Data_Set->projected_consultation_fee = $new_c;
         $Projected_Data_Set->projected_drugs_fee = $new_d;
         $Projected_Data_Set->user_id = $user;
+        $Projected_Data_Set->county_id=$county;
         $Projected_Data_Set->save();
 
         //redirect

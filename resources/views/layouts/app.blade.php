@@ -40,6 +40,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
 {{--gif script--}}
     <script src="/dcm/js/jquery.min.js"></script>
     <script type="text/javascript">
@@ -239,123 +241,19 @@
                                 </li>
                                 @endif
                                 <li><a href="/predictions"><i class="fa fa-map-marker"></i> Predictions</a></li>
+                                <h4>Reports</h4>
                                 <li class="sidenav-dropdown ">
-                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Reports <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Disease Cost<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Disease Cost</a></li>
-                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Service Cost</a></li>
-                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Consultation Cost</a></li>
-                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Drugs Cost</a></li>
+                                        <li><a href="/userlevel"><i class="fa fa-circle-o"></i> User Level</a></li>
+                                        <li><a href="/#"><i class="fa fa-circle-o"></i> Facility Level</a></li>
+                                        <li><a href="/countylevel"><i class="fa fa-circle-o"></i> County Level</a></li>
                                     </ul>
                                 </li>
                             </ul>
                             {{--@endif--}}
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="comments">
-                            <div class="section-heading">Members</div>
-                            <ul class="online-members">
-                                <li><a href=""><img class="img-circle chat-image" src="/dcm/img/profile1.jpg" alt="">Kumar Sanket <i class="fa fa-circle pull-right text-success"></i></a>
-                                </li>
-                                <li><a href=""><img class="img-circle chat-image" src="/dcm/img/user-icon.png" alt="">Kumar Pratik <i class="fa fa-circle pull-right text-success"></i></a>
-                                </li>
-                                <li><a href=""><img class="img-circle chat-image" src="/dcm/img/user-icon.png" alt="">Megha Kumari <i class="fa fa-circle pull-right text-success"></i></a>
-                                </li>
-                                <li><a href=""><img class="img-circle chat-image" src="/dcm/img/user-icon.png" alt="">Sankhadeep Roy <i class="fa fa-circle pull-right text-success"></i></a>
-                                </li>
-                                <li><a href=""><img class="img-circle chat-image" src="/dcm/img/profile.jpg" alt="">Suraj Ahmad Choudhury <i class="fa fa-circle pull-right text-success"></i></a>
-                                </li>
-                                <li><a href=""><img class="img-circle chat-image" src="/dcm/img/profile1.jpg" alt="">Kumar Sanket <i class="fa fa-circle pull-right text-warning"></i></a>
-                                </li>
-                                <li><a href=""><img class="img-circle chat-image" src="/dcm/img/user-icon.png" alt="">Megha Kumari <i class="fa fa-circle pull-right text-warning"></i></a>
-                                </li>
-                                <li><a href=""><img class="img-circle chat-image" src="/dcm/img/user-icon.png" alt="">Kumar Pratik <i class="fa fa-circle pull-right text-warning"></i></a>
-                                </li>
-                                <li><a href=""><img class="img-circle chat-image" src="/dcm/img/user-icon.png" alt="">Mrigank Mridul <i class="fa fa-circle pull-right text-muted"></i></a>
-                                </li>
-                                <li><a href=""><img class="img-circle chat-image" src="/dcm/img/user-icon.png" alt="">Amith M S <i class="fa fa-circle pull-right text-muted"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="charts">
-                            <div class="section-heading">Charts</div>
-                            <div class="section-content text-center">
-                                <h4>Today's View</h4>
-                                <div class="chart-container">
-                                    <div id="sidebar-piechart"></div>
-                                </div>
-                                <h4>Today's Signups</h4>
-                                <div class="chart-container2">
-                                    <div id="sidebar-barchart"></div>
-                                </div>
-                                <hr class="lighter">
-                                <div class="transaction">
-                                    <h4 class="eft">Today's Signups</h4>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-  " role="progressbar" aria-valuenow="67.34%" aria-valuemin="0" aria-valuemax="100" style="width: 67.34%%;">67.34%
-                                        </div>
-                                    </div> <div class="progress">
-                                        <div class="progress-bar progress-bar-success  " role="progressbar" aria-valuenow="87.95%" aria-valuemin="0" aria-valuemax="100" style="width: 87.95%%;">87.95%
-                                        </div>
-                                    </div> <div class="progress">
-                                        <div class="progress-bar progress-bar-warning  " role="progressbar" aria-valuenow="27.64%" aria-valuemin="0" aria-valuemax="100" style="width: 27.64%%;">27.64%
-                                        </div>
-                                    </div> <div class="progress">
-                                        <div class="progress-bar progress-bar-danger  " role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width: 12%;">12
-                                        </div>
-                                    </div> </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="calendar">
-                            <div class="section-heading">Today</div>
-                            <ul class="today-ul">
-                                <li>
-                                    <a href=""> <div class="panel-here"><span class="label label-primary">7:00 AM</span>
-                                        </div><div class="happened">something happened</div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=""> <div class="panel-here"><span class="label label-primary">8:00 AM</span>
-                                        </div><div class="happened">something more happenned</div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=""> <div class="panel-here"><span class="label label-primary">9:00 AM</span>
-                                        </div><div class="happened">lorem ipsum happened</div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="section-heading">7th April 2015</div>
-                            <ul class="today-ul dead">
-                                <li>
-                                    <a href=""> <div class="panel-here"><span class="label label-primary">7:00 AM</span>
-                                        </div><div class="happened">something happened</div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=""> <div class="panel-here"><span class="label label-primary">8:00 AM</span>
-                                        </div><div class="happened">something more happenned</div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=""> <div class="panel-here"><span class="label label-primary">9:00 AM</span>
-                                        </div><div class="happened">lorem ipsum happened</div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="section-heading">9th April 2015</div>
-                            <ul class="today-ul dead">
-                                <li>
-                                    <a href=""> <div class="panel-here"><span class="label label-primary">7:00 AM</span>
-                                        </div><div class="happened">something happened</div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=""> <div class="panel-here"><span class="label label-primary">8:00 AM</span>
-                                        </div><div class="happened">something more happenned</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+
                         <div role="tabpanel" class="tab-pane" id="notification">
                             <div class="section-heading">Notifications</div>
                             <div class="notification-info">
@@ -402,8 +300,9 @@
     <div id="body-container">
         <?php
         $user= Auth::user()->id ;
-//                                    echo $user;
+        $county= Auth::user()->county_id;
         Session::set('user', $user);
+        Session::set('county',$county);
         ?>
         @yield('content')
         <div id="footer-wrap" class="footer">
@@ -432,6 +331,9 @@
 <script src="/dcm/js/vendor.js" type="text/javascript"></script>
 <script src="/dcm/vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
 <script src="/dcm/js/app.js" type="text/javascript"></script>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
 
 {{--<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>--}}
 {{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>--}}

@@ -10,23 +10,32 @@
     <body>
     <div class="page-title clearfix">
         <div class="pull-left">
-            <h1> All Users </h1>
+            <h1> Diseases Cost Report </h1>
         </div>
         <ol class="breadcrumb pull-right">
-            <li class="active"> All Members </li>
+            <li class="active"> DCR </li>
             <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
         </ol>
     </div><br>
     <table class="datatable">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>UserName</th>
-            <th>Email</th>
-            <th>County</th>
+            <th>Disease</th>
+            <th>Services Cost</th>
+            <th>Consulation Fee</th>
+            <th>Drugs Fee</th>
             <th>Role</th>
         </tr>
         </thead>
+        <tfoot>
+        <tr>
+            <th>Disease</th>
+            <th>Services Cost</th>
+            <th>Consulation Fee</th>
+            <th>Drugs Fee</th>
+            <th>Role</th>
+        </tr>
+        </tfoot>
     </table>
     </body>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -36,7 +45,7 @@
             $('.datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: 'users/serverSide'
+                ajax: 'userlevel/serverSide'
             });
         });
     </script>

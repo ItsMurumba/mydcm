@@ -42,6 +42,8 @@ class DiseaseCostsController extends Controller
     public function store(Request $request)
     {
         //function for getting the total units per drugs based on the dosage and calculate the total cost
+        $user= Session::get('user');
+        $county= Session::get('county');
         $distributions_id=Input::get('distributions');
         $disease_id=Input::get('diseases');
         $DrugCosts = DB::select(DB::raw("SELECT ds.dosage, d.price_per_unit FROM dosage ds JOIN drug d ON d.id=ds.drug_id where ds.distribution_id='$distributions_id' AND ds.disease_id='$disease_id'"), array(
@@ -73,6 +75,8 @@ class DiseaseCostsController extends Controller
         $DiseaseCosts->consultation_fee = Input::get('services');
         $DiseaseCosts->drugs_total_cost = $sum;
         $DiseaseCosts->total = $total;
+        $DiseaseCosts->user_id=$user;
+        $DiseaseCosts->county_id=$county;
         $DiseaseCosts->save();
 
         //redirect

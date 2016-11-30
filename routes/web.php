@@ -11,20 +11,14 @@
 |
 */
 
+Route::get('/users/serverSide','MembersController@listmembers');
+
 Route::get('/', function () {
     return view('login');
 });
 
 //route for register
 Route::get('/registers', '\App\Http\Controllers\Auth\RegisterController@index');
-
-//Route::get('/r', function () {
-//    return view('layouts.register');
-//});
-//Route::get('/r', '\App\Http\Controllers\Auth\RegisterController@index');
-//Route::get('/l', function () {
-//    return view('login');
-//});
 
 Auth::routes();
 
@@ -54,11 +48,9 @@ Route::get('/drugs', function (){
 });
 Route::post('/drugs', 'DrugsController@store');
 
-
 //Facility
 Route::get('/facility', 'FacilitiesController@index');
 Route::post('/facility','FacilitiesController@store');
-
 
 //Distribution
 Route::get('/distribution', function (){
@@ -66,12 +58,9 @@ Route::get('/distribution', function (){
 });
 Route::post('/distribution','DistributionsController@store');
 
-
 //estimates
 Route::get('/estimates', 'EstimatesController@index');
 Route::post('/estimates', 'EstimatesController@store');
-
-
 
 //staff-category
 Route::get('/staffcategories', function (){
@@ -140,13 +129,6 @@ Route::post('/drugdisease','DrugDiseasesController@store');
 Route::get('/dosage','DosageController@index');
 Route::post('/dosage','DosageController@store');
 
-
-//Route::controller('datatables', 'DatatablesController', [
-//    'anyData'  => 'members',
-//    'getIndex' => 'members',
-//]);
-
-
 //predictions
 Route::post('/predictions','PredictionsController@index');
 Route::post('/predictions2','PredictionsController@store');
@@ -156,3 +138,16 @@ Route::get('/predictions','PredictionsController@index');
 
 //datasets
 Route::get('/listdataset','ListdatasetController@index');
+
+//userlevel report
+Route::get('userlevel',function (){
+    return view('userlevel');
+});
+Route::get('/userlevel/serverSide', 'UserLevelController@listdiseasecosts');
+
+
+//countylevel
+Route::get('countylevel',function (){
+    return view('countylevel');
+});
+Route::get('/countylevel/serverSide','CountyLevelController@listdiseasecosts');
