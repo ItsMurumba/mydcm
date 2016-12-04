@@ -94,7 +94,7 @@ class HomeController extends Controller
     public function index(){
         $user= Session::get('user');
 
-        $county = County::pluck('name','id');
+        $county = County::pluck('county_name','id');
 
         $facilities = Facilities::pluck('name', 'id');
 

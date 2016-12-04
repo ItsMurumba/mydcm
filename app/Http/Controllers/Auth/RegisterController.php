@@ -7,6 +7,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -73,14 +74,16 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'county_id' => $data['county'],
             'roles_id' => $data['role'],
+            'facility_id' => $data['facility_id'],
             'password' => bcrypt($data['password']),
         ]);
     }
 
  //function used to populate dropdown
     public function index(){
-        $county = County::pluck('name', 'id');
+        $county = County::pluck('county_name', 'id');
 
         return view('register', ['county'=> $county]);
     }
+    
 }

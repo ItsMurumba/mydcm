@@ -32,7 +32,7 @@ class CountiesController extends Controller
     {
         //store
         $county = new County;
-        $county->name = Input::get('county');
+        $county->county_name = Input::get('county');
         $county->address = Input::get('address');
         $county->tel_no = Input::get('tel');
         $county->save();

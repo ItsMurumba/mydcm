@@ -44,6 +44,7 @@ class DiseaseCostsController extends Controller
         //function for getting the total units per drugs based on the dosage and calculate the total cost
         $user= Session::get('user');
         $county= Session::get('county');
+        $facility= Session::get('facility');
         $distributions_id=Input::get('distributions');
         $disease_id=Input::get('diseases');
         $DrugCosts = DB::select(DB::raw("SELECT ds.dosage, d.price_per_unit FROM dosage ds JOIN drug d ON d.id=ds.drug_id where ds.distribution_id='$distributions_id' AND ds.disease_id='$disease_id'"), array(
@@ -68,15 +69,17 @@ class DiseaseCostsController extends Controller
         }
        
 
-        $total= Input::get('consultation')+Input::get('servicesfee')+$sum;
+        $total= Input::get('consultation')+Input::get('services')+$sum;
         $DiseaseCosts = new DiseaseCosts;
         $DiseaseCosts->diseases_id = Input::get('diseases');
-        $DiseaseCosts->services_total_cost = Input::get('consultation');
-        $DiseaseCosts->consultation_fee = Input::get('services');
+        $DiseaseCosts->distributions_id=$distributions_id;
+        $DiseaseCosts->services_total_cost = Input::get('services');
+        $DiseaseCosts->consultation_fee = Input::get('consultation');
         $DiseaseCosts->drugs_total_cost = $sum;
         $DiseaseCosts->total = $total;
         $DiseaseCosts->user_id=$user;
         $DiseaseCosts->county_id=$county;
+        $DiseaseCosts->facility_id=$facility;
         $DiseaseCosts->save();
 
         //redirect

@@ -39,6 +39,8 @@ class PredictionsController extends Controller
         $dataS = DB::select(DB::raw("SELECT dc.diseases_id, dc.services_total_cost, dc.consultation_fee, dc.drugs_total_cost, ds.population FROM disease_costs dc JOIN data_sets ds ON ds.disease_id=dc.diseases_id WHERE ds.id='$DSet'"), array(
             'dset' => $DSet,
         ));
+        $no_years=5;
+        foreach ($no_years as $NoYear){}
         foreach ($dataS as $row){
 
             $s= $row->services_total_cost;

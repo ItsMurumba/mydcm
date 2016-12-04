@@ -1,5 +1,8 @@
 <?php
-
+use Illuminate\Support\Facades\Input;
+use App\Facilities;
+use App\drug_disease;
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -151,3 +154,23 @@ Route::get('countylevel',function (){
     return view('countylevel');
 });
 Route::get('/countylevel/serverSide','CountyLevelController@listdiseasecosts');
+
+
+Route::get('/ajax/get_second','RegisterController@getSecond');
+
+
+Route::get('api/dropdown/cities', function(){
+    $county = Input::get('option');
+    $cities = Facilities::where('county_id', $county)->get(array('id','facility_name'));
+    return Response::json($cities, 200);
+});
+
+
+Route::get('api/drugs', function(){
+    $diseases = Input::get('option');
+//    $city = drug_disease::where('disease_id', $diseases)->get(array('id','drug_id'));
+    $city= DB::select(DB::raw("SELECT dr.name, dd.drug_id as id FROM drug_disease dd JOIN drug dr ON dr.id=dd.drug_id WHERE dd.disease_id=$diseases "), array(
+            'diseases' => $diseases,
+        ));
+    return Response::json($city, 200);
+});

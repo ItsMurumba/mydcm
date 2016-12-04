@@ -19,7 +19,7 @@ class EstimatesController extends Controller
     //projection factors and county drop down
     public function index(){
         $distributions = Distributions::pluck('age_group', 'id');
-        $county = County::pluck('name', 'id');
+        $county = County::pluck('county_name', 'id');
         $facility= Facilities::pluck('name','id');
         $diseases= Diseases::pluck('name','id');
 

@@ -12,7 +12,8 @@ class Dosage extends Model
         'distribution_id',
         'drug_id',
         'dosage',
-        'user_id'
+        'user_id',
+        'disease_id'
 
     ];
 }

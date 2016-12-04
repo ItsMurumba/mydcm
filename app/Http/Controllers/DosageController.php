@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Distributions;
 use App\Drugs;
 use App\Dosage;
+use App\Diseases;
 
 use App\Http\Requests;
 use Dotenv\Validator;
@@ -19,8 +20,9 @@ class DosageController extends Controller
     public function index(){
         $drugs = Drugs::pluck('name','id');
         $distributions = Distributions::pluck('age_group','id');
+        $diseases=Diseases::pluck('name','id');
 
-        return view('dosage')->with(['drugs' => $drugs,'distributions' => $distributions]);
+        return view('dosage')->with(['drugs' => $drugs,'distributions' => $distributions,'diseases' =>$diseases]);
     }
 
 
@@ -44,6 +46,7 @@ class DosageController extends Controller
         $Dosage->drug_id = Input::get('drugs');
         $Dosage->dosage = Input::get('dosage');
         $Dosage->user_id = Input::get('user');
+        $Dosage->disease_id = Input::get('diseases');
         $Dosage->save();
 
         //redirect

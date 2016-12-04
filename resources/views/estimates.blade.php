@@ -30,14 +30,17 @@
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-2 control-label">County</label>
                                     <div class="col-sm-10">
-                                        {{ Form::select('county', $county, null,  ['class' => 'form-control']) }}
+                                        {{ Form::select('county', $county, (isset($data['county'])) ? $data['county'] : null, array('id' => 'county')) }}
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-2 control-label">Facility</label>
                                     <div class="col-sm-10">
-                                        {{ Form::select('facility', $facility, null,  ['class' => 'form-control']) }}
+                                        {{--{{ Form::select('facility', $facility, null,  ['class' => 'form-control']) }}--}}
+                                        <select id="facility_id" name="facility" class="form-control" >
+                                            <option>Select a county first</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <hr/>
@@ -66,6 +69,21 @@
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
+                            <script> $(document).ready(function()
+                                {
+                                    $('#county').change(function(){
+                                        $.getJSON("{{ url('api/dropdown/cities')}}",
+                                                { option: $(this).val() },
+                                                function(data) {
+                                                    var model = $('#facility_id');
+                                                    model.empty();
+                                                    $.each(data, function(index, element) {
+                                                        model.append("<option value='"+element.id+"'>" + element.name + "</option>");
+                                                    });
+                                                });
+                                    });
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ class ProjectionController extends Controller
     //projection factors and county drop down
     public function index(){
         $projectionfactors = ProjectionFactors::pluck('factor', 'id');
-        $county = County::pluck('name', 'id');
+        $county = County::pluck('county_name', 'id');
 
        $projectionfactors= ['projectionfactors' => $projectionfactors];
         $county= ['county'=> $county];

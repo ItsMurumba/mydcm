@@ -42,7 +42,7 @@
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputtext" class="col-sm-2 control-label">Cost</label>
+                                    <label for="inputtext" class="col-sm-2 control-label">Cost(Ksh)</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="cost">
                                     </div>

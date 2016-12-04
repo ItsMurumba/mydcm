@@ -10,7 +10,7 @@ class Facilities extends Model
     protected $table= "facility";
     //
     protected $fillable =[
-        'name',
+        'facility_name',
         'address',
         'bedcapacity',
         'county_id',

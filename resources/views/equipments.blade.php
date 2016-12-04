@@ -53,17 +53,8 @@
                                     <div class="col-sm-10">
                                         {{--<input type="text" class="form-control" name="datepicker">--}}
                                         {{--{{ Form::text('date', '', array('id' => 'datePicker'))}}--}}
-                                        <input class="date form-control" style="width: 300px;" type="text" name="date">
+                                        <input class="date form-control" style="width: 300px;" type="text" name="date" id="datepicker">
 
-                                        <script type="text/javascript">
-
-                                            $('.date').datepicker({
-
-                                                format: 'yyyy-mm-dd'
-
-                                            });
-
-                                        </script>
 
                                     </div>
                                 </div>

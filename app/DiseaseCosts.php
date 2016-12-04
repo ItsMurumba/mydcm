@@ -14,7 +14,9 @@ class DiseaseCosts extends Model
         'services_total_cost',
         'consultation_fee',
         'drugs_total_cost',
-        'total'
+        'total',
+        'distributions_id',
+        'facility_id'
 
     ];
 }

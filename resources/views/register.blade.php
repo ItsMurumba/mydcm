@@ -47,8 +47,8 @@
                             <label for="county" class="col-md-4 control-label">County</label>
 
                             <div class="col-md-6">
-                                {{--<input id="county" type="text" class="form-control" name="county" value="{{ old('county') }}" required>--}}
-                                {{ Form::select('county', $county, null,  ['class' => 'form-control']) }}
+
+                                {{ Form::select('county', $county, (isset($data['county'])) ? $data['county'] : null, array('id' => 'county')) }}
 
                                 @if ($errors->has('county'))
                                     <span class="help-block">
@@ -58,6 +58,27 @@
 
                             </div>
                         </div>
+
+                        <div class="form-group{{ $errors->has('facility') ? ' has-error' : '' }}">
+                            <label for="facility" class="col-md-4 control-label">Facility</label>
+
+                            <div class="col-md-6">
+
+                                <select id="facility_id" name="facility_id" class="form-control" >
+                                    <option>Select a county first</option>
+                                </select>
+                                @if ($errors->has('facility'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('facility') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+                        </div>
+
+
+
+
 
                         <input id="role" type="hidden" class="form-control" name="role" value="2" required>
 
@@ -132,6 +153,23 @@
             background: url('/dcm/img/loading.gif') 50% 50% no-repeat rgb(249,249,249);
         }
     </style>
+
+
+   <script> $(document).ready(function()
+    {
+        $('#county').change(function(){
+            $.getJSON("{{ url('api/dropdown/cities')}}",
+            { option: $(this).val() },
+            function(data) {
+                var model = $('#facility_id');
+                model.empty();
+                $.each(data, function(index, element) {
+                    model.append("<option value='"+element.id+"'>" + element.name + "</option>");
+                });
+            });
+        });
+    });
+   </script>
 </head>
 <body class="page-header-fixed page-quick-sidebar-over-content ">
 <div class="loader">
@@ -143,6 +181,7 @@
         $(".alert-danger").hide();
     });
 </script>
+
 
 {{--gif script--}}
 

@@ -38,9 +38,19 @@
                                 </div>
                                 <hr/>
                                 <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Disease</label>
+                                    <div class="col-sm-10">
+                                        {{ Form::select('diseases', $diseases, (isset($data['diseases'])) ? $data['diseases'] : null, array('id' => 'diseases')) }}
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Drug</label>
                                     <div class="col-sm-10">
-                                        {{ Form::select('drugs', $drugs, null,  ['class' => 'form-control']) }}
+                                        {{--{{ Form::select('drugs', $drugs, null,  ['class' => 'form-control']) }}--}}
+                                        <select id="drugs_id" name="drugs" class="form-control" >
+                                            <option>Select disease first</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <hr/>
@@ -62,6 +72,21 @@
                                 </div>
                             </form>
                             {!! Form::close() !!}
+                            <script> $(document).ready(function()
+                                {
+                                    $('#diseases').change(function(){
+                                        $.getJSON("{{ url('api/drugs')}}",
+                                                { option: $(this).val() },
+                                                function(data) {
+                                                    var model = $('#drugs_id');
+                                                    model.empty();
+                                                    $.each(data, function(index, element) {
+                                                        model.append("<option value='"+element.id+"'>" + element.name + "</option>");
+                                                    });
+                                                });
+                                    });
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>

@@ -19,7 +19,7 @@ class FacilitiesController extends Controller
 
     //function used to populate dropdown
     public function index(){
-        $county = County::pluck('name', 'id');
+        $county = County::pluck('county_name', 'id');
 
         return view('facility', ['county'=> $county]);
     }
@@ -41,7 +41,7 @@ class FacilitiesController extends Controller
     {
         //store
         $Facilities = new Facilities;
-        $Facilities->name = Input::get('name');
+        $Facilities->facility_name = Input::get('name');
         $Facilities->address = Input::get('address');
         $Facilities->bedcapacity = Input::get('bed_capacity');
         $Facilities->county_id = Input::get('county');
