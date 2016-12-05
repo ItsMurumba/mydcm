@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Disease Costs </h1>
+                <h1> Predict Disease Costs </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Disease Costs </li>
+                <li class="active"> PDC </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -33,20 +33,14 @@
                                         {{--{{ Form::select('diseases', $diseases, null,  ['class' => 'form-control']) }}--}}
                                         <select name='diseases' class = 'form-control' >
                                             @foreach($diseases as $diseases)
-                                                <option value="{{ $diseases->disease_id }}">{{ $diseases->name }}</option>
+                                                <option value="{{ $diseases->disease_id }}">{{ $diseases->name.' '.($diseases->year.' '.$diseases->age_group )}}</option>
                                             @endforeach
-                                                {{--{{ Form::select('diseases', $diseases, (isset($data['diseases'])) ? $data['diseases'] : null, array('id' => 'diseases')) }}--}}
+
                                         </select>
                                     </div>
                                 </div>
                                 <hr/>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Age Group</label>
-                                    <div class="col-sm-10">
-                                        {{ Form::select('distributions', $distributions, null,  ['class' => 'form-control']) }}
-                                    </div>
-                                </div>
-                                <input type="hidden" class="form-control" name="total">
+
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Predict Disease Cost</button>
                                 </div>

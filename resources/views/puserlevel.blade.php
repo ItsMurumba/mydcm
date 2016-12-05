@@ -24,10 +24,12 @@
             <th>Facility</th>
             <th>Age Group</th>
             <th>Disease</th>
+            <th>Projected Population</th>
             <th>Services Cost</th>
             <th>Consulation Fee</th>
             <th>Drugs Fee</th>
             <th>Total</th>
+            <th>Year</th>
         </tr>
         </thead>
         <tfoot>
@@ -39,10 +41,12 @@
             <th>Facility</th>
             <th>Age Group</th>
             <th>Disease</th>
+            <th>Projected Population</th>
             <th>Services Cost</th>
             <th>Consulation Fee</th>
             <th>Drugs Fee</th>
             <th>Total</th>
+            <th>Year</th>
         </tr>
         </tfoot>
     </table>

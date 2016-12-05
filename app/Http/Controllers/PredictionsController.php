@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Dotenv\Validator;
 
+
+
 class PredictionsController extends Controller
 {
     //
@@ -27,8 +29,9 @@ class PredictionsController extends Controller
     }
     public function store(Request $request)
     {
-
+        $Projected_Data_Set = new Projected_data_sets;
         $DSet= Session::get('DataSet');
+
         $user= Session::get('user');
         $county= Session::get('county');
         $inflation=Input::get('inflation');
@@ -36,44 +39,65 @@ class PredictionsController extends Controller
         $consultationinc=Input::get('consultationInc');
 
 
-        $dataS = DB::select(DB::raw("SELECT dc.diseases_id,dc.facility_id, dc.services_total_cost, dc.consultation_fee, dc.drugs_total_cost, ds.population FROM disease_costs dc JOIN data_sets ds ON ds.disease_id=dc.diseases_id WHERE ds.id='$DSet'"), array(
-            'dset' => $DSet,
+        $dataS = DB::select(DB::raw("SELECT dc.diseases_id,dc.facility_id, dc.services_total_cost, dc.consultation_fee, dc.drugs_total_cost, ds.population,dc.distributions_id FROM disease_costs dc JOIN data_sets ds ON ds.disease_id=dc.diseases_id WHERE dc.user_id='$user'"), array(
+            'user' => $user,
         ));
-        $year=2012;
+        global $year;
+        $year =2012;
+        $no_years=5;
         global $sum;
         $sum=0;
-//        foreach ($no_years as $NoYear){}
+
         foreach ($dataS as $row){
 
+            global $s;
             $s= $row->services_total_cost;
-            $new_s=(($inflation/100)*$s)+$s;
+            $s=(($inflation/100)*$s)+$s;
 
+            global $c;
             $c= $row->consultation_fee;
-            $new_c=(($consultationinc/100)*$c)+$c;
+            $c=(($consultationinc/100)*$c)+$c;
 
+            global $d;
             $d= $row->drugs_total_cost;
-            $new_d=(($inflation/100)*$d)+$d;
+            $d=(($inflation/100)*$d)+$d;
 
+            global $p;
             $p= $row->population;
-            $new_p= (($growthrate/100)*$p)+$p;
+            $p= (($growthrate/100)*$p)+$p;
 
             $facility=$row->facility_id;
 
+            global $distributions;
+            $distributions=$row->distributions_id;
+
+
         }
-
-        $Projected_Data_Set = new Projected_data_sets;
-        $Projected_Data_Set->data_set_id = $DSet;
-        $Projected_Data_Set->disease_id = Input::get('diseases');
-        $Projected_Data_Set->projected_population = $new_p;
-        $Projected_Data_Set->projected_services_cost = $new_s;
-        $Projected_Data_Set->projected_consultation_fee = $new_c;
-        $Projected_Data_Set->projected_drugs_fee = $new_d;
-        $Projected_Data_Set->user_id = $user;
-        $Projected_Data_Set->county_id=$county;
-        $Projected_Data_Set->year=$year;
-        $Projected_Data_Set->facility_id=$facility;
-        $Projected_Data_Set->save();
-
+        for($i=0;$i<5;$i++){
+            $s=(($inflation/100)*$s)+$s;
+            $s= number_format($s, 2, '.', '');
+            $c=(($consultationinc/100)*$c)+$c;
+            $c=number_format($c, 2, '.', '');
+            $d=(($inflation/100)*$d)+$d;
+            $d=number_format($d, 2, '.', '');
+            $p= (($growthrate/100)*$p)+$p;
+            $p= number_format($p, 0, '.', '');
+            $year++;
+            $Projected_Data_Set = new Projected_data_sets;
+            $Projected_Data_Set->data_set_id = $DSet;
+            $Projected_Data_Set->distributions_id=$distributions;
+            $Projected_Data_Set->disease_id = Input::get('diseases');
+            $Projected_Data_Set->projected_population = $p;
+            $Projected_Data_Set->projected_services_cost = $s;
+            $Projected_Data_Set->projected_consultation_fee = $c;
+            $Projected_Data_Set->projected_drugs_fee = $d;
+            $Projected_Data_Set->user_id = $user;
+            $Projected_Data_Set->county_id=$county;
+            $Projected_Data_Set->year=$year;
+            $Projected_Data_Set->facility_id=$facility;
+            $Projected_Data_Set->save();
+        }
+//
         //redirect
         Session::flash('message', 'Successfully added!');
 //        return view('services');
