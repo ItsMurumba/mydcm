@@ -20,7 +20,7 @@ class PredictionsController extends Controller
         return Validator::make($request, [
             'diseases'    =>'required',
             'growthrate'   =>'required',
-            'consultationInc'       =>'required',
+            'consultationInc' =>'required',
             'inflation'       =>'required'
 
         ]);
@@ -36,11 +36,13 @@ class PredictionsController extends Controller
         $consultationinc=Input::get('consultationInc');
 
 
-        $dataS = DB::select(DB::raw("SELECT dc.diseases_id, dc.services_total_cost, dc.consultation_fee, dc.drugs_total_cost, ds.population FROM disease_costs dc JOIN data_sets ds ON ds.disease_id=dc.diseases_id WHERE ds.id='$DSet'"), array(
+        $dataS = DB::select(DB::raw("SELECT dc.diseases_id,dc.facility_id, dc.services_total_cost, dc.consultation_fee, dc.drugs_total_cost, ds.population FROM disease_costs dc JOIN data_sets ds ON ds.disease_id=dc.diseases_id WHERE ds.id='$DSet'"), array(
             'dset' => $DSet,
         ));
-        $no_years=5;
-        foreach ($no_years as $NoYear){}
+        $year=2012;
+        global $sum;
+        $sum=0;
+//        foreach ($no_years as $NoYear){}
         foreach ($dataS as $row){
 
             $s= $row->services_total_cost;
@@ -54,9 +56,10 @@ class PredictionsController extends Controller
 
             $p= $row->population;
             $new_p= (($growthrate/100)*$p)+$p;
+
+            $facility=$row->facility_id;
+
         }
-
-
 
         $Projected_Data_Set = new Projected_data_sets;
         $Projected_Data_Set->data_set_id = $DSet;
@@ -67,12 +70,15 @@ class PredictionsController extends Controller
         $Projected_Data_Set->projected_drugs_fee = $new_d;
         $Projected_Data_Set->user_id = $user;
         $Projected_Data_Set->county_id=$county;
+        $Projected_Data_Set->year=$year;
+        $Projected_Data_Set->facility_id=$facility;
         $Projected_Data_Set->save();
 
         //redirect
         Session::flash('message', 'Successfully added!');
 //        return view('services');
         return redirect()->action('HomeController@index');
+//        return redirect()->action('PredictDiseaseCostsController@store');
     }
 
 

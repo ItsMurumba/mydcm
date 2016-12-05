@@ -148,12 +148,23 @@ Route::get('userlevel',function (){
 });
 Route::get('/userlevel/serverSide', 'UserLevelController@listdiseasecosts');
 
+//Predicted userlevel report
+Route::get('puserlevel',function (){
+    return view('puserlevel');
+});
+Route::get('/puserlevel/serverSide', 'PuserLevelController@listdiseasecosts');
 
 //countylevel
 Route::get('countylevel',function (){
     return view('countylevel');
 });
 Route::get('/countylevel/serverSide','CountyLevelController@listdiseasecosts');
+
+//predicted County Level Report
+Route::get('pcountylevel',function (){
+    return view('pcountylevel');
+});
+Route::get('/pcountylevel/serverSide','PcountyLevelController@listdiseasecosts');
 
 
 Route::get('/ajax/get_second','RegisterController@getSecond');
@@ -174,3 +185,10 @@ Route::get('api/drugs', function(){
         ));
     return Response::json($city, 200);
 });
+
+Route::post('/predictdiseasecosts1','PredictDiseaseCostsController@index');
+Route::post('/predictdiseasecosts','PredictDiseaseCostsController@store');
+
+
+//pick dataset route
+Route::get('/pickdataset','PickDataSetController@index');

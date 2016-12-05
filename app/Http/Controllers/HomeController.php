@@ -96,7 +96,7 @@ class HomeController extends Controller
 
         $county = County::pluck('county_name','id');
 
-        $facilities = Facilities::pluck('name', 'id');
+        $facilities = Facilities::pluck('facility_name', 'id');
 
         $home = DB::select(DB::raw("SELECT id, name FROM data_sets where user_id='$user'"), array(
             'user' => $user,

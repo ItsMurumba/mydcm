@@ -201,6 +201,7 @@
                                         <li><a href="/diseases"><i class="fa fa-warning"></i> Diseases</a></li>
                                         @endif
                                         <li><a href="/diseasecosts"><i class="fa fa-users"></i> Disease Costs</a></li>
+                                            <li><a href="/pickdataset"><i class="fa fa-users"></i> Predict Costs</a></li>
                                     </ul>
                                 </li>
                                 @if(Auth::user()->roles_id == '1')
@@ -248,11 +249,20 @@
                                 <li><a href="/predictions"><i class="fa fa-map-marker"></i> Predictions</a></li>
                                 <div class="section-heading">Reports</div>
                                 <li class="sidenav-dropdown ">
-                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Disease Cost<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Current Costs<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="/userlevel"><i class="fa fa-circle-o"></i> Facility Level</a></li>
                                         @if(Auth::user()->roles_id == '1')
                                         <li><a href="/countylevel"><i class="fa fa-circle-o"></i> County Level</a></li>
+                                        @endif
+                                    </ul>
+                                </li>
+                                <li class="sidenav-dropdown ">
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Predicted Costs<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <ul class="nav sidenav-sub-menu">
+                                        <li><a href="/puserlevel"><i class="fa fa-circle-o"></i> Facility Level</a></li>
+                                        @if(Auth::user()->roles_id == '1')
+                                            <li><a href="/pcountylevel"><i class="fa fa-circle-o"></i> County Level</a></li>
                                         @endif
                                     </ul>
                                 </li>

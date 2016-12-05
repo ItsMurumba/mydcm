@@ -84,6 +84,7 @@ class DiseaseCostsController extends Controller
 
         //redirect
         Session::flash('message', 'Successfully added!');
-        return redirect()->action('DiseaseCostsController@index');
+//        return redirect()->action('DiseaseCostsController@index');
+        return redirect()->action('PredictDiseaseCostsController@store');
     }
 }

@@ -12,6 +12,7 @@ class Projected_data_sets extends Model
     protected $fillable=[
         'data_set_id',
         'disease_id',
+        'facility_id',
         'projected_population',
         'projected_services_cost',
         'projected_consultation_fee',
