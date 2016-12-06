@@ -68,7 +68,7 @@ class DiseaseCostsController extends Controller
 
         }
        
-
+        $Year=2012;
         $total= Input::get('consultation')+Input::get('services')+$sum;
         $DiseaseCosts = new DiseaseCosts;
         $DiseaseCosts->diseases_id = Input::get('diseases');
@@ -80,11 +80,12 @@ class DiseaseCostsController extends Controller
         $DiseaseCosts->user_id=$user;
         $DiseaseCosts->county_id=$county;
         $DiseaseCosts->facility_id=$facility;
+        $DiseaseCosts->year=$Year;
         $DiseaseCosts->save();
 
         //redirect
         Session::flash('message', 'Successfully added!');
-//        return redirect()->action('DiseaseCostsController@index');
-        return redirect()->action('PredictDiseaseCostsController@store');
+        return redirect()->action('DiseaseCostsController@index');
+//        return redirect()->action('PredictDiseaseCostsController@store');
     }
 }

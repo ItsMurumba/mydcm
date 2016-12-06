@@ -16,7 +16,8 @@ class DiseaseCosts extends Model
         'drugs_total_cost',
         'total',
         'distributions_id',
-        'facility_id'
+        'facility_id',
+        'year'
 
     ];
 }

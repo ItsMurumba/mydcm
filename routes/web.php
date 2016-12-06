@@ -192,3 +192,15 @@ Route::post('/predictdiseasecosts','PredictDiseaseCostsController@store');
 
 //pick dataset route
 Route::get('/pickdataset','PickDataSetController@index');
+
+//Route for loading graphs
+Route::get('/projects/chart/data', 'ProjectsController@projectChartData');
+
+Route::get('/userlevelchart',function (){
+    return view('userlevelchart');
+});
+
+Route::get('/mydatasets/serverSide','MyDataSetsController@listdatasets');
+Route::get('/MyDataSets',function (){
+    return view('mydatasets');
+});

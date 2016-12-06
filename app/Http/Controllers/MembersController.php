@@ -22,9 +22,9 @@ class MembersController extends Controller
         return view('members');
     }
     public function listmembers() {
-        $users = User::select(['id', 'username', 'email', 'county_id','roles_id']);
-//        $users = DB::select(DB::raw('SELECT u.id, u.username, u.email, c.name, R.role FROM users u JOIN county c ON c.id=u.county_id JOIN roles R ON R.id=u.roles_id '));
-
+        $users = User::join('county','county.id','=','users.county_id')
+            ->join('roles','roles.id','=','users.roles_id')
+            ->select(['users.id', 'users.username', 'users.email', 'county.county_name','roles.role']);
 
         return Datatables::of($users)->make();
     }

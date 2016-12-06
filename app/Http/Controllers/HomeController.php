@@ -94,15 +94,24 @@ class HomeController extends Controller
     public function index(){
         $user= Session::get('user');
 
-        $county = County::pluck('county_name','id');
-
-        $facilities = Facilities::pluck('facility_name', 'id');
-
-        $home = DB::select(DB::raw("SELECT id, name FROM data_sets where user_id='$user'"), array(
+//        $county = County::pluck('county_name','id');
+        $county = DB::select(DB::raw("SELECT c.county_name,u.county_id as id FROM users u JOIN county c ON c.id=u.county_id where u.id='$user'"), array(
             'user' => $user,
         ));
 
-        $diseaseCosts = DB::select(DB::raw('SELECT d.diseases_id, t.name, d.total FROM disease_costs d JOIN disease t ON d.diseases_id =t.id '));
+//        $facilities = Facilities::pluck('facility_name', 'id');
+
+        $facilities = DB::select(DB::raw("SELECT f.facility_name,u.facility_id as id FROM users u JOIN facility f ON f.id=u.facility_id where u.id='$user'"), array(
+            'user' => $user,
+        ));
+
+        $home = DB::select(DB::raw("SELECT id, data_set_name as name FROM data_sets where user_id='$user'"), array(
+            'user' => $user,
+        ));
+
+        $diseaseCosts = DB::select(DB::raw("SELECT d.diseases_id, t.name, d.total FROM disease_costs d JOIN disease t ON d.diseases_id =t.id where d.user_id='$user' "), array(
+            'user' => $user,
+        ));
         $distributions = Distributions::pluck('age_group','id');
 
         return view('index')->with(['home'=> $home,'county' => $county,'facilities' => $facilities,'diseaseCosts' => $diseaseCosts,'distributions' => $distributions]);

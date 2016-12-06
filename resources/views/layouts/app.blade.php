@@ -13,34 +13,27 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="/dcm/js/vendor.js" type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <link rel="stylesheet" href="/dcm/css/vendor.css"/>
     <link rel="stylesheet" href="/dcm/css/app-green.css"/>
     <link rel="stylesheet" href="/dcm/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/dcm/css/font-awesome.css"/>
-    <link rel="stylesheet" href="/css/jquery.dataTables.min.css"/>
-
-
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-
-    {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>--}}
-
+    <script src="/js/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <link href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
-{{--gif script--}}
+    {{--gif script--}}
     <script src="/dcm/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/dcm/js/vendor.js" type="text/javascript"></script>
+    <script src="/dcm/vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="/dcm/js/app.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
 
-    <script type="text/javascript">
+       <script type="text/javascript">
         $(window).load(function() {
             $(".loader").fadeOut("slow");
         })
@@ -50,6 +43,18 @@
         $( function() {
             $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
         } );
+    </script>
+    <script>
+        // Sidebar Tabs
+        $('#navTabs .sidebar-top-nav a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show');
+
+            setTimeout(function(){
+                $('.tab-content-scroller').perfectScrollbar('update');
+            }, 10);
+
+        });
     </script>
 </head>
 <body class="page-header-fixed page-quick-sidebar-over-content ">
@@ -266,6 +271,25 @@
                                         @endif
                                     </ul>
                                 </li>
+                                <div class="section-heading">Graphs</div>
+                                <li class="sidenav-dropdown ">
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Current Costs<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <ul class="nav sidenav-sub-menu">
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Facility Level</a></li>
+                                        @if(Auth::user()->roles_id == '1')
+                                            <li><a href="#"><i class="fa fa-circle-o"></i> County Level</a></li>
+                                        @endif
+                                    </ul>
+                                </li>
+                                <li class="sidenav-dropdown ">
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Predicted Costs<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <ul class="nav sidenav-sub-menu">
+                                        <li><a href="/userlevelchart"><i class="fa fa-circle-o"></i> Facility Level</a></li>
+                                        @if(Auth::user()->roles_id == '1')
+                                            <li><a href="#"><i class="fa fa-circle-o"></i> County Level</a></li>
+                                        @endif
+                                    </ul>
+                                </li>
                             </ul>
                             {{--@endif--}}
                         </div>
@@ -332,38 +356,18 @@
         </div>
     </div>
 </div>
+<script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css"></script>
 
-
-{{--<!-- jQuery -->--}}
-{{--<script src="//code.jquery.com/jquery.js"></script>--}}
-{{--<!-- DataTables -->--}}
-{{--<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>--}}
 {{--<!-- Bootstrap JavaScript -->--}}
-{{--<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>--}}
 
-
-
-{{--<script src="/js/jquery.dataTables.min.js"></script>--}}
-{{--<!-- Bootstrap JavaScript -->--}}
-<script src="/js/bootstrap.min.js"></script>
-<script src="/dcm/vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
-<script src="/dcm/js/app.js" type="text/javascript"></script>
-
-{{--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>--}}
-{{--<script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>--}}
-
-{{--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">--}}
-
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-{{--<script src="https://code.jquery.com/jquery-3.0.0.min.js" ></script>--}}
-{{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>--}}
-{{--<script>--}}
-    {{--$(document).ready(function() {--}}
-        {{--$('.datepicker').datepicker();--}}
-    {{--});--}}
-{{--</script>--}}
 <script type="text/javascript">
 
 

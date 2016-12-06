@@ -76,14 +76,24 @@
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">County</label>
                                     <div class="col-sm-10">
-                                          {{ Form::select('county', $county, null,  ['class' => 'form-control']) }}
+                                        <select name='county' class = 'form-control'>
+                                            @foreach($county as $county)
+                                                <option value="{{ $county->id }}">{{ $county->county_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        {{--{{ Form::select('county', $county, null,  ['class' => 'form-control']) }}--}}
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Facility</label>
                                     <div class="col-sm-10">
-                                        {{ Form::select('facilities', $facilities, null,  ['class' => 'form-control']) }}
+                                        <select name='facilities' class = 'form-control'>
+                                            @foreach($facilities as $facilities)
+                                                <option value="{{ $facilities->id }}">{{ $facilities->facility_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        {{--{{ Form::select('facilities', $facilities, null,  ['class' => 'form-control']) }}--}}
                                     </div>
                                 </div>
                                 <hr/>
@@ -117,13 +127,10 @@
 
                                     <!-- Modal -->
                                     <button type="submit" class="btn btn-primary">Create DataSet</button>
+                                     <a href="/MyDataSets" class="btn btn-primary"/> View My DataSets</a>
                                 </div>
                             </form>
-                            <?php
-                            if (isset($_POST['button'])) {
 
-                            }
-                            ?>
                             {!! Form::close() !!}
                         </div>
                     </div>

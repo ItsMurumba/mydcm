@@ -1,68 +1,70 @@
 @extends('layouts.app')
 @section('content')
-    <html lang="en">
-    <!--<![endif]-->
-    <head>
-        <link href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
-
-    </head>
-
-    <body>
-    <div class="page-title clearfix">
-        <div class="pull-left">
-            <h1> Projected Diseases Cost Report </h1>
+    <div id="body-container">
+        <div class="page-title clearfix">
+            <div class="pull-left">
+                <h1> County Level Projected Diseases Cost Report </h1>
+            </div>
+            <ol class="breadcrumb pull-right">
+                <li class="active"> CLPDCR </li>
+                <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
+            </ol>
         </div>
-        <ol class="breadcrumb pull-right">
-            <li class="active"> PDCR </li>
-            <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
-        </ol>
-    </div><br>
-    <table id="datatable" class="display nowrap">
-        <thead>
-        <tr>
-            <th>County</th>
-            <th>Facility</th>
-            <th>Age Group</th>
-            <th>Disease</th>
-            <th>Projected Population</th>
-            <th>Services Cost</th>
-            <th>Consulation Fee</th>
-            <th>Drugs Fee</th>
-            <th>Total</th>
-            <th>Year</th>
-        </tr>
-        </thead>
-        <tfoot>
-        <tr>
-            <th colspan="7" style="text-align:right"></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th>County</th>
-            <th>Facility</th>
-            <th>Age Group</th>
-            <th>Disease</th>
-            <th>Projected Population</th>
-            <th>Services Cost</th>
-            <th>Consulation Fee</th>
-            <th>Drugs Fee</th>
-            <th>Total</th>
-            <th>Year</th>
-        </tr>
-        </tfoot>
-    </table>
-    </body>
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css"></script>
+
+        <div class="conter-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <div class="panel-control pull-right hidden">
+                                    <a class="panelButton"><i class="fa fa-refresh"></i></a>
+                                    <a class="panelButton"><i class="fa fa-minus"></i></a>
+                                    <a class="panelButton"><i class="fa fa-remove"></i></a>
+                                </div>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <table id="datatable" class="display nowrap">
+                                <thead>
+                                <tr>
+                                    <th>County</th>
+                                    <th>Facility</th>
+                                    <th>Age Group</th>
+                                    <th>Disease</th>
+                                    <th>Projected Population</th>
+                                    <th>Services Cost</th>
+                                    <th>Consulation Fee</th>
+                                    <th>Drugs Fee</th>
+                                    <th>Total</th>
+                                    <th>Year</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th colspan="8" style="text-align:right"></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>County</th>
+                                    <th>Facility</th>
+                                    <th>Age Group</th>
+                                    <th>Disease</th>
+                                    <th>Projected Population</th>
+                                    <th>Services Cost</th>
+                                    <th>Consulation Fee</th>
+                                    <th>Drugs Fee</th>
+                                    <th>Total</th>
+                                    <th>Year</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         $(document).ready(function(){
             $('#datatable').DataTable({
@@ -83,7 +85,7 @@
 
                     // Total over all pages
                     total = api
-                            .column(7)
+                            .column(8)
                             .data()
                             .reduce(function (a, b) {
                                 return intVal(a) + intVal(b);
@@ -91,14 +93,14 @@
 
                     // Total over this page
                     pageTotal = api
-                            .column(7, {page: 'current'})
+                            .column(8, {page: 'current'})
                             .data()
                             .reduce(function (a, b) {
                                 return intVal(a) + intVal(b);
                             }, 0);
 
                     // Update footer
-                    $(api.column(7).footer()).html(
+                    $(api.column(8).footer()).html(
                             'Ksh ' + pageTotal + ' ( GrandTotal:Ksh ' + total + ')'
                     );
                 },
@@ -109,5 +111,4 @@
             });
         });
     </script>
-    </html>
 @endsection
