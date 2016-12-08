@@ -11,21 +11,14 @@ use App\drug_disease;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CreateDiseasesRequest;
 
 
 class DiseasesController extends Controller
 {
     //
-    protected function validator(Request $request)
-    {
-        return Validator::make($request, [
-            'name'    =>'required|unique',
-            'description'   =>'required|unique'
 
-
-        ]);
-    }
-    public function store(Request $request)
+    public function store(CreateDiseasesRequest $request)
     {
         //store
         $Diseases = new Diseases;
@@ -34,7 +27,7 @@ class DiseasesController extends Controller
         $Diseases->save();
 
         //redirect
-        Session::flash('message', 'Successfully added!');
+        \Session::flash('message', 'Successfully added!');
         return view('diseases');;
     }
 }

@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Diseases Entry Form </h1>
+                <h1> Consultation Fee Entry Form </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> DEF </li>
+                <li class="active"> CFEF </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -25,27 +25,27 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <form method ="post" action="/diseases" class="form-horizontal">
+                            <form method ="post" action="/consultationfee" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Disease Name</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Facility Level Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="name">
-                                        @if ($errors->has('name'))
+                                        {{ Form::select('levels', $levels, null,  ['class' => 'form-control']) }}
+                                        @if ($errors->has('levels'))
                                             <span class="help-block">
-                                                <strong style="color: red">{{ $errors->first('name') }}</strong>
+                                                <strong style="color: red">{{ $errors->first('levels') }}</strong>
                                             </span>
                                         @endif
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Description</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Consultation Fee(Ksh.)</label>
                                     <div class="col-sm-10">
-                                        <textarea type="text" class="form-control" name="description"></textarea>
-                                        @if ($errors->has('description'))
+                                        <input type="text" class="form-control" name="consultationfee" >
+                                        @if ($errors->has('consultationfee'))
                                             <span class="help-block">
-                                                <strong style="color: red">{{ $errors->first('description') }}</strong>
+                                                <strong style="color: red">{{ $errors->first('consultationfee') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -67,4 +67,5 @@
             </div>
         </div>
     </div>
+
 @endsection

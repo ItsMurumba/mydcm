@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Diseases Entry Form </h1>
+                <h1> Disease Type Entry Form </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> DEF </li>
+                <li class="active"> DTEF </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -25,27 +25,39 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <form method ="post" action="/diseases" class="form-horizontal">
+                            <form method ="post" action="/diseasetype" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Disease Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="name">
-                                        @if ($errors->has('name'))
+                                        {{ Form::select('diseasename', $Diseasename, null,  ['class' => 'form-control']) }}
+                                        @if ($errors->has('diseasename'))
                                             <span class="help-block">
-                                                <strong style="color: red">{{ $errors->first('name') }}</strong>
+                                                <strong style="color: red">{{ $errors->first('diseasename') }}</strong>
                                             </span>
                                         @endif
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Description</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Gender</label>
                                     <div class="col-sm-10">
-                                        <textarea type="text" class="form-control" name="description"></textarea>
-                                        @if ($errors->has('description'))
+                                        {{ Form::select('gender', $Gender, null,  ['class' => 'form-control']) }}
+                                        @if ($errors->has('gender'))
                                             <span class="help-block">
-                                                <strong style="color: red">{{ $errors->first('description') }}</strong>
+                                                <strong style="color: red">{{ $errors->first('gender') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Disease Type</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="diseasetype" >
+                                        @if ($errors->has('diseasetype'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('diseasetype') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -67,4 +79,5 @@
             </div>
         </div>
     </div>
+
 @endsection

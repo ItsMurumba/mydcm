@@ -198,7 +198,18 @@
                             <ul class="nav sidebar-nav ">
                                 <li class=active><a href="/index"><i class="fa fa-home"></i> Home</a>
                                 </li>
-
+                                <li class="sidenav-dropdown ">
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-pencil-square-o"></i>Forms<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <ul class="nav sidenav-sub-menu">
+                                        @if(Auth::user()->roles_id == '1')
+                                            <li><a href="/gender"><i class="fa fa-pencil-square-o"></i> Gender</a></li>
+                                            <li><a href="/facilitylevels"><i class="fa fa-pencil-square-o"></i> Facility Levels</a></li>
+                                            <li><a href="/consultationfee"><i class="fa fa-pencil-square-o"></i> Consultation Fee</a></li>
+                                            <li><a href="/nhifrelief"><i class="fa fa-pencil-square-o"></i> NHIF Relief</a></li>
+                                            <li><a href="/diseasetype"><i class="fa fa-pencil-square-o"></i> Disease Type</a></li>
+                                        @endif
+                                    </ul>
+                                </li>
                                 <li class="sidenav-dropdown ">
                                     <a class="subnav-toggle" href="#"><i class="fa fa-pencil"></i> Diseases <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">

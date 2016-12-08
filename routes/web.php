@@ -200,3 +200,26 @@ Route::get('/mydatasets/serverSide','MyDataSetsController@listdatasets');
 Route::get('/MyDataSets',function (){
     return view('mydatasets');
 });
+
+Route::get('gender', function (){
+    return view('gender');
+});
+Route::post('gender','GenderController@store');
+
+
+Route::get('nhifrelief', function (){
+    return view('nhifrelief');
+});
+Route::post('nhifrelief','NhifReliefController@store');
+
+Route::get('diseasetype','DiseaseTypeController@index');
+Route::post('diseasetype','DiseaseTypeController@store');
+
+
+Route::get('consultationfee', 'ConsultationFeeController@index');
+Route::post('consultationfee','ConsultationFeeController@store');
+
+Route::get('facilitylevels', function (){
+    return view('facilitylevels');
+});
+Route::post('facilitylevels','FacilityLevelsController@store');

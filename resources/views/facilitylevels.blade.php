@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Diseases Entry Form </h1>
+                <h1>Facility Level Entry Form </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> DEF </li>
+                <li class="active"> FLEF </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -25,37 +25,25 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <form method ="post" action="/diseases" class="form-horizontal">
+                            <form method ="post" action="/facilitylevels" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Disease Name</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Facility Level Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="name">
-                                        @if ($errors->has('name'))
+                                        {{Form::select('level', ['Level 1' => 'Level 1', 'Level 2' => 'Level 2', 'Level 3' => 'Level 3', 'Level 4' => 'Level 4', 'Level 5' => 'Level 5'], null, ['placeholder' => 'Pick a level...', 'class' => 'form-control','required'])}}
+                                        @if ($errors->has('level'))
                                             <span class="help-block">
-                                                <strong style="color: red">{{ $errors->first('name') }}</strong>
+                                                <strong style="color: red">{{ $errors->first('level') }}</strong>
                                             </span>
+                                        @endif
+                                        @if(Session::has('message'))
+                                            <div class="alert alert-success alert-dismissible">
+                                                <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                <span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em>
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
-                                <hr/>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Description</label>
-                                    <div class="col-sm-10">
-                                        <textarea type="text" class="form-control" name="description"></textarea>
-                                        @if ($errors->has('description'))
-                                            <span class="help-block">
-                                                <strong style="color: red">{{ $errors->first('description') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                @if(Session::has('message'))
-                                    <div class="alert alert-success alert-dismissible">
-                                        <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
-                                        <span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em>
-                                    </div>
-                                @endif
                                 <hr/>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Save</button>
@@ -67,4 +55,5 @@
             </div>
         </div>
     </div>
+
 @endsection
