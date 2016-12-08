@@ -14,7 +14,7 @@ class PickDataSetController extends Controller
         $user= Session::get('user');
 
 
-        $home = DB::select(DB::raw("SELECT id, name FROM data_sets where user_id='$user'"), array(
+        $home = DB::select(DB::raw("SELECT id, data_set_name as name FROM data_sets where user_id='$user'"), array(
             'user' => $user,
         ));
 

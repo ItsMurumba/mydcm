@@ -153,9 +153,8 @@
             background: url('/dcm/img/loading.gif') 50% 50% no-repeat rgb(249,249,249);
         }
     </style>
-
-
-   <script> $(document).ready(function()
+   <script>
+       $(document).ready(function()
     {
         $('#county').change(function(){
             $.getJSON("{{ url('api/dropdown/cities')}}",

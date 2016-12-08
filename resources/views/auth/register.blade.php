@@ -42,7 +42,6 @@
                             <label for="county" class="col-md-4 control-label">County</label>
 
                             <div class="col-md-6">
-                                {{--<input id="county" type="text" class="form-control" name="county" value="{{ old('county') }}" required>--}}
                                 {{ Form::select('county', $county, null,  ['class' => 'form-control'], ['name' => 'county']) }}
 
                                 @if ($errors->has('county'))

@@ -13,6 +13,7 @@ use App\Diseases;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 class EstimatesController extends Controller
 {
     //
@@ -20,7 +21,8 @@ class EstimatesController extends Controller
     public function index(){
         $distributions = Distributions::pluck('age_group', 'id');
         $county = County::pluck('county_name', 'id');
-        $facility= Facilities::pluck('name','id');
+        $facility= Facilities::pluck('facility_name','id');
+//        $facility = DB::select(DB::raw("SELECT f.facility_name as name,f.id as id FROM facility f "));
         $diseases= Diseases::pluck('name','id');
 
 

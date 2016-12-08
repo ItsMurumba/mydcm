@@ -74,7 +74,7 @@ class HomeController extends Controller
         $total= ($population * $sum);
 
         $Home = new Home;
-        $Home->name = Input::get('dataset');
+        $Home->data_set_name = Input::get('dataset');
         $Home->county_id = Input::get('county');
         $Home->facility_id = Input::get('facilities');
         $Home->disease_id = Input::get('diseaseCosts');

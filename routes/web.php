@@ -143,9 +143,7 @@ Route::get('/predictions','PredictionsController@index');
 Route::get('/listdataset','ListdatasetController@index');
 
 //userlevel report
-Route::get('userlevel',function (){
-    return view('userlevel');
-});
+Route::get('userlevel','UserLevelController@index');
 Route::get('/userlevel/serverSide', 'UserLevelController@listdiseasecosts');
 
 //Predicted userlevel report
@@ -155,9 +153,7 @@ Route::get('puserlevel',function (){
 Route::get('/puserlevel/serverSide', 'PuserLevelController@listdiseasecosts');
 
 //countylevel
-Route::get('countylevel',function (){
-    return view('countylevel');
-});
+Route::get('countylevel','CountyLevelController@index');
 Route::get('/countylevel/serverSide','CountyLevelController@listdiseasecosts');
 
 //predicted County Level Report

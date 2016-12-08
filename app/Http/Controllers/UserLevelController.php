@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\DiseaseCosts;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Session;
+use App\County;
 
 class UserLevelController extends Controller
 {
@@ -21,5 +22,11 @@ class UserLevelController extends Controller
             ->where('disease_costs.user_id','=',$user)
             ->orderby('disease.name');
         return Datatables::of($diseasescosts)->make();
+    }
+
+    public function index(){
+        $county = County::pluck('county_name', 'id');
+
+        return view('userlevel', ['county'=> $county]);
     }
 }

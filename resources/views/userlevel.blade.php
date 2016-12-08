@@ -25,6 +25,21 @@
                             </h3>
                         </div>
                         <div class="panel-body">
+                            <div class="form-group{{ $errors->has('county') ? ' has-error' : '' }}">
+                                <label for="county" class="col-md-4 control-label">County</label>
+
+                                <div class="col-md-6">
+
+                                    {{ Form::select('county', $county, (isset($data['county'])) ? $data['county'] : null, array('id' => 'county')) }}
+
+                                    @if ($errors->has('county'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('county') }}</strong>
+                                    </span>
+                                    @endif
+
+                                </div>
+                            </div>
                             <table id="datatable" class="display nowrap">
                                 <thead>
                                 <tr>

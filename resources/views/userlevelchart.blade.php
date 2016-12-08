@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Services </h1>
+                <h1> Projected Total Disease Costs Against Years </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Services </li>
+                <li class="active"> PTDCAY </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -25,7 +25,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <canvas id="projected_population-graph" width="1400" height="400"></canvas>
+                            <canvas id="total-graph" width="1400" height="400"></canvas>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
             var labels = [],data=[];
             for (var i = 0; i < result.length; i++) {
                 labels.push(result[i].year);
-                data.push(result[i].projected_population);
+                data.push(result[i].total);
             }
 
             var buyerData = {
@@ -55,9 +55,9 @@
                     }
                 ]
             };
-            var buyers = document.getElementById('projected_population-graph').getContext('2d');
+            var buyers = document.getElementById('total-graph').getContext('2d');
             new Chart(buyers).Line(buyerData, {
-
+                
             });
 
         });
