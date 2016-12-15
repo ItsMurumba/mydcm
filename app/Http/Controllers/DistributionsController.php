@@ -14,21 +14,12 @@ use Illuminate\Support\Facades\Session;
 class DistributionsController extends Controller
 {
     //
-    protected function validator(Request $request)
-    {
-        return Validator::make($request, [
-            'age_group'    =>'required|unique',
-            'gender'   =>'required'
-
-
-        ]);
-    }
-    public function store(Request $request)
+   
+    public function store(Requests\CreateDistributionsRequest $request)
     {
         //store
         $Distributions = new Distributions;
         $Distributions->age_group = Input::get('age_group');
-        $Distributions->gender = Input::get('gender');
         $Distributions->save();
 
         //redirect

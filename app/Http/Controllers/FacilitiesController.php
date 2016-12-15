@@ -11,7 +11,8 @@ use App\Facilities;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
-
+use App\FacilityLevels;
+use App\Http\Requests\CreateFacilityRequest;
 
 class FacilitiesController extends Controller
 {
@@ -20,24 +21,12 @@ class FacilitiesController extends Controller
     //function used to populate dropdown
     public function index(){
         $county = County::pluck('county_name', 'id');
+        $level= FacilityLevels::pluck('level_name','id');
 
-        return view('facility', ['county'=> $county]);
+        return view('facility', ['county'=> $county,'level'=>$level]);
     }
-
-
-    protected function validator(Request $request)
-    {
-        return Validator::make($request, [
-            'name'    =>'required|unique',
-            'address'   =>'required|unique',
-            'bed_capacity'       =>'required',
-            'county'       =>'required',
-            'level'       =>'required'
-
-
-        ]);
-    }
-    public function store(Request $request)
+    
+    public function store(CreateFacilityRequest $request)
     {
         //store
         $Facilities = new Facilities;

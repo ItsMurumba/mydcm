@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Population Distribution </h1>
+                <h1> Age Group Entry Form</h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Population Distribution</li>
+                <li class="active"> AGEF</li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -28,22 +28,25 @@
                             <form method ="post" action="/distribution" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Age Group</br>Format(range:M/F)</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Age Group</br>Format(min-max)</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control"  name="age_group">
+                                        @if ($errors->has('age_group'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('age_group') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <hr/>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Gender</label>
-                                    <div class="col-sm-10">
-                                        {{--<input type="text" class="form-control" name="gender">--}}
-                                        {{Form::select('gender', ['F' => 'Female', 'M' => 'Male'], null, ['placeholder' => 'Pick a gender...', 'class' => 'form-control'])}}
+                                @if(Session::has('message'))
+                                    <div class="alert alert-success alert-dismissible">
+                                        <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em>
                                     </div>
-                                </div>
+                                @endif
                                 <hr/>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Add Distribution</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
                         </div>

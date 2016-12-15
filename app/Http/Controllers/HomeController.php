@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Gender;
 use App\Home;
+use App\Http\Requests\CreateIndexRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\County;
@@ -21,33 +23,16 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
+
+    public function saving(CreateIndexRequest $request)
     {
-        $this->middleware('auth');
-    }
-
-
-    protected function validator(Request $request)
-    {
-        return Validator::make($request, [
-            'dataset'    =>'required|unique',
-            'county'   =>'required',
-            'facilities'       =>'required',
-            'diseaseCosts'       =>'required',
-            'distributions'       =>'required',
-            'population'       =>'required',
-            'user'       =>'required'
-
-
-        ]);
-    }
-    public function store(Request $request)
-    {
-        $sum = '';
-        //store
-
+//
         //total cost fetch query
-        $dCosts= Input::get('diseaseCosts');
+        $dCosts= Input::get('disease');
         $DCosts = DB::select(DB::raw("SELECT total FROM disease_costs where diseases_id= '$dCosts'"), array(
             'dCosts' => $dCosts,
             ));
@@ -55,14 +40,19 @@ class HomeController extends Controller
             global $sum;
             $sum= $row->total;
         }
+        echo $sum;
+        die();
 
         //population fetch query
-        $disease_id=Input::get('diseaseCosts');
+        $disease_id=Input::get('disease');
         $population_distribution_id=Input::get('distributions');
-        $Population=DB::select(DB::raw("SELECT population FROM population_estimates WHERE disease_id='$disease_id' AND population_distribution_id='$population_distribution_id' "),array(
+        $diseasetype=Input::get('diseasetype');
+        $Population=DB::select(DB::raw("SELECT population FROM population_estimates WHERE disease_id='$disease_id' AND population_distribution_id='$population_distribution_id' AND disease_type_id='$diseasetype' "),array(
             'disease_id' => $disease_id,
         ),array(
             'population_distribution_id' => $population_distribution_id,
+        ),array(
+            'diseasetype' => $diseasetype,
         ));
 
         foreach ($Population as $row){
@@ -73,11 +63,13 @@ class HomeController extends Controller
         //total cost for disease calculated
         $total= ($population * $sum);
 
+
         $Home = new Home;
         $Home->data_set_name = Input::get('dataset');
         $Home->county_id = Input::get('county');
         $Home->facility_id = Input::get('facilities');
-        $Home->disease_id = Input::get('diseaseCosts');
+        $Home->disease_id = Input::get('disease');
+        $Home->disease_type_id = Input::get('diseasetype');
         $Home->distribution_id = Input::get('distributions');
         $Home->population = $population;
         $Home->total = $total;
@@ -85,7 +77,7 @@ class HomeController extends Controller
         $Home->save();
 
         //redirect
-        Session::flash('message', 'Successfully added!');
+       \ Session::flash('message', 'Successfully added!');
 //        return view('services');
         return redirect()->action('HomeController@index');
     }
@@ -99,8 +91,6 @@ class HomeController extends Controller
             'user' => $user,
         ));
 
-//        $facilities = Facilities::pluck('facility_name', 'id');
-
         $facilities = DB::select(DB::raw("SELECT f.facility_name,u.facility_id as id FROM users u JOIN facility f ON f.id=u.facility_id where u.id='$user'"), array(
             'user' => $user,
         ));
@@ -109,12 +99,12 @@ class HomeController extends Controller
             'user' => $user,
         ));
 
-        $diseaseCosts = DB::select(DB::raw("SELECT d.diseases_id, t.name, d.total FROM disease_costs d JOIN disease t ON d.diseases_id =t.id where d.user_id='$user' "), array(
-            'user' => $user,
-        ));
-        $distributions = Distributions::pluck('age_group','id');
+        $gender=Gender::pluck('gender_name','id');
+        $disease=Diseases::pluck('disease_name','id');
+        $distributions=Distributions::pluck('age_group','id');
 
-        return view('index')->with(['home'=> $home,'county' => $county,'facilities' => $facilities,'diseaseCosts' => $diseaseCosts,'distributions' => $distributions]);
+        return view('index')->with(['home'=> $home,'county' => $county,'facilities' => $facilities,'disease' => $disease,'gender' =>$gender,'distributions' =>$distributions]);
+
     }
 
 }

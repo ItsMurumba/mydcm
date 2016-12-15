@@ -20,7 +20,7 @@ class DosageController extends Controller
     public function index(){
         $drugs = Drugs::pluck('name','id');
         $distributions = Distributions::pluck('age_group','id');
-        $diseases=Diseases::pluck('name','id');
+        $diseases=Diseases::pluck('disease_name','id');
 
         return view('dosage')->with(['drugs' => $drugs,'distributions' => $distributions,'diseases' =>$diseases]);
     }

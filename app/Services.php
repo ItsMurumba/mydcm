@@ -11,7 +11,7 @@ class Services extends Model
     protected $fillable =[
         'name',
         'cost',
-        'equipment_id'
+        'disease_id'
 
     ];
 }

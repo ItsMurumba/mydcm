@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Services </h1>
+                <h1> Lab Test Services </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Services </li>
+                <li class="active"> LTS </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -28,16 +28,26 @@
                             <form method ="post" action="/services" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Test\Service Name</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control"  name="service">
+                                        @if ($errors->has('service'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('service') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Equipment</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Disease</label>
                                     <div class="col-sm-10">
-                                        {{ Form::select('equipments', $equipments, null,  ['class' => 'form-control'], ['name' => 'equipments']) }}
+                                        {{ Form::select('diseases', $diseases, (isset($data['disease'])) ? $data['diseases'] : null, array('id' => 'disease')) }}
+                                        @if ($errors->has('diseases'))
+                                            <span class="help-block">
+                                                <strong style="color:red">{{ $errors->first('diseases') }}</strong>
+                                             </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <hr/>
@@ -45,8 +55,19 @@
                                     <label for="inputtext" class="col-sm-2 control-label">Cost(Ksh)</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="cost">
+                                        @if ($errors->has('cost'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('cost') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
+                                @if(Session::has('message'))
+                                    <div class="alert alert-success alert-dismissible">
+                                        <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em>
+                                    </div>
+                                @endif
                                 <hr/>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Add Service</button>

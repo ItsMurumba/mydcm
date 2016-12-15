@@ -7,40 +7,33 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Equipments;
 use App\Services;
+use App\Diseases;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CreateServicesRequest;
 
 class ServicesController extends Controller
 {
     //
     public function index(){
         $equipments = equipments::pluck('name', 'id');
+        $diseases=Diseases::pluck('disease_name','id');
 
-        return view('services', ['equipments'=> $equipments]);
+        return view('services', ['equipments'=> $equipments,'diseases'=>$diseases]);
     }
 
-    protected function validator(Request $request)
-    {
-        return Validator::make($request, [
-            'service'    =>'required|unique',
-            'equipments'   =>'required',
-            'cost'       =>'required'
-
-
-        ]);
-    }
-    public function store(Request $request)
+    public function store(CreateServicesRequest $request)
     {
         //store
         $Services = new Services;
-        $Services->name = Input::get('service');
-        $Services->equipment_id = Input::get('equipments');
+        $Services->service_name = Input::get('service');
         $Services->cost = Input::get('cost');
+        $Services->disease_id=Input::get('diseases');
         $Services->save();
 
         //redirect
-        Session::flash('message', 'Successfully added!');
+        \Session::flash('message', 'Successfully added!');
 //        return view('services');
         return redirect()->action('ServicesController@index');
     }

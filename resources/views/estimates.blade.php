@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Population Estimates </h1>
+                <h1> Population Estimates Entry Form </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Population Estimates</li>
+                <li class="active"> PEEF</li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -31,16 +31,25 @@
                                     <label for="inputPassword3" class="col-sm-2 control-label">County</label>
                                     <div class="col-sm-10">
                                         {{ Form::select('county', $county, (isset($data['county'])) ? $data['county'] : null, array('id' => 'county')) }}
+                                        @if ($errors->has('county'))
+                                            <span class="help-block">
+                                                <strong style="color:red">{{ $errors->first('county') }}</strong>
+                                             </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-2 control-label">Facility</label>
                                     <div class="col-sm-10">
-                                        {{--{{ Form::select('facility', $facility, null,  ['class' => 'form-control']) }}--}}
                                         <select id="facility_id" name="facility" class="form-control" >
                                             <option>Select a county first</option>
                                         </select>
+                                        @if ($errors->has('facility'))
+                                            <span class="help-block">
+                                                <strong style="color:red">{{ $errors->first('facility') }}</strong>
+                                             </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <hr/>
@@ -48,13 +57,52 @@
                                     <label for="inputPassword3" class="col-sm-2 control-label">Age Group</label>
                                     <div class="col-sm-10">
                                         {{ Form::select('distributions', $distributions, null,  ['class' => 'form-control']) }}
+                                        @if ($errors->has('distributions'))
+                                            <span class="help-block">
+                                                <strong style="color:red">{{ $errors->first('distributions') }}</strong>
+                                             </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Disease</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Disease</label>
                                     <div class="col-sm-10">
-                                        {{ Form::select('diseases', $diseases, null,  ['class' => 'form-control']) }}
+                                        {{ Form::select('diseases', $diseases, (isset($data['diseases'])) ? $data['diseases'] : null, array('id' => 'diseases')) }}
+                                        @if ($errors->has('diseases'))
+                                            <span class="help-block">
+                                                <strong style="color:red">{{ $errors->first('diseases') }}</strong>
+                                             </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Gender</label>
+                                    <div class="col-sm-10">
+                                        {{ Form::select('gender', $gender,(isset($data['gender'])) ? $data['gender'] : null, array('id' => 'frm_duration')) }}
+                                        @if ($errors->has('gender'))
+                                            <span class="help-block">
+                                                <strong style="color:red">{{ $errors->first('gender') }}</strong>
+                                             </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div id="divFrm8" class="form-group form-duration-div" style="display:none">
+                                    <label class="col-sm-2 control-label">Disease Type</label>
+                                    <div class="col-sm-10 ">
+                                        <select id="DType_id" name="diseasetype" class="form-control" >
+                                            <option>Select a Disease first</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="divFrm9" class="form-group form-duration-div" style="display:none">
+                                    <label class="col-sm-2 control-label">Disease Type</label>
+                                    <div class="col-sm-10 ">
+                                        <select id="DTypeM_id" name="diseasetype" class="form-control" >
+                                            <option>Select a Disease first</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <hr/>
@@ -62,8 +110,19 @@
                                     <label for="inputEmail3" class="col-sm-2 control-label">Population</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control"  name="population">
+                                        @if ($errors->has('population'))
+                                            <span class="help-block">
+                                                <strong style="color:red">{{ $errors->first('population') }}</strong>
+                                             </span>
+                                        @endif
                                     </div>
                                 </div>
+                                @if(Session::has('message'))
+                                    <div class="alert alert-success alert-dismissible">
+                                        <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em>
+                                    </div>
+                                @endif
                                 <hr/>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Save</button>
@@ -78,7 +137,7 @@
                                                     var model = $('#facility_id');
                                                     model.empty();
                                                     $.each(data, function(index, element) {
-                                                        model.append("<option value='"+element.id+"'>" + element.name + "</option>");
+                                                        model.append("<option value='"+element.id+"'>" + element.facility_name + "</option>");
                                                     });
                                                 });
                                     });
@@ -90,4 +149,59 @@
             </div>
         </div>
     </div>
+    <script>
+
+        $(function() {
+
+            // run on change for the selectbox
+            $( "#frm_duration" ).change(function() {
+                updateDurationDivs();
+            });
+
+            // handle the updating of the duration divs
+            function updateDurationDivs() {
+                // hide all form-duration-divs
+                $('.form-duration-div').hide();
+
+                var divKey = $( "#frm_duration option:selected" ).val();
+                $('#divFrm'+divKey).show();
+            }
+
+            // run at load, for the currently selected div to show up
+            updateDurationDivs();
+
+        });
+    </script>
+    <script>
+        $(document).ready(function()
+        {
+            $('#diseases').change(function(){
+                $.getJSON("{{ url('api/diseasetype')}}",
+                        { option: $(this).val() },
+                        function(data) {
+                            var model = $('#DType_id');
+                            model.empty();
+                            $.each(data, function(index, element) {
+                                model.append("<option value='"+element.id+"'>" + element.disease_type + "</option>");
+                            });
+                        });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function()
+        {
+            $('#diseases').change(function(){
+                $.getJSON("{{ url('api/diseasetypeM')}}",
+                        { option: $(this).val() },
+                        function(data) {
+                            var model = $('#DTypeM_id');
+                            model.empty();
+                            $.each(data, function(index, element) {
+                                model.append("<option value='"+element.id+"'>" + element.disease_type + "</option>");
+                            });
+                        });
+            });
+        });
+    </script>
 @endsection

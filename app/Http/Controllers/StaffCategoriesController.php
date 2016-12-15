@@ -10,22 +10,13 @@ use App\Staffcategories;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CreateStaffCategoryRequest;
 
 class StaffCategoriesController extends Controller
 {
     //
-    protected function validator(Request $request)
-    {
-        return Validator::make($request, [
-            'cadre'    =>'required',
-            'basic_salary'   =>'required',
-            'allowances'       =>'required',
-            'reimbursement'       =>'required'
-
-
-        ]);
-    }
-    public function store(Request $request)
+   
+    public function store(CreateStaffCategoryRequest $request)
     {
         //store
         $staffcat = new Staffcategories;

@@ -2,6 +2,8 @@
 use Illuminate\Support\Facades\Input;
 use App\Facilities;
 use App\drug_disease;
+use App\DiseaseType;
+use App\Services;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +33,7 @@ Route::get('/home', 'HomeController@index');
 
 
 Route::get('/index', 'HomeController@index');
-Route::post('/index', 'HomeController@store');
+Route::post('/index', 'HomeController@saving');
 
 
 //services
@@ -175,7 +177,6 @@ Route::get('api/dropdown/cities', function(){
 
 Route::get('api/drugs', function(){
     $diseases = Input::get('option');
-//    $city = drug_disease::where('disease_id', $diseases)->get(array('id','drug_id'));
     $city= DB::select(DB::raw("SELECT dr.name, dd.drug_id as id FROM drug_disease dd JOIN drug dr ON dr.id=dd.drug_id WHERE dd.disease_id=$diseases "), array(
             'diseases' => $diseases,
         ));
@@ -223,3 +224,22 @@ Route::get('facilitylevels', function (){
     return view('facilitylevels');
 });
 Route::post('facilitylevels','FacilityLevelsController@store');
+
+Route::get('api/diseasetypeM', function(){
+    $disease = Input::get('optionm');
+    $gender= Input::get('optiong');
+    $diseasetype = DiseaseType::where('disease_id', $disease)
+        ->where('gender_id',$gender)
+        ->get(array('id','disease_type'));
+    return Response::json($diseasetype, 200);
+});
+
+Route::get('stafftofacility','StaffToFacilityController@index');
+Route::post('stafftofacility','StaffToFacilityController@store');
+
+
+Route::get('api/services', function(){
+    $disease = Input::get('option');
+    $services = Services::where('disease_id', $disease)->get(array('cost','service_name'));
+    return Response::json($services, 200);
+});

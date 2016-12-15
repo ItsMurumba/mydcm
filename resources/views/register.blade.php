@@ -23,7 +23,7 @@
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong style="color: red">{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -37,7 +37,7 @@
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong style="color: red">{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -52,7 +52,7 @@
 
                                 @if ($errors->has('county'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('county') }}</strong>
+                                        <strong style="color: red">{{ $errors->first('county') }}</strong>
                                     </span>
                                 @endif
 
@@ -69,16 +69,12 @@
                                 </select>
                                 @if ($errors->has('facility'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('facility') }}</strong>
+                                        <strong style="color: red">{{ $errors->first('facility') }}</strong>
                                     </span>
                                 @endif
 
                             </div>
                         </div>
-
-
-
-
 
                         <input id="role" type="hidden" class="form-control" name="role" value="2" required>
 
@@ -90,7 +86,7 @@
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong style="color: red">{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -104,7 +100,7 @@
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        <strong style="color: red">{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -163,7 +159,7 @@
                 var model = $('#facility_id');
                 model.empty();
                 $.each(data, function(index, element) {
-                    model.append("<option value='"+element.id+"'>" + element.name + "</option>");
+                    model.append("<option value='"+element.id+"'>" + element.facility_name + "</option>");
                 });
             });
         });

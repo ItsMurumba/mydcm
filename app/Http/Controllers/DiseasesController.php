@@ -22,7 +22,7 @@ class DiseasesController extends Controller
     {
         //store
         $Diseases = new Diseases;
-        $Diseases->name = Input::get('name');
+        $Diseases->disease_name = Input::get('name');
         $Diseases->description = Input::get('description');;
         $Diseases->save();
 

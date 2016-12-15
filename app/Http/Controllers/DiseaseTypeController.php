@@ -13,7 +13,7 @@ class DiseaseTypeController extends Controller
 {
     //
     public function index(){
-        $Diseasename = Diseases::pluck('name', 'id');
+        $Diseasename = Diseases::pluck('disease_name', 'id');
 
         $Gender = Gender::pluck('gender_name', 'id');
         return view('diseasetype')->with( ['Diseasename'=> $Diseasename,'Gender'=> $Gender]);

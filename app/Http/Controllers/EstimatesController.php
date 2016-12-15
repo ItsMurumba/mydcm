@@ -10,10 +10,12 @@ use App\County;
 use App\Estimates;
 use App\Facilities;
 use App\Diseases;
+use App\Gender;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CreateEstimatesRequest;
 class EstimatesController extends Controller
 {
     //
@@ -22,30 +24,15 @@ class EstimatesController extends Controller
         $distributions = Distributions::pluck('age_group', 'id');
         $county = County::pluck('county_name', 'id');
         $facility= Facilities::pluck('facility_name','id');
-//        $facility = DB::select(DB::raw("SELECT f.facility_name as name,f.id as id FROM facility f "));
-        $diseases= Diseases::pluck('name','id');
+        $diseases= Diseases::pluck('disease_name','id');
+        $gender=Gender::pluck('gender_name','id');
 
 
-//        return view('estimates',  $distributions, $county);
-
-        return view('estimates')->with(['county' => $county,'facility' => $facility,'distributions' => $distributions,'diseases'=>$diseases]);
+        return view('estimates')->with(['gender'=>$gender,'county' => $county,'facility' => $facility,'distributions' => $distributions,'diseases'=>$diseases]);
 
     }
 
-
-    protected function validator(Request $request)
-    {
-        return Validator::make($request, [
-            'population'    =>'required',
-            'distributions'   =>'required',
-            'county'       =>'required',
-            'diseases' =>'required',
-            'facility' =>'required'
-
-
-        ]);
-    }
-    public function store(Request $request)
+    public function store(CreateEstimatesRequest $request)
     {
         //store
         $Estimates = new Estimates;
@@ -53,6 +40,8 @@ class EstimatesController extends Controller
         $Estimates->population_distribution_id = Input::get('distributions');
         $Estimates->county_id = Input::get('county');
         $Estimates->disease_id=Input::get('diseases');
+        $Estimates->gender_id=Input::get('gender');
+        $Estimates->disease_type_id=Input::get('diseasetype');
         $Estimates->facility_id=Input::get('facility');
         $Estimates->save();
 

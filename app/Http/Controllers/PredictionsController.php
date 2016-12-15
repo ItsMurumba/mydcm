@@ -112,7 +112,7 @@ class PredictionsController extends Controller
         Session::set('DataSet', $DataSet);
         $user= Session::get('user');
 
-        $diseases  = DB::select(DB::raw("SELECT ds.disease_id, d.name FROM data_sets ds JOIN disease d ON d.id=ds.disease_id where ds.user_id='$user' AND ds.id='$DataSet'"), array(
+        $diseases  = DB::select(DB::raw("SELECT ds.disease_id, d.disease_name as name FROM data_sets ds JOIN disease d ON d.id=ds.disease_id where ds.user_id='$user' AND ds.id='$DataSet'"), array(
             'user' => $user,
         ),array(
             'DataSet' => $DataSet,

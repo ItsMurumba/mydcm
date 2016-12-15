@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Patient Type</label>
                                     <div class="col-sm-10">
-                                        {{Form::select('patienttype', ['Inpatient' => 'Inpatient', 'Outpatient' => 'Outpatient'], null, ['placeholder' => 'Please select...', 'class' => 'form-control'])}}
+                                        {{Form::select('patienttype', ['Inpatient' => 'Inpatient', 'Outpatient' => 'Outpatient', 'N/A' => 'N/A'], null, ['placeholder' => 'Please select...', 'class' => 'form-control'])}}
                                         @if ($errors->has('patienttype'))
                                             <span class="help-block">
                                                 <strong style="color: red">{{ $errors->first('patienttype') }}</strong>

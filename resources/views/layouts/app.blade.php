@@ -258,6 +258,7 @@
                                         <li><a href="/equipments"><i class="fa fa-circle-o"></i> Equipment</a></li>
                                         <li><a href="/services"><i class="fa fa-arrows-v"></i> Service</a></li>
                                         <li><a href="/facility"><i class="fa fa-flag-o"></i> Facility</a></li>
+                                        <li><a href="/stafftofacility"><i class="fa fa-map-marker"></i> Assign Staff </a></li>
                                         <li><a href="/county"><i class="fa fa-map-marker"></i> County</a></li>
                                     </ul>
                                 </li>
