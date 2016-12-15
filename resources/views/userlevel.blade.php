@@ -48,15 +48,19 @@
                                     <th>Age Group</th>
                                     <th>Disease</th>
                                     <th>Population</th>
+                                    <th>Salaries</th>
                                     <th>Services Cost</th>
                                     <th>Consulation Fee</th>
                                     <th>Drugs Fee</th>
-                                    <th>Total</th>
+                                    <<th>NHIF Relief</th>
+                                    <th>Total(No Relief)</th>
+                                    <th>Total(Relief)</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th colspan="8" style="text-align:right"></th>
+                                    <th></th>
+                                    <th colspan="10" style="text-align:right"></th>
                                     <th></th>
                                 </tr>
                                 <tr>
@@ -65,10 +69,13 @@
                                     <th>Age Group</th>
                                     <th>Disease</th>
                                     <th>Population</th>
+                                    <th>Salaries</th>
                                     <th>Services Cost</th>
                                     <th>Consulation Fee</th>
                                     <th>Drugs Fee</th>
-                                    <th>Total</th>
+                                    <th>NHIF Relief</th>
+                                    <th>Total(No Relief)</th>
+                                    <th>Total(Relief)</th>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -99,7 +106,7 @@
 
                     // Total over all pages
                     total = api
-                            .column( 8 )
+                            .column( 10 )
                             .data()
                             .reduce( function (a, b) {
                                 return intVal(a) + intVal(b);
@@ -107,15 +114,15 @@
 
                     // Total over this page
                     pageTotal = api
-                            .column( 8, { page: 'current'} )
+                            .column( 10, { page: 'current'} )
                             .data()
                             .reduce( function (a, b) {
                                 return intVal(a) + intVal(b);
                             }, 0 );
 
                     // Update footer
-                    $( api.column( 8 ).footer() ).html(
-                            'Ksh '+pageTotal +' ( GrandTotal:Ksh '+ total +')'
+                    $( api.column( 10 ).footer() ).html(
+                            +pageTotal
                     );
 
                 },
