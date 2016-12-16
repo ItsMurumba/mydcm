@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Projections </h1>
+                <h1> Projections Entry Form </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Projections </li>
+                <li class="active"> PEF </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -31,6 +31,11 @@
                                     <label for="inputEmail3" class="col-sm-2 control-label">Rate</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control"  name="rate">
+                                        @if ($errors->has('rate'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('rate') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <hr/>
@@ -38,6 +43,11 @@
                                     <label for="inputPassword3" class="col-sm-2 control-label">County</label>
                                     <div class="col-sm-10">
                                         {{ Form::select('county', $county, null,  ['class' => 'form-control']) }}
+                                        @if ($errors->has('county'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('county') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <hr/>
@@ -45,8 +55,19 @@
                                     <label for="inputPassword3" class="col-sm-2 control-label">Projection Factor</label>
                                     <div class="col-sm-10">
                                         {{ Form::select('projectionfactors', $projectionfactors, null,  ['class' => 'form-control']) }}
+                                        @if ($errors->has('projectionfactors'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('projectionfactors') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
+                                @if(Session::has('message'))
+                                    <div class="alert alert-success alert-dismissible">
+                                        <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em>
+                                    </div>
+                                @endif
                                 <hr/>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Add Projections</button>

@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> County </h1>
+                <h1> County Entry Form </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> County </li>
+                <li class="active"> CEF </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -31,6 +31,11 @@
                                     <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control"  name="county">
+                                        @if ($errors->has('county'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('county') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <hr/>
@@ -38,6 +43,11 @@
                                     <label for="inputPassword3" class="col-sm-2 control-label">Address</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="address">
+                                        @if ($errors->has('address'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('address') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <hr/>
@@ -45,8 +55,19 @@
                                     <label for="inputtext" class="col-sm-2 control-label">Tel No.</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="tel">
+                                        @if ($errors->has('tel'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('tel') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
+                                @if(Session::has('message'))
+                                    <div class="alert alert-success alert-dismissible">
+                                        <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em>
+                                    </div>
+                                @endif
                                 <hr/>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Add County</button>

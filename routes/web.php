@@ -90,6 +90,7 @@ Route::post('/projections', 'ProjectionController@store');
 Route::get('/county', function (){
     return view('county');
 });
+Route::post('/county', 'CountiesController@store');
 
 
 //diseases

@@ -25,40 +25,48 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <table id="datatable" class="display nowrap">
+                            <div class="table-responsive">
+                            <table id="datatable" class="display table-striped table-bordered"  cellspacing="0">
                                 <thead>
                                 <tr>
+                                    <th>Year</th>
                                     <th>County</th>
                                     <th>Facility</th>
                                     <th>Age Group</th>
                                     <th>Disease</th>
-                                    <th>Projected Population</th>
+                                    <th>Population</th>
+                                    <th>Salaries</th>
                                     <th>Services Cost</th>
                                     <th>Consulation Fee</th>
                                     <th>Drugs Fee</th>
-                                    <th>Total</th>
-                                    <th>Year</th>
+                                    <th>NHIF Relief</th>
+                                    <th>Total(No Relief)</th>
+                                    <th>Total(Relief)</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th colspan="8" style="text-align:right"></th>
+                                    <th colspan="12" style="text-align:right"></th>
                                     <th></th>
                                 </tr>
                                 <tr>
+                                    <th>Year</th>
                                     <th>County</th>
                                     <th>Facility</th>
                                     <th>Age Group</th>
                                     <th>Disease</th>
-                                    <th>Projected Population</th>
+                                    <th>Population</th>
+                                    <th>Salaries</th>
                                     <th>Services Cost</th>
                                     <th>Consulation Fee</th>
                                     <th>Drugs Fee</th>
-                                    <th>Total</th>
-                                    <th>Year</th>
+                                    <th>NHIF Relief</th>
+                                    <th>Total(No Relief)</th>
+                                    <th>Total(Relief)</th>
                                 </tr>
                                 </tfoot>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,7 +93,7 @@
 
                     // Total over all pages
                     total = api
-                            .column(8)
+                            .column(12)
                             .data()
                             .reduce(function (a, b) {
                                 return intVal(a) + intVal(b);
@@ -93,15 +101,15 @@
 
                     // Total over this page
                     pageTotal = api
-                            .column(8, {page: 'current'})
+                            .column(12, {page: 'current'})
                             .data()
                             .reduce(function (a, b) {
                                 return intVal(a) + intVal(b);
                             }, 0);
 
                     // Update footer
-                    $(api.column(8).footer()).html(
-                            'Ksh ' + pageTotal + ' ( GrandTotal:Ksh ' + total + ')'
+                    $(api.column(12).footer()).html(
+                           + pageTotal
                     );
                 },
                 dom: 'lBfrtip',

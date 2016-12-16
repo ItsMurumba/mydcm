@@ -25,6 +25,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
+                            <div class="table-responsive">
                             <div class="form-group{{ $errors->has('county') ? ' has-error' : '' }}">
                                 <label for="county" class="col-md-4 control-label">County</label>
 
@@ -40,7 +41,7 @@
 
                                 </div>
                             </div>
-                            <table id="datatable" class="display nowrap">
+                                <table id="datatable" class="display table-striped table-bordered"  cellspacing="0">
                                 <thead>
                                 <tr>
                                     <th>Year</th>
@@ -52,7 +53,7 @@
                                     <th>Services Cost</th>
                                     <th>Consulation Fee</th>
                                     <th>Drugs Fee</th>
-                                    <<th>NHIF Relief</th>
+                                    <th>NHIF Relief</th>
                                     <th>Total(No Relief)</th>
                                     <th>Total(Relief)</th>
                                 </tr>
@@ -79,6 +80,7 @@
                                 </tr>
                                 </tfoot>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>

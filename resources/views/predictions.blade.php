@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Disease Costs Predictions </h1>
+                <h1> Disease Costs Predictions Form </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> Predictions </li>
+                <li class="active"> DCPF</li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -30,11 +30,16 @@
                                     <label for="inputEmail3" class="col-sm-2 control-label">Disease</label>
                                     <div class="col-sm-10">
                                         {{--{{ Form::select('diseases', $diseases, null,  ['class' => 'form-control']) }}--}}
-                                        <select name='diseases' class = 'form-control'>
+                                        <select name='diseases' class = 'form-control' >
                                             @foreach($diseases as $diseases)
                                                 <option value="{{ $diseases->disease_id }}">{{ $diseases->name }}</option>
                                             @endforeach
                                         </select>
+                                        @if ($errors->has('disease'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('disease') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <hr/>
@@ -42,8 +47,13 @@
                                     <label for="inputPassword3" class="col-sm-2 control-label">Growth Rate</label>
                                     <div class="col-sm-10">
                                         @foreach($growthrate as $growthrate)
-                                            <input type="text" class="form-control" name="growthrate" placeholder="{{ $growthrate->rate }}" required>
+                                            <input type="text" class="form-control" value="{{ $growthrate->rate }}" name="growthrate" placeholder="{{ $growthrate->rate }}" readonly = 'true'>
                                         @endforeach
+                                            @if ($errors->has('growthrate'))
+                                                <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('growthrate') }}</strong>
+                                            </span>
+                                            @endif
                                     </div>
                                 </div>
                                 <hr/>
@@ -51,8 +61,13 @@
                                     <label for="inputPassword3" class="col-sm-2 control-label">Consultation Increament</label>
                                     <div class="col-sm-10">
                                         @foreach($consultationInc as $consultationInc)
-                                            <input type="text" class="form-control" name="consultationInc"  placeholder="{{ $consultationInc->rate }}" required>
+                                            <input type="text" class="form-control" value="{{ $consultationInc->rate }}" name="consultationInc"  placeholder="{{ $consultationInc->rate }}" readonly = 'true'>
                                         @endforeach
+                                            @if ($errors->has('consultationInc'))
+                                                <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('consultationInc') }}</strong>
+                                            </span>
+                                            @endif
                                     </div>
                                 </div>
                                 <hr/>
@@ -60,10 +75,21 @@
                                     <label for="inputEmail3" class="col-sm-2 control-label">Inflation Rate</label>
                                     <div class="col-sm-10">
                                         @foreach($inflation as $inflation)
-                                        <input type="text" class="form-control" value ="" name="inflation" placeholder="{{ $inflation->rate }}" required>
+                                        <input type="text" class="form-control" value="{{ $inflation->rate }}" name="inflation" placeholder="{{ $inflation->rate }}" readonly = 'true'>
                                         @endforeach
+                                            @if ($errors->has('inflation'))
+                                                <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('inflation') }}</strong>
+                                            </span>
+                                            @endif
                                     </div>
                                 </div>
+                                @if(Session::has('message'))
+                                    <div class="alert alert-success alert-dismissible">
+                                        <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em>
+                                    </div>
+                                    @endif
                                 </hr>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Save</button>

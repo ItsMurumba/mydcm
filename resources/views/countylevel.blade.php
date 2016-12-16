@@ -25,6 +25,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
+                            <div class="table-responsive">
                             <div class="form-group{{ $errors->has('county') ? ' has-error' : '' }}">
                                 <label for="county" class="col-md-4 control-label"></label>
 
@@ -38,7 +39,7 @@
 
                                 </div>
                             </div>
-                            <table id="datatable" class="display nowrap">
+                                <table id="datatable" class="display table-striped table-bordered"  cellspacing="0">
                                 <thead>
                                 <tr>
                                     <th>Year</th>
@@ -47,15 +48,18 @@
                                     <th>Age Group</th>
                                     <th>Disease</th>
                                     <th>Population</th>
+                                    <th>Salaries</th>
                                     <th>Services Cost</th>
                                     <th>Consulation Fee</th>
                                     <th>Drugs Fee</th>
-                                    <th>Total</th>
+                                    <th>NHIF Relief</th>
+                                    <th>Total(No Relief)</th>
+                                    <th>Total(Relief)</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th colspan="9" style="text-align:right"></th>
+                                    <th colspan="12" style="text-align:right"></th>
                                     <th></th>
                                 </tr>
                                 <tr>
@@ -65,13 +69,17 @@
                                     <th>Age Group</th>
                                     <th>Disease</th>
                                     <th>Population</th>
+                                    <th>Salaries</th>
                                     <th>Services Cost</th>
                                     <th>Consulation Fee</th>
                                     <th>Drugs Fee</th>
-                                    <th>Total</th>
+                                    <th>NHIF Relief</th>
+                                    <th>Total(No Relief)</th>
+                                    <th>Total(Relief)</th>
                                 </tr>
                                 </tfoot>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -98,7 +106,7 @@
 
                     // Total over all pages
                     Atotal = api
-                            .column(9)
+                            .column(12)
                             .data()
                             .reduce(function (a, b) {
                                 return intVal(a) + intVal(b);
@@ -106,70 +114,21 @@
 
                     // Total over this page
                     pageTotal = api
-                            .column(9, {page: 'current'})
+                            .column(12, {page: 'current'})
                             .data()
                             .reduce(function (a, b) {
                                 return intVal(a) + intVal(b);
                             }, 0);
 
                     // Update footer
-                    $(api.column(9).footer()).html(
-                            'Ksh ' + pageTotal + ' ( GrandTotal:Ksh ' + Atotal + ')'
+                    $(api.column(12).footer()).html(
+                            + pageTotal
                     );
                 },
                 dom: 'lBfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function()
-        {
-            $('#county').change(function(){
-                        $('#datatable').DataTable({
-                            processing: true,
-                            serverSide: true,
-                            ajax: 'countylevel/serverSide',
-
-                            "footerCallback": function ( row, data, start, end, display ) {
-                                var api = this.api(), data;
-
-                                // Remove the formatting to get integer data for summation
-                                var intVal = function (i) {
-                                    return typeof i === 'string' ?
-                                    i.replace(/[\$,]/g, '') * 1 :
-                                            typeof i === 'number' ?
-                                                    i : 0;
-                                };
-
-                                // Total over all pages
-                                Atotal = api
-                                        .column(9)
-                                        .data()
-                                        .reduce(function (a, b) {
-                                            return intVal(a) + intVal(b);
-                                        }, 0);
-
-                                // Total over this page
-                                pageTotal = api
-                                        .column(9, {page: 'current'})
-                                        .data()
-                                        .reduce(function (a, b) {
-                                            return intVal(a) + intVal(b);
-                                        }, 0);
-
-                                // Update footer
-                                $(api.column(9).footer()).html(
-                                        'Ksh ' + pageTotal + ' ( GrandTotal:Ksh ' + Atotal + ')'
-                                );
-                            },
-                            dom: 'lBfrtip',
-                            buttons: [
-                                'copy', 'csv', 'excel', 'pdf', 'print'
-                            ]
-                        });
             });
         });
     </script>

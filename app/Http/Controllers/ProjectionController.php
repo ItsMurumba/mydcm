@@ -9,13 +9,14 @@ use App\Projections;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CreateProjectionRequest;
 
 class ProjectionController extends Controller
 {
     //projection factors and county drop down
     public function index(){
         $projectionfactors = ProjectionFactors::pluck('factor', 'id');
-        $county = County::pluck('county_name', 'id');
+        $county = County::orderBy('county_name','asc')->pluck('county_name', 'id');
 
        $projectionfactors= ['projectionfactors' => $projectionfactors];
         $county= ['county'=> $county];
@@ -24,18 +25,7 @@ class ProjectionController extends Controller
 
     }
 
-
-    protected function validator(Request $request)
-    {
-        return Validator::make($request, [
-            'rate'    =>'required',
-            'county'   =>'required',
-            'projectionfactors'       =>'required'
-
-
-        ]);
-    }
-    public function store(Request $request)
+    public function store(CreateProjectionRequest $request)
     {
         //store
         $Projections = new Projections;

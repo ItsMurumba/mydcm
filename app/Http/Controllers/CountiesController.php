@@ -11,24 +11,13 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CreateCountyRequest;
 
 class CountiesController extends Controller
 {
     //
 
-
-
-    protected function validator(Request $request)
-    {
-        return Validator::make($request, [
-            'county'    =>'required',
-            'address'   =>'required',
-            'tel'       =>'required'
-            
-            
-        ]);
-    }
-    public function store(Request $request)
+    public function store(CreateCountyRequest $request)
     {
         //store
         $county = new County;
@@ -38,7 +27,7 @@ class CountiesController extends Controller
         $county->save();
 
         //redirect
-        Session::flash('message', 'Successfully added county!');
+        \Session::flash('message', 'Successfully added county!');
         return view('county');
     }
 }

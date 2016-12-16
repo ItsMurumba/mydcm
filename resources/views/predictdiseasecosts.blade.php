@@ -33,12 +33,23 @@
                                         {{--{{ Form::select('diseases', $diseases, null,  ['class' => 'form-control']) }}--}}
                                         <select name='diseases' class = 'form-control' >
                                             @foreach($diseases as $diseases)
-                                                <option value="{{ $diseases->disease_id }}">{{ $diseases->name.' '.($diseases->year.' '.$diseases->age_group )}}</option>
+                                                <option value="{{ $diseases->disease_id.' '.$diseases->year}}">{{ $diseases->name.' '.($diseases->year.' '.$diseases->age_group )}}</option>
                                             @endforeach
 
                                         </select>
+                                        @if ($errors->has('diseases'))
+                                            <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('diseases') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
+                                @if(Session::has('message'))
+                                    <div class="alert alert-success alert-dismissible">
+                                        <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em>
+                                    </div>
+                                @endif
                                 <hr/>
 
                                 <div class="form-group">

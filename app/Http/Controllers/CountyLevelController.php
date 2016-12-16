@@ -16,10 +16,9 @@ class CountyLevelController extends Controller
 
         $diseasescosts = DiseaseCosts::join('disease','disease_costs.diseases_id','=','disease.id')
             ->join('population_distribution','population_distribution.id','=','disease_costs.distributions_id')
-            ->join('facility','facility.id','=','disease_costs.facility_id')
             ->join('county','county.id','=','disease_costs.county_id')
-            ->join('data_sets','data_sets.disease_id','=','disease_costs.diseases_id')
-            ->select(['disease_costs.year','county.county_name','facility.facility_name','population_distribution.age_group','disease.name','data_sets.population' ,'disease_costs.services_total_cost', 'disease_costs.consultation_fee', 'disease_costs.drugs_total_cost','disease_costs.total'])
+            ->join('facility','facility.id','=','disease_costs.facility_id')
+            ->select(['disease_costs.year','county.county_name','facility.facility_name','population_distribution.age_group','disease.disease_name', 'disease_costs.population','disease_costs.salaries' ,'disease_costs.services_total_cost', 'disease_costs.consultation_fee', 'disease_costs.drugs_total_cost','disease_costs.nhif_relief','disease_costs.total','disease_costs.total_less_nhif_relief'])
             ->orderby('disease_costs.county_id');
         return Datatables::of($diseasescosts)->make();
     }

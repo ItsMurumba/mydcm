@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePredictionsRequest;
 use Illuminate\Http\Request;
 use App\Diseases;
 use App\Projections;
@@ -17,17 +18,8 @@ class PredictionsController extends Controller
 {
     //
 
-    protected function validator(Request $request)
-    {
-        return Validator::make($request, [
-            'diseases'    =>'required',
-            'growthrate'   =>'required',
-            'consultationInc' =>'required',
-            'inflation'       =>'required'
-
-        ]);
-    }
-    public function store(Request $request)
+    
+    public function store(CreatePredictionsRequest $request)
     {
         $Projected_Data_Set = new Projected_data_sets;
         $DSet= Session::get('DataSet');
@@ -38,12 +30,12 @@ class PredictionsController extends Controller
         $growthrate=Input::get('growthrate');
         $consultationinc=Input::get('consultationInc');
 
-
-        $dataS = DB::select(DB::raw("SELECT dc.diseases_id,dc.facility_id, dc.services_total_cost, dc.consultation_fee, dc.drugs_total_cost, ds.population,dc.distributions_id FROM disease_costs dc JOIN data_sets ds ON ds.disease_id=dc.diseases_id WHERE dc.user_id='$user'"), array(
+        //Query to select the current costs for different voteheads from disease costs table
+        $dataS = DB::select(DB::raw("SELECT dc.diseases_id,dc.facility_id, dc.salaries,dc.nhif_relief,dc.services_total_cost, dc.consultation_fee, dc.drugs_total_cost, dc.population,dc.distributions_id FROM disease_costs dc WHERE dc.user_id='$user'"), array(
             'user' => $user,
         ));
         global $year;
-        $year =2012;
+        $year =2016;
         $no_years=5;
         global $sum;
         $sum=0;
@@ -66,10 +58,17 @@ class PredictionsController extends Controller
             $p= $row->population;
             $p= (($growthrate/100)*$p)+$p;
 
+            global $sr;
+            $sr=$row->salaries;
+            $sr=(($consultationinc/100)*$sr)+$sr;
+
             $facility=$row->facility_id;
 
             global $distributions;
             $distributions=$row->distributions_id;
+
+            global $NHIFrelief;
+            $NHIFrelief=$row->nhif_relief;
 
 
         }
@@ -82,7 +81,11 @@ class PredictionsController extends Controller
             $d=number_format($d, 2, '.', '');
             $p= (($growthrate/100)*$p)+$p;
             $p= number_format($p, 0, '.', '');
+            $sr=(($consultationinc/100)*$sr)+$sr;
+            $sr=number_format($sr, 2, '.', '');
             $year++;
+            $MainTotalNoNhif=$s+$c+$d+$sr;
+            $MainTotal=($s+$c+$d+$sr)-$NHIFrelief;
             $Projected_Data_Set = new Projected_data_sets;
             $Projected_Data_Set->data_set_id = $DSet;
             $Projected_Data_Set->distributions_id=$distributions;
@@ -91,6 +94,10 @@ class PredictionsController extends Controller
             $Projected_Data_Set->projected_services_cost = $s;
             $Projected_Data_Set->projected_consultation_fee = $c;
             $Projected_Data_Set->projected_drugs_fee = $d;
+            $Projected_Data_Set->projected_salaries=$sr;
+            $Projected_Data_Set->projected_nhif_relief=$NHIFrelief;
+            $Projected_Data_Set->total=$MainTotalNoNhif;
+            $Projected_Data_Set->total_less_nhif=$MainTotal;
             $Projected_Data_Set->user_id = $user;
             $Projected_Data_Set->county_id=$county;
             $Projected_Data_Set->year=$year;
@@ -99,7 +106,7 @@ class PredictionsController extends Controller
         }
 //
         //redirect
-        Session::flash('message', 'Successfully added!');
+        \Session::flash('message', 'Successfully added!');
 //        return view('services');
         return redirect()->action('HomeController@index');
 //        return redirect()->action('PredictDiseaseCostsController@store');
@@ -111,6 +118,7 @@ class PredictionsController extends Controller
         $DataSet=Input::get('home');
         Session::set('DataSet', $DataSet);
         $user= Session::get('user');
+        $county =Session::get('county');
 
         $diseases  = DB::select(DB::raw("SELECT ds.disease_id, d.disease_name as name FROM data_sets ds JOIN disease d ON d.id=ds.disease_id where ds.user_id='$user' AND ds.id='$DataSet'"), array(
             'user' => $user,
@@ -119,11 +127,13 @@ class PredictionsController extends Controller
         ));
 //        $inflation = Projections::pluck('rate', 'id')->where('projection_factor_id', '1');
 
-        $inflation=DB::select(DB::raw("SELECT id, rate FROM `projections` WHERE projection_factor_id=1 "));
+        $inflation=DB::select(DB::raw("SELECT id, rate FROM `projections` WHERE projection_factor_id=1 AND county_id=7 "));
 
-        $growthrate = DB::select(DB::raw("SELECT id, rate FROM `projections` WHERE projection_factor_id=4 "));
+        $growthrate = DB::select(DB::raw("SELECT id, rate FROM `projections` WHERE projection_factor_id=4 AND county_id='$county'"), array(
+            'county' => $county,
+        ));
 
-        $consultationInc = DB::select(DB::raw("SELECT id, rate FROM `projections` WHERE projection_factor_id=5 "));
+        $consultationInc = DB::select(DB::raw("SELECT id, rate FROM `projections` WHERE projection_factor_id=5 AND county_id=7  "));
 
        
 

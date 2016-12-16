@@ -145,7 +145,7 @@ class DiseaseCostsController extends Controller
         $GrandTotalNoNhif= $GrandTotals - $TotalNhifRelief;
 
 //        Store the record into the database
-        $Year=2012;
+        $Year=2016;
         $DiseaseCosts = new DiseaseCosts;
         $DiseaseCosts->diseases_id = Input::get('diseases');
         $DiseaseCosts->distributions_id=$distributions_id;

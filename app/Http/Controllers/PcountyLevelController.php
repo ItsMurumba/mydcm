@@ -17,7 +17,7 @@ class PcountyLevelController extends Controller
             ->join('population_distribution','population_distribution.id','=','projected_disease_costs.distributions_id')
             ->join('facility','facility.id','=','projected_disease_costs.facility_id')
             ->join('county','county.id','=','projected_disease_costs.county_id')
-            ->select(['county.county_name','facility.facility_name','population_distribution.age_group','disease.name', 'projected_disease_costs.projected_population', 'projected_disease_costs.services_total_cost', 'projected_disease_costs.consultation_fee', 'projected_disease_costs.drugs_total_cost','projected_disease_costs.total','projected_disease_costs.year'])
+            ->select(['projected_disease_costs.year','county.county_name','facility.facility_name','population_distribution.age_group','disease.disease_name','projected_disease_costs.projected_population','projected_disease_costs.projected_salaries', 'projected_disease_costs.services_total_cost', 'projected_disease_costs.consultation_fee', 'projected_disease_costs.drugs_total_cost','projected_disease_costs.nhif_relief','projected_disease_costs.total_less_nhif','projected_disease_costs.total'])
             ->orderby('projected_disease_costs.county_id');
         return Datatables::of($diseasescosts)->make();
     }
