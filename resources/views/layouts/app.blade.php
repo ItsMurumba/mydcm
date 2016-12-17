@@ -288,18 +288,22 @@
                                 <li class="sidenav-dropdown ">
                                     <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Current Costs<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="#"><i class="fa fa-circle-o"></i> Facility Level</a></li>
+                                        <li><a href="costdiseasechart"><i class="fa fa-circle-o"></i> Cost/Disease</a></li>
                                         @if(Auth::user()->roles_id == '1')
-                                            <li><a href="#"><i class="fa fa-circle-o"></i> County Level</a></li>
+                                            <li><a href="costcountychart"><i class="fa fa-circle-o"></i> Cost/County</a></li>
                                         @endif
                                     </ul>
                                 </li>
                                 <li class="sidenav-dropdown ">
                                     <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Predicted Costs<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="/userlevelchart"><i class="fa fa-circle-o"></i> Facility Level</a></li>
+                                        <li><a href="/userlevelchart"><i class="fa fa-circle-o"></i> Cost Trends(No NHIF Relief)</a></li>
                                         @if(Auth::user()->roles_id == '1')
-                                            <li><a href="#"><i class="fa fa-circle-o"></i> County Level</a></li>
+                                            <li><a href="/countylevelchart"><i class="fa fa-circle-o"></i> Cost Trends(NHIF Relief)</a></li>
+                                        @endif
+                                        <li><a href="/pcostdiseasechart"><i class="fa fa-circle-o"></i> Cost/Disease</a></li>
+                                        @if(Auth::user()->roles_id == '1')
+                                            <li><a href="/pcostcountychart"><i class="fa fa-circle-o"></i> Cost/County</a></li>
                                         @endif
                                     </ul>
                                 </li>

@@ -9,28 +9,14 @@ use App\Drugs;
 use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
-
+use App\Http\Requests\CreateDrugsRequest;
 
 class DrugsController extends Controller
 {
     //
 
-    protected function validator(Request $request)
-    {
-        return Validator::make($request, [
-            'name'    =>'required|unique',
-            'generic_name'   =>'required|unique',
-            'pack_size'  =>'required',
-            'no_of_packs' =>'required',
-            'price_per_pack' =>'required',
-//            'total'         =>'required',
-//            'total_units'  =>'required',
-//            'price_per_unit ' =>'required'
-
-
-        ]);
-    }
-    public function store(Request $request)
+    
+    public function store(CreateDrugsRequest $request)
     {
         //calculations done
         $total_units= Input::get('pack_size')*Input::get('no_of_packs');
@@ -49,7 +35,7 @@ class DrugsController extends Controller
         $Drugs->save();
 
         //redirect
-        Session::flash('message', 'Successfully added!');
+        \Session::flash('message', 'Successfully added!');
         return view('drugs');;
     }
 }

@@ -27,9 +27,9 @@ class CreateDiseaseCostRequest extends FormRequest
             //
             'diseases'    =>'required',
             'diseasetype' =>'required',
-            'consultationfee'   =>'required',
+            'consultationfee'   =>'required|regex:/^[0-9]+$/',
             'services'       =>'required',
-            'distributions'   =>'required'
+            'distributions'   =>'required|regex:/^[0-9]+$/'
         ];
     }
 }

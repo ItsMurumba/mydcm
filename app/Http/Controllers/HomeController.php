@@ -40,9 +40,6 @@ class HomeController extends Controller
             global $sum;
             $sum= $row->total;
         }
-        echo $sum;
-        die();
-
         //population fetch query
         $disease_id=Input::get('disease');
         $population_distribution_id=Input::get('distributions');

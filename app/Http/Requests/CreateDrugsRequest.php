@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateStaffCategoryRequest extends FormRequest
+class CreateDrugsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,11 @@ class CreateStaffCategoryRequest extends FormRequest
     {
         return [
             //
-            'cadre'    =>'required|unique:staff_category,cadre',
-            'basic_salary'   =>'required|regex:/^\d*(\.\d{1,2})?$/',
-            'allowances'       =>'required|regex:/^\d*(\.\d{1,2})?$/',
-            'reimbursement'       =>'required|regex:/^\d*(\.\d{1,2})?$/'
-
+            'name'    =>'required|unique:drug,name',
+            'generic_name'   =>'required|unique:drug,generic_name',
+            'pack_size'  =>'required|regex:/^[0-9]+$/',
+            'no_of_packs' =>'required|regex:/^[0-9]+$/',
+            'price_per_pack' =>'required|regex:/^\d*(\.\d{1,2})?$/'
         ];
     }
 }

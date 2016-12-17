@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> Projected Total Healthcare Costs Against Years (Without NHIF Relief) </h1>
+                <h1> Current Health Care Cost Per County </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> PTDCAY </li>
+                <li class="active"> CHCCPC </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -33,35 +33,35 @@
         </div>
     </div>
 
-<script>
-    $(function(){
-        $.getJSON("/projects/chart/data", function (result) {
+    <script>
+        $(function(){
+            $.getJSON("/projects/chart3/data", function (result) {
 
-            var labels = [],data=[];
-            for (var i = 0; i < result.length; i++) {
-                labels.push(result[i].year);
-                data.push(result[i].total);
-            }
+                var labels = [],data=[];
+                for (var i = 0; i < result.length; i++) {
+                    labels.push(result[i].county_name);
+                    data.push(result[i].total);
+                }
 
-            var buyerData = {
-                labels : labels,
-                datasets : [
-                    {
-                        fillColor : "rgba(240, 127, 110, 0.3)",
-                        strokeColor : "#f56954",
-                        pointColor : "#A62121",
-                        pointStrokeColor : "#741F1F",
-                        data : data
-                    }
-                ]
-            };
-            var buyers = document.getElementById('total-graph').getContext('2d');
-            new Chart(buyers).Line(buyerData, {
+                var buyerData = {
+                    labels : labels,
+                    datasets : [
+                        {
+                            fillColor : "rgba(240, 127, 110, 0.3)",
+                            strokeColor : "#f56954",
+                            pointColor : "#A62121",
+                            pointStrokeColor : "#741F1F",
+                            data : data
+                        }
+                    ]
+                };
+                var buyers = document.getElementById('total-graph').getContext('2d');
+                new Chart(buyers).Line(buyerData, {
+
+                });
 
             });
 
         });
-
-    });
-</script>
+    </script>
 @endsection

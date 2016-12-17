@@ -11,6 +11,8 @@ class drug_disease extends Model
 
     protected $fillable=[
         'drug_id',
-        'disease_id'
+        'disease_id',
+        'gender_id',
+        'disease_type_id'
     ];
 }

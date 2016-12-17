@@ -96,7 +96,7 @@
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">NHIEF Relief</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">NHIF Relief</label>
                                     <div class="col-sm-10">
                                         {{ Form::select('nhifrelief', $nhifrelief, null,  ['class' => 'form-control']) }}
                                         @if ($errors->has('nhiefrelief'))

@@ -26,7 +26,7 @@ class CreateStaffToFacilityRequest extends FormRequest
         return [
             //
             'staffcategory'    =>'required',
-            'no_of_employees'   =>'required',
+            'no_of_employees'   =>'required|regex:/^[0-9]+$/',
             'county'       =>'required',
             'facility_id'       =>'required'
         ];

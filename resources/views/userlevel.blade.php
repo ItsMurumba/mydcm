@@ -27,15 +27,18 @@
                         <div class="panel-body">
                             <div class="table-responsive">
                             <div class="form-group{{ $errors->has('county') ? ' has-error' : '' }}">
-                                <label for="county" class="col-md-4 control-label">County</label>
-
+                                <label for="county" class="col-md-4 control-label"></label>
                                 <div class="col-md-6">
+                                    {{--{{ Form::select('diseases', $diseases, (isset($data['county'])) ? $data['county'] : null, array('id' => 'county')) }}--}}
+                                    <select name='diseases' >
+                                        @foreach($diseases as $diseases)
+                                            <option value="{{ $diseases->id }}">{{ $diseases->disease_name }}</option>
+                                        @endforeach
+                                    </select>
 
-                                    {{ Form::select('county', $county, (isset($data['county'])) ? $data['county'] : null, array('id' => 'county')) }}
-
-                                    @if ($errors->has('county'))
+                                    @if ($errors->has('diseases'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('county') }}</strong>
+                                        <strong>{{ $errors->first('diseases') }}</strong>
                                     </span>
                                     @endif
 
@@ -93,8 +96,6 @@
                 processing: true,
                 serverSide: true,
                 ajax: 'userlevel/serverSide',
-
-
                 "footerCallback": function ( row, data, start, end, display ) {
                     var api = this.api(), data;
 

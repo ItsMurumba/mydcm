@@ -7,6 +7,7 @@ use App\DiseaseCosts;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Session;
 use App\County;
+use Illuminate\Support\Facades\DB;
 
 class UserLevelController extends Controller
 {
@@ -24,8 +25,14 @@ class UserLevelController extends Controller
     }
 
     public function index(){
-        $county = County::pluck('county_name', 'id');
+        $user= Session::get('user');
+//        $county = County::pluck('county_name', 'id');
+        $diseases = DB::select(DB::raw("SELECT d.disease_name,d.id as id FROM disease_costs dc JOIN disease d ON d.id=dc.diseases_id WHERE dc.user_id='$user'"),
+            array(
+                'user' => $user,
+            ));
 
-        return view('userlevel', ['county'=> $county]);
+
+        return view('userlevel', ['diseases'=> $diseases]);
     }
 }

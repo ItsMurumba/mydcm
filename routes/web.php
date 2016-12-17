@@ -198,6 +198,34 @@ Route::get('/userlevelchart',function (){
     return view('userlevelchart');
 });
 
+Route::get('/countylevelchart',function (){
+    return view('countylevelchart');
+});
+Route::get('/projects/chart1/data', 'ProjectsController@projectChartData1');
+
+Route::get('/costdiseasechart',function (){
+    return view('costdiseasechart');
+});
+Route::get('/projects/chart2/data', 'ProjectsController@projectChartData2');
+
+
+Route::get('/costcountychart',function (){
+    return view('costcountychart');
+});
+Route::get('/projects/chart3/data', 'ProjectsController@projectChartData3');
+
+Route::get('/pcostdiseasechart',function (){
+    return view('pcostdiseasechart');
+});
+Route::get('/projects/chart4/data', 'ProjectsController@projectChartData4');
+
+
+Route::get('/pcostcountychart',function (){
+    return view('pcostcountychart');
+});
+Route::get('/projects/chart5/data', 'ProjectsController@projectChartData5');
+
+
 Route::get('/mydatasets/serverSide','MyDataSetsController@listdatasets');
 Route::get('/MyDataSets',function (){
     return view('mydatasets');
