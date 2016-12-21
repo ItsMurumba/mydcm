@@ -33,6 +33,7 @@
     <script src="/dcm/js/app.js" type="text/javascript"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css" rel="stylesheet">
 
        <script type="text/javascript">
         $(window).load(function() {
@@ -172,7 +173,7 @@
                         </a>
                         <ul class="dropdown-menu admin" role="menu">
                             <li role="presentation" class="dropdown-header">{{ Auth::user()->username }}</li>
-                            <li><a href="/dcm//profile"><i class="fa fa-info"></i> Profile</a></li>
+                            <li><a href="/myprofile"><i class="fa fa-info"></i> Profile</a></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
@@ -199,78 +200,74 @@
                             <ul class="nav sidebar-nav ">
                                 <li class=active><a href="/index"><i class="fa fa-home"></i> Home</a>
                                 </li>
-                                <li class="sidenav-dropdown ">
-                                    <a class="subnav-toggle" href="#"><i class="fa fa-pencil-square-o"></i>Forms<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
-                                    <ul class="nav sidenav-sub-menu">
-                                        @if(Auth::user()->roles_id == '1')
-                                            <li><a href="/gender"><i class="fa fa-pencil-square-o"></i> Gender</a></li>
-                                            <li><a href="/facilitylevels"><i class="fa fa-pencil-square-o"></i> Facility Levels</a></li>
-                                            <li><a href="/consultationfee"><i class="fa fa-pencil-square-o"></i> Consultation Fee</a></li>
-                                            <li><a href="/nhifrelief"><i class="fa fa-pencil-square-o"></i> NHIF Relief</a></li>
-                                            <li><a href="/diseasetype"><i class="fa fa-pencil-square-o"></i> Disease Type</a></li>
-                                        @endif
-                                    </ul>
-                                </li>
-                                <li class="sidenav-dropdown ">
-                                    <a class="subnav-toggle" href="#"><i class="fa fa-pencil"></i> Diseases <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
-                                    <ul class="nav sidenav-sub-menu">
-                                        @if(Auth::user()->roles_id == '1')
-                                        <li><a href="/diseases"><i class="fa fa-warning"></i> Diseases</a></li>
-                                        @endif
-                                        <li><a href="/diseasecosts"><i class="fa fa-users"></i> Disease Costs</a></li>
-                                            <li><a href="/pickdataset"><i class="fa fa-users"></i> Predict Costs</a></li>
-                                    </ul>
+                                {{--<li ><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a>--}}
                                 </li>
                                 @if(Auth::user()->roles_id == '1')
                                 <li class="sidenav-dropdown ">
-                                    <a class="subnav-toggle" href="#"><i class="fa fa-pencil"></i> Drugs <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-pencil-square-o"></i>Data Entry Forms<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="/drugs"><i class="fa fa-angle-double-right"></i> Drugs</a></li>
-                                        <li><a href="/drugdisease"><i class="fa fa-warning"></i>  Drugs Assignment</a></li>
-                                        <li><a href="/dosage"><i class="fa fa-angle-double-right"></i> Dosage Assignment</a></li>
+
+                                            <li><a href="/gender"><i class="fa fa-pencil-square-o"></i> Gender</a></li>
+                                            <li><a href="/facility"><i class="fa fa-flag-o"></i> Facility</a></li>
+                                            <li><a href="/facilitylevels"><i class="fa fa-pencil-square-o"></i> Facility Levels</a></li>
+                                            <li><a href="/consultationfee"><i class="fa fa-pencil-square-o"></i> Consultation Fee</a></li>
+                                            <li><a href="/nhifrelief"><i class="fa fa-pencil-square-o"></i> NHIF Relief</a></li>
+                                            <li><a href="/diseases"><i class="fa fa-warning"></i> Diseases</a></li>
+                                            <li><a href="/diseasetype"><i class="fa fa-pencil-square-o"></i> Disease Type</a></li>
+                                             <li><a href="/drugs"><i class="fa fa-angle-double-right"></i> Drugs</a></li>
+                                            <li><a href="/equipments"><i class="fa fa-circle-o"></i> Equipment</a></li>
+                                            <li><a href="/services"><i class="fa fa-arrows-v"></i> Lab Tests</a></li>
+                                            <li><a href="/county"><i class="fa fa-map-marker"></i> County</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidenav-dropdown ">
-                                    <a class="subnav-toggle" href="javascript:;"><i class="fa fa-toggle-off"></i> Model Assumptions <i class="fa fa-angle-down  pull-right"></i></a>
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-pencil"></i> Drugs <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="/projectionf"><i class="fa fa-square-o"></i> Projection Factors</a></li>
-                                        <li><a href="/projections"><i class="fa fa-align-justify"></i> Projection Rates</a></li>
+                                        <li><a href="/drugdisease"><i class="fa fa-warning"></i>  Assign Drug</a></li>
+                                        <li><a href="/dosage"><i class="fa fa-angle-double-right"></i> Dosage </a></li>
+                                    </ul>
+                                </li>
+                                <li class="sidenav-dropdown ">
+                                    <a class="subnav-toggle" href="javascript:;"><i class="fa fa-toggle-off"></i> Projection Assumptions <i class="fa fa-angle-down  pull-right"></i></a>
+                                    <ul class="nav sidenav-sub-menu">
+                                        <li><a href="/projectionf"><i class="fa fa-square-o"></i> Factors</a></li>
+                                        <li><a href="/projections"><i class="fa fa-align-justify"></i> Rates</a></li>
 
                                     </ul>
                                 </li>
                                 <li class="sidenav-dropdown ">
                                     <a class="subnav-toggle" href="#"><i class="fa fa-pencil"></i> Population <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
-                                        <li><a href="/distribution"><i class="fa fa-inbox"></i> Population Distribution</a></li>
-                                        <li><a href="/estimates"><i class="fa fa-pencil-square-o"></i> Population Estimates</a></li>
-                                    </ul>
-                                </li>
-                                <li class="sidenav-dropdown ">
-                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i> Manage Users <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
-                                    <ul class="nav sidenav-sub-menu">
-                                        <li><a href="/members"><i class="fa fa-users"></i> Users</a></li>
-                                        <li><a href="/role"><i class="fa fa-user-plus"></i> Roles</a></li>
-                                        <li><a href="/staffcategories"><i class="fa fa-exchange"></i> Staff Category</a></li>
-                                    </ul>
-                                </li>
-                                <li class="sidenav-dropdown ">
-                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i> Manage Facilities <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
-                                    <ul class="nav sidenav-sub-menu">
-                                        <li><a href="/equipments"><i class="fa fa-circle-o"></i> Equipment</a></li>
-                                        <li><a href="/services"><i class="fa fa-arrows-v"></i> Service</a></li>
-                                        <li><a href="/facility"><i class="fa fa-flag-o"></i> Facility</a></li>
-                                        <li><a href="/stafftofacility"><i class="fa fa-map-marker"></i> Assign Staff </a></li>
-                                        <li><a href="/county"><i class="fa fa-map-marker"></i> County</a></li>
+                                        <li><a href="/distribution"><i class="fa fa-inbox"></i> Distribution</a></li>
+                                        <li><a href="/estimates"><i class="fa fa-pencil-square-o"></i>Estimates</a></li>
                                     </ul>
                                 </li>
                                 @endif
-                                <li><a href="/predictions"><i class="fa fa-map-marker"></i> Predictions</a></li>
+                                <li class="sidenav-dropdown ">
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-pencil"></i> Disease Costing <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <ul class="nav sidenav-sub-menu">
+                                        <li><a href="/diseasecosts"><i class="fa fa-users"></i> Current Disease Costs</a></li>
+                                        <li><a href="/pickdataset"><i class="fa fa-users"></i> Predict Disease Costs</a></li>
+                                    </ul>
+                                </li>
+                                @if(Auth::user()->roles_id == '1')
+                                <li class="sidenav-dropdown ">
+                                    <a class="subnav-toggle" href="#"><i class="fa fa-users"></i> Users <i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
+                                    <ul class="nav sidenav-sub-menu">
+                                        <li><a href="/members"><i class="fa fa-users"></i> System Users</a></li>
+                                        <li><a href="/role"><i class="fa fa-user-plus"></i> Roles</a></li>
+                                        <li><a href="/staffcategories"><i class="fa fa-exchange"></i> Staff Category</a></li>
+                                        <li><a href="/stafftofacility"><i class="fa fa-map-marker"></i> Assign Staff </a></li>
+                                    </ul>
+                                </li>
+                                @endif
+                                {{--<li><a href="/predictions"><i class="fa fa-map-marker"></i> Predictions</a></li>--}}
                                 <div class="section-heading">Reports</div>
                                 <li class="sidenav-dropdown ">
                                     <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Current Costs<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="/userlevel"><i class="fa fa-circle-o"></i> Facility Level</a></li>
-                                        @if(Auth::user()->roles_id == '1')
+                                        @if(Auth::user()->roles_id == '1' OR Auth::user()->roles_id == '3')
                                         <li><a href="/countylevel"><i class="fa fa-circle-o"></i> County Level</a></li>
                                         @endif
                                     </ul>
@@ -279,7 +276,7 @@
                                     <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Predicted Costs<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="/puserlevel"><i class="fa fa-circle-o"></i> Facility Level</a></li>
-                                        @if(Auth::user()->roles_id == '1')
+                                        @if(Auth::user()->roles_id == '1' OR Auth::user()->roles_id == '3')
                                             <li><a href="/pcountylevel"><i class="fa fa-circle-o"></i> County Level</a></li>
                                         @endif
                                     </ul>
@@ -289,7 +286,7 @@
                                     <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Current Costs<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="costdiseasechart"><i class="fa fa-circle-o"></i> Cost/Disease</a></li>
-                                        @if(Auth::user()->roles_id == '1')
+                                        @if(Auth::user()->roles_id == '1' OR Auth::user()->roles_id == '3')
                                             <li><a href="costcountychart"><i class="fa fa-circle-o"></i> Cost/County</a></li>
                                         @endif
                                     </ul>
@@ -298,11 +295,11 @@
                                     <a class="subnav-toggle" href="#"><i class="fa fa-users"></i>Predicted Costs<i class="fa fa-angle-down fa-angle-down  pull-right"></i></a>
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="/userlevelchart"><i class="fa fa-circle-o"></i> Cost Trends(No NHIF Relief)</a></li>
-                                        @if(Auth::user()->roles_id == '1')
+                                        @if(Auth::user()->roles_id == '1' OR Auth::user()->roles_id == '3')
                                             <li><a href="/countylevelchart"><i class="fa fa-circle-o"></i> Cost Trends(NHIF Relief)</a></li>
                                         @endif
                                         <li><a href="/pcostdiseasechart"><i class="fa fa-circle-o"></i> Cost/Disease</a></li>
-                                        @if(Auth::user()->roles_id == '1')
+                                        @if(Auth::user()->roles_id == '1' OR Auth::user()->roles_id == '3')
                                             <li><a href="/pcostcountychart"><i class="fa fa-circle-o"></i> Cost/County</a></li>
                                         @endif
                                     </ul>
@@ -382,6 +379,7 @@
 <script src="//cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
 <script src="//cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css"></script>
+<script type="text/javascript" src="/Editor/js/dataTables.editor.js"></script>
 
 {{--<!-- Bootstrap JavaScript -->--}}
 

@@ -44,21 +44,21 @@
                 }
 
                 var buyerData = {
-                    labels : labels,
+                    labels : labels/10000,
                     datasets : [
                         {
                             fillColor : "rgba(240, 127, 110, 0.3)",
                             strokeColor : "#f56954",
                             pointColor : "#A62121",
                             pointStrokeColor : "#741F1F",
-                            data : data
+                            data : data,
                         }
                     ]
                 };
                 var buyers = document.getElementById('total-graph').getContext('2d');
-                new Chart(buyers).Line(buyerData, {
+                new Chart(buyers).Bar(buyerData, {
 
-                });
+                 });
 
             });
 

@@ -85,6 +85,7 @@ class PredictDiseaseCostsController extends Controller
 
 
         }
+
         $TotalLessNhif=$GrandTotal-$nhif_relief;
         $PredictDiseaseCosts = new PredictDiseaseCosts;
         $PredictDiseaseCosts->disease_id = $disease;

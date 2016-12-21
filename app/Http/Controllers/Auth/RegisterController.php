@@ -8,6 +8,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
+use Auth;
+use Image;
 
 
 
@@ -76,6 +78,8 @@ class RegisterController extends Controller
             'roles_id' => $data['role'],
             'facility_id' => $data['facility_id'],
             'password' => bcrypt($data['password']),
+//            'softdelete'=>softDeletes()
+
         ]);
     }
 

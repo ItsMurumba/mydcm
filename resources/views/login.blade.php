@@ -55,25 +55,25 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" >
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
+                                {{--<a class="btn btn-link" href="{{ url('/password/reset') }}">--}}
+                                    {{--Forgot Your Password?--}}
+                                {{--</a>--}}
                             </div>
                         </div>
                     </form></br></br>
-                    <div class="login-other text-right">Or Login with
-                        <a href="javascript:;" class="m-l-sm"><i class="fa fa-facebook"></i></a>
-                        <a href="javascript:;" class="m-l-sm"><i class="fa fa-twitter"></i></a>
-                        <a href="javascript:;" class="m-l-sm"><i class="fa fa-google-plus gplus"></i></a>
-                    </div>
+                    {{--<div class="login-other text-right">Or Login with--}}
+                        {{--<a href="javascript:;" class="m-l-sm"><i class="fa fa-facebook"></i></a>--}}
+                        {{--<a href="javascript:;" class="m-l-sm"><i class="fa fa-twitter"></i></a>--}}
+                        {{--<a href="javascript:;" class="m-l-sm"><i class="fa fa-google-plus gplus"></i></a>--}}
+                    {{--</div>--}}
                 </div>
                 <div class="rightFooter">
                     <a href="/registers">Don't have an Account?</a>
-                    <a href="javascript:;" class="m-l">Forgot Password?</a>
+                    <a href="{{ url('/password/reset') }}" class="m-l">Forgot Password?</a>
                 </div>
             </div>
         </div>

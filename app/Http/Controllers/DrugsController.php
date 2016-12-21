@@ -10,6 +10,8 @@ use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\CreateDrugsRequest;
+use Datatable;
+use Yajra\Datatables\Datatables;
 
 class DrugsController extends Controller
 {
@@ -37,5 +39,16 @@ class DrugsController extends Controller
         //redirect
         \Session::flash('message', 'Successfully added!');
         return view('drugs');;
+    }
+    public function getdrugs(){
+        $drugs = Drugs::select(['name', 'pack_size', 'no_of_packs', 'price_per_pack']);
+
+        return Datatables::of($drugs)->make();
+    }
+    public function getIndex()
+    {
+        $name=Drugs::pluck('name','id');
+        return view('viewdrugs')->with(['name'=> $name]);
+
     }
 }

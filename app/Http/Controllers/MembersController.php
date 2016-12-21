@@ -8,6 +8,11 @@ use App\Http\Requests;
 use Datatable;
 use Yajra\Datatables\Datatables;
 use App\User;
+use Illuminate\Support\Facades\Input;
+
+use App\County;
+use App\Role;
+use Illuminate\Support\Facades\Session;
 
 class MembersController extends Controller
 {
@@ -17,9 +22,31 @@ class MembersController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
+
     public function getIndex()
     {
-        return view('members');
+        $users=User::pluck('username','id');
+        $county=County::pluck('county_name','id');
+        $role=Role::pluck('role','id');
+        return view('members')->with(['users'=> $users,'county'=>$county,'role'=>$role]);
+
+    }
+    public function editmember(){
+        $UserID=Input::get('users');
+        $CountyId=Input::get('county');
+        $RoleId=Input::get('role');
+        
+//        echo $CountyId;
+//        die();
+
+        User::where('id', $UserID)->update(array(
+            'county_id'    =>  $CountyId,
+            'roles_id' =>  $RoleId
+        ));
+
+        \Session::flash('message', 'Successfully Updated!');
+        return redirect()->action('MembersController@getIndex');
     }
     public function listmembers() {
         $users = User::join('county','county.id','=','users.county_id')
@@ -27,6 +54,7 @@ class MembersController extends Controller
             ->select(['users.id', 'users.username', 'users.email', 'county.county_name','roles.role']);
 
         return Datatables::of($users)->make();
+
     }
 
     /**

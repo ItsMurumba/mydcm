@@ -25,6 +25,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
+                            <div class="table-responsive">
                             <table class="datatable">
                                 <thead>
                                 <tr>
@@ -45,6 +46,7 @@
                                 </tr>
                                 </tfoot>
                             </table>
+                                </div>
                         </div>
                     </div>
                 </div>

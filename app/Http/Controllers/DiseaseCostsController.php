@@ -19,7 +19,7 @@ use App\NhifRelief;
 use App\Gender;
 use App\Http\Requests\CreateDiseaseCostRequest;
 use Illuminate\Validation\Rules\In;
-
+use Illuminate\Support\Facades\Redirect;
 
 class DiseaseCostsController extends Controller
 {
@@ -36,7 +36,8 @@ class DiseaseCostsController extends Controller
         }
         $diseases = Diseases::pluck('disease_name', 'id');
         $gender=Gender::pluck('gender_name','id');
-        $nhiefrelief=NhifRelief::pluck('patient_type','relief_amount');
+        $nhiefrelief=NhifRelief::pluck('patient_type','id');
+//        $nhiefrelief = DB::select(DB::raw("SELECT service_name,cost FROM services "));
         $services = DB::select(DB::raw("SELECT service_name,cost FROM services "));
         $consultationfee=DB::select(DB::raw("SELECT consultation_amount FROM consultation_fee where level_id='$levelid'"), array(
             'levelid' => $levelid,
@@ -106,19 +107,7 @@ class DiseaseCostsController extends Controller
             $sum=$sum+$product;
 
         }
-        //Finding the total cost of drugs against the population of the selected group
-        $TotalDrugsCost=$Population*$sum;
 
-        //Finding the total services against Population
-        $TotalServiceCost=$Population*$summation;
-
-        //Finding the total consultation fee against Population
-        $ConsultationFee=Input::get('consultationfee');
-        $TotalConsultationFee=$Population* $ConsultationFee;
-
-        //Finding Total Nhif Relief against the population
-        $NhifRelief=Input::get('nhiefrelief');
-        $TotalNhifRelief=$Population*$NhifRelief;
 
         //Finding the total salaries of the employees that are assigned to the facility where the dataset is assigned.
         $Salaries= DB::select(DB::raw("SELECT ((sc.basic_salary)+(sc.allowances)+(sc.reimbursement)) AS Total ,sf.no_of_cadres,sf.staff_category_id FROM staff_category sc JOIN staff_facility sf ON sf.staff_category_id=sc.id WHERE sf.facility_id='$facility'"), array(
@@ -137,7 +126,32 @@ class DiseaseCostsController extends Controller
             $ProductS=$Total*$count;
             $TotalSalaries=$TotalSalaries+$ProductS;
         }
+        $NHIFid=Input::get('nhifrelief');
+        $NHIFDues= DB::select(DB::raw("SELECT relief_amount FROM nhif_relief WHERE id='$NHIFid'"), array(
+            'NHIFid' => $NHIFid,
+        ));
+        foreach ($NHIFDues as $row){
+            global $NHIFamount;
+            $NHIFamount=$row->relief_amount;
+        }
+        if($Population!=0 AND $sum!=0 AND $TotalSalaries!=0){
+        //Finding the total cost of drugs against the population of the selected group
+        $TotalDrugsCost=$Population*$sum;
 
+        //Finding the total services against Population
+        $TotalServiceCost=$Population*$summation;
+
+        //Finding the total consultation fee against Population
+        $ConsultationFee=Input::get('consultationfee');
+        $TotalConsultationFee=$Population* $ConsultationFee;
+
+        //Finding Total Nhif Relief against the population
+        $TotalNhifRelief=$Population*$NHIFamount;
+        }
+        else{
+            Session::flash('msg', 'Could not Calculate The Cost, Please Seek the help of the admin');
+            return Redirect::back();
+        }
         //Finding the Grand Total for the disease against the population(Consultation Fee, Services Fee, drugs cost and salaries of the employees)
         $GrandTotals=$TotalSalaries+$TotalConsultationFee+$TotalDrugsCost+$TotalServiceCost;
 

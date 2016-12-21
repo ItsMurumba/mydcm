@@ -48,13 +48,13 @@
                                     <th>Age Group</th>
                                     <th>Disease</th>
                                     <th>Population</th>
-                                    <th>Salaries</th>
-                                    <th>Services Cost</th>
-                                    <th>Consulation Fee</th>
-                                    <th>Drugs Fee</th>
-                                    <th>NHIF Relief</th>
-                                    <th>Total(No Relief)</th>
-                                    <th>Total(Relief)</th>
+                                    <th>Salaries(Ksh)</th>
+                                    <th>Services Cost(Ksh)</th>
+                                    <th>Consulation Fee(Ksh)</th>
+                                    <th>Drugs Fee(Ksh)</th>
+                                    <th>NHIF Relief(Ksh)</th>
+                                    <th>Total-No Relief(Ksh)</th>
+                                    <th>Total-Relief(Ksh)</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -69,13 +69,13 @@
                                     <th>Age Group</th>
                                     <th>Disease</th>
                                     <th>Population</th>
-                                    <th>Salaries</th>
-                                    <th>Services Cost</th>
-                                    <th>Consulation Fee</th>
-                                    <th>Drugs Fee</th>
-                                    <th>NHIF Relief</th>
-                                    <th>Total(No Relief)</th>
-                                    <th>Total(Relief)</th>
+                                    <th>Salaries(Ksh)</th>
+                                    <th>Services Cost(Ksh)</th>
+                                    <th>Consulation Fee(Ksh)</th>
+                                    <th>Drugs Fee(Ksh)</th>
+                                    <th>NHIF Relief(Ksh)</th>
+                                    <th>Total-No Relief(Ksh)</th>
+                                    <th>Total-Relief(Ksh)</th>
                                 </tr>
                                 </tfoot>
                             </table>

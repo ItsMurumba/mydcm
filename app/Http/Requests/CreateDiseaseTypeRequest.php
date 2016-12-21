@@ -25,7 +25,7 @@ class CreateDiseaseTypeRequest extends FormRequest
     {
         return [
             //
-            'diseasetype'    =>'unique:disease_types,disease_type|required',
+            'diseasetype'    =>'required',
             'gender'    =>'required',
             'diseasename'    =>'required|alpha_num'
         ];

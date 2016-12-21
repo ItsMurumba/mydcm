@@ -56,7 +56,7 @@
                     ]
                 };
                 var buyers = document.getElementById('total-graph').getContext('2d');
-                new Chart(buyers).Line(buyerData, {
+                new Chart(buyers).Bar(buyerData, {
 
                 });
 

@@ -118,6 +118,13 @@
                                         @endif
                                     </div>
                                 </div>
+                                @if(Session::has('msg'))
+                                    {{--{{Session::get('msg')}}--}}
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <span class="glyphicon glyphicon-ok"></span><em> {!! session('msg') !!}</em>
+                                    </div>
+                                @endif
                                 @if(Session::has('message'))
                                     <div class="alert alert-success alert-dismissible">
                                         <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>

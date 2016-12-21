@@ -75,8 +75,20 @@
 
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-md-4 control-label">User Type</label>
+                            <div class="col-md-6">
+                                {{Form::select('role', ['2' => 'Facility User', '3' => 'National User'], null, ['placeholder' => 'Pick user...', 'class' => 'form-control'])}}
+                                @if ($errors->has('role'))
+                                    <span class="help-block">
+                                                <strong style="color: red">{{ $errors->first('role') }}</strong>
+                                            </span>
+                                @endif
 
-                        <input id="role" type="hidden" class="form-control" name="role" value="2" required>
+                            </div>
+                        </div>
+
+                        {{--<input id="role" type="hidden" class="form-control" name="role" value="2" required>--}}
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
@@ -105,10 +117,16 @@
                                 @endif
                             </div>
                         </div>
+                        @if(Session::has('message'))
+                            <div class="alert alert-success alert-dismissible">
+                                <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em>
+                            </div>
+                        @endif
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" >
                                     Register
                                 </button>
                             </div>

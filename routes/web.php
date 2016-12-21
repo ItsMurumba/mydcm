@@ -107,9 +107,9 @@ Route::get('/role', function (){
 Route::post('/roles', 'RolesController@store');
 
 //route for members form
-Route::get('/members', function (){
-    return view('members');
-});
+Route::get('/members', 'MembersController@getIndex');
+
+Route::post('/editmember', 'MembersController@editmember');
 //datatables
 Route::get('/datatables/data', array('middleware' => 'auth', 'uses' => 'DatatablesController@anyData'))->name('datatables.data');
 Route::get('/datatables/index', array('middleware' => 'auth', 'uses' => 'DatatablesController@getIndex'))->name('datatables');
@@ -272,3 +272,16 @@ Route::get('api/services', function(){
     $services = Services::where('disease_id', $disease)->get(array('cost','service_name'));
     return Response::json($services, 200);
 });
+
+
+Route::get('dashboard', function (){
+    return view('dashboard');
+});
+
+Route::get('/myprofile','MyProfileController@index');
+Route::post('/myprofile','MyProfileController@store');
+
+Route::post('profile', 'MyProfileController@update_avatar');
+
+Route::get('/viewdrugs', 'DrugsController@getIndex');
+Route::get('drugs/serverSide','DrugsController@getdrugs');
