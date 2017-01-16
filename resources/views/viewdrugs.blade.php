@@ -28,7 +28,7 @@
 
                                 <div class="col-md-6">
 
-                                    {{ Form::select('name', $name, (isset($data['name'])) ? $data['name'] : null, array('id' => 'users')) }}
+                                    {{ Form::select('name', $name, (isset($data['name'])) ? $data['name'] : null, array('id' => 'drugname')) }}
 
                                     @if ($errors->has('name'))
                                         <span class="help-block">
@@ -44,7 +44,10 @@
 
                                 <div class="col-md-6">
 
-                                    <input type="text" class="form-control" name="pack_size">
+                                    <input type="text" class="form-control" name="pack_size" id="pack_size" placeholder="">
+                                    {{--@foreach($growthrate as $growthrate)--}}
+                                        {{--<input type="text" class="form-control" value="{{ $growthrate->rate }}" name="growthrate" placeholder="{{ $growthrate->rate }}" readonly = 'true'>--}}
+                                    {{--@endforeach--}}
 
                                     @if ($errors->has('pack_size'))
                                         <span class="help-block">
@@ -116,6 +119,7 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Edit User</button>
 
                             <!-- Modal -->
+                            <div class="table-responsive">
                             <table id="datatable" class="display table-striped table-bordered">
                                 <thead>
                                 <tr>
@@ -135,6 +139,7 @@
                                 </tr>
                                 </tfoot>
                             </table>
+                                </div>
                             @if(Session::has('message'))
                                 <div class="alert alert-success alert-dismissible">
                                     <a href="#" class="alert-link close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -156,5 +161,21 @@
             });
         });
 
+    </script>
+    <script>
+        $(document).ready(function()
+        {
+            $('#drugname').change(function(){
+                $.getJSON("{{ url('api/drugs')}}",
+                        { option: $(this).val() },
+                        function(data) {
+                            var model = $('#pack_size');
+                            model.empty();
+                            $.each(data, function(index, element) {
+                                model.append("<input value='"+element.id + element.name + "/>");
+                            });
+                        });
+            });
+        });
     </script>
 @stop

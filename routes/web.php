@@ -4,6 +4,7 @@ use App\Facilities;
 use App\drug_disease;
 use App\DiseaseType;
 use App\Services;
+use App\Drugs;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -159,11 +160,21 @@ Route::get('/puserlevel/serverSide', 'PuserLevelController@listdiseasecosts');
 Route::get('countylevel','CountyLevelController@index');
 Route::get('/countylevel/serverSide','CountyLevelController@listdiseasecosts');
 
+Route::get('nationallevel','NationalLevelController@index');
+Route::get('/nationallevel/serverSide','NationalLevelController@listdiseasecosts');
+
+
 //predicted County Level Report
 Route::get('pcountylevel',function (){
     return view('pcountylevel');
 });
 Route::get('/pcountylevel/serverSide','PcountyLevelController@listdiseasecosts');
+
+
+Route::get('pnationallevel',function (){
+    return view('pnational');
+});
+Route::get('/pnationallevel/serverSide','PNationalLevelController@listdiseasecosts');
 
 
 Route::get('/ajax/get_second','RegisterController@getSecond');
@@ -178,7 +189,7 @@ Route::get('api/dropdown/cities', function(){
 
 Route::get('api/drugs', function(){
     $diseases = Input::get('option');
-    $city= DB::select(DB::raw("SELECT dr.name, dd.drug_id as id FROM drug_disease dd JOIN drug dr ON dr.id=dd.drug_id WHERE dd.disease_id=$diseases "), array(
+    $city= DB::select(DB::raw("SELECT DISTINCT dr.name, dd.drug_id as id FROM drug_disease dd JOIN drug dr ON dr.id=dd.drug_id WHERE dd.disease_id=$diseases "), array(
             'diseases' => $diseases,
         ));
     return Response::json($city, 200);
@@ -273,6 +284,13 @@ Route::get('api/services', function(){
     return Response::json($services, 200);
 });
 
+//Route::get('api/drugs', function(){
+//    $drugid = Input::get('option');
+//    $drugs = Drugs::where('id', $drugid)
+//        ->get(array('id','pack_size'));
+//    return Response::json($drugs, 200);
+//});
+
 
 Route::get('dashboard', function (){
     return view('dashboard');
@@ -285,3 +303,7 @@ Route::post('profile', 'MyProfileController@update_avatar');
 
 Route::get('/viewdrugs', 'DrugsController@getIndex');
 Route::get('drugs/serverSide','DrugsController@getdrugs');
+
+Route::post('/editdrug', 'DrugsController@editdrug');
+
+Route::get('dashboard','DashboardController@index');

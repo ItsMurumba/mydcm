@@ -66,7 +66,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="sidenav-toggle" href="#"><span class="brandbar"><i class="fa fa-bars hidd"></i></a></span>
-                <a class="navbar-brand" href="/dcm"><i class="fa fa-paper-plane"></i>&nbsp;DCM</a> <div class="solution">>&nbsp;</i>A Health Costing Tool</div>
+                <a class="navbar-brand" href="/"><i class="fa fa-paper-plane"></i>&nbsp;DCM</a> <div class="solution">>&nbsp;</i>A Health Costing Tool</div>
             </div>
             <div class="right-admin">
                 <ul>
@@ -225,6 +225,7 @@
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="/drugdisease"><i class="fa fa-warning"></i>  Assign Drug</a></li>
                                         <li><a href="/dosage"><i class="fa fa-angle-double-right"></i> Dosage </a></li>
+                                        <li><a href="/viewdrugs"><i class="fa fa-angle-double-right"></i> View Drugs </a></li>
                                     </ul>
                                 </li>
                                 <li class="sidenav-dropdown ">
@@ -268,8 +269,9 @@
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="/userlevel"><i class="fa fa-circle-o"></i> Facility Level</a></li>
                                         @if(Auth::user()->roles_id == '1' OR Auth::user()->roles_id == '3')
-                                        <li><a href="/countylevel"><i class="fa fa-circle-o"></i> County Level</a></li>
+                                        <li><a href="/countylevel"><i class="fa fa-circle-o"></i> National Level</a></li>
                                         @endif
+                                        <li><a href="/nationallevel"><i class="fa fa-circle-o"></i> County Level</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidenav-dropdown ">
@@ -277,8 +279,9 @@
                                     <ul class="nav sidenav-sub-menu">
                                         <li><a href="/puserlevel"><i class="fa fa-circle-o"></i> Facility Level</a></li>
                                         @if(Auth::user()->roles_id == '1' OR Auth::user()->roles_id == '3')
-                                            <li><a href="/pcountylevel"><i class="fa fa-circle-o"></i> County Level</a></li>
+                                            <li><a href="/pcountylevel"><i class="fa fa-circle-o"></i> National Level</a></li>
                                         @endif
+                                        <li><a href="pnationallevel"><i class="fa fa-circle-o"></i> County Level</a></li>
                                     </ul>
                                 </li>
                                 <div class="section-heading">Graphs</div>

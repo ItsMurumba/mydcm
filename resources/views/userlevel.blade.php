@@ -26,24 +26,24 @@
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                            <div class="form-group{{ $errors->has('county') ? ' has-error' : '' }}">
-                                <label for="county" class="col-md-4 control-label"></label>
-                                <div class="col-md-6">
+                            {{--<div class="form-group{{ $errors->has('county') ? ' has-error' : '' }}">--}}
+                                {{--<label for="county" class="col-md-4 control-label"></label>--}}
+                                {{--<div class="col-md-6">--}}
                                     {{--{{ Form::select('diseases', $diseases, (isset($data['county'])) ? $data['county'] : null, array('id' => 'county')) }}--}}
-                                    <select name='diseases' >
-                                        @foreach($diseases as $diseases)
-                                            <option value="{{ $diseases->id }}">{{ $diseases->disease_name }}</option>
-                                        @endforeach
-                                    </select>
+                                    {{--<select name='diseases' >--}}
+                                        {{--@foreach($diseases as $diseases)--}}
+                                            {{--<option value="{{ $diseases->id }}">{{ $diseases->disease_name }}</option>--}}
+                                        {{--@endforeach--}}
+                                    {{--</select>--}}
 
-                                    @if ($errors->has('diseases'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('diseases') }}</strong>
-                                    </span>
-                                    @endif
+                                    {{--@if ($errors->has('diseases'))--}}
+                                        {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('diseases') }}</strong>--}}
+                                    {{--</span>--}}
+                                    {{--@endif--}}
 
-                                </div>
-                            </div>
+                                {{--</div>--}}
+                            {{--</div>--}}
                                 <table id="datatable" class="display table-striped table-bordered"  cellspacing="0">
                                 <thead>
                                 <tr>

@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-md-4 control-label">User Type</label>
                             <div class="col-md-6">
-                                {{Form::select('role', ['2' => 'Facility User', '3' => 'National User'], null, ['placeholder' => 'Pick user...', 'class' => 'form-control'])}}
+                                {{Form::select('role', ['2' => 'Facility User', '3' => 'National User','4' => 'County User'], null, ['placeholder' => 'Pick user...', 'class' => 'form-control'])}}
                                 @if ($errors->has('role'))
                                     <span class="help-block">
                                                 <strong style="color: red">{{ $errors->first('role') }}</strong>

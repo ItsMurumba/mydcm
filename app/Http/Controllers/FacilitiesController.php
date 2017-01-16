@@ -34,7 +34,7 @@ class FacilitiesController extends Controller
         $Facilities->address = Input::get('address');
         $Facilities->bedcapacity = Input::get('bed_capacity');
         $Facilities->county_id = Input::get('county');
-        $Facilities->level = Input::get('level');
+        $Facilities->level_id = Input::get('level');
         $Facilities->save();
 
         //redirect

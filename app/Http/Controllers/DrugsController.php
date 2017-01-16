@@ -10,8 +10,10 @@ use Dotenv\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\CreateDrugsRequest;
+use App\Http\Requests\CreateDrugsEditRequest;
 use Datatable;
 use Yajra\Datatables\Datatables;
+
 
 class DrugsController extends Controller
 {
@@ -50,5 +52,31 @@ class DrugsController extends Controller
         $name=Drugs::pluck('name','id');
         return view('viewdrugs')->with(['name'=> $name]);
 
+    }
+    public function editdrug(CreateDrugsEditRequest $request){
+        $DrugName=Input::get('name');
+        $PackSize=Input::get('pack_size');
+        $NoOfPacks=Input::get('no_of_packs');
+        $PricePerpack=Input::get('price_per_pack');
+
+//        echo $CountyId;
+//        die();
+
+        //calculations done
+        $total_units= Input::get('pack_size')*Input::get('no_of_packs');
+        $total= Input::get('price_per_pack')*Input::get('no_of_packs');
+        $price_per_unit= $total/$total_units;
+
+        Drugs::where('id', $DrugName)->update(array(
+            'pack_size'    =>  $PackSize,
+            'no_of_packs' =>  $NoOfPacks,
+            'price_per_pack' => $PricePerpack,
+            'total' => $total,
+            'total_units' => $total_units,
+            'price_per_unit' => $price_per_unit
+        ));
+
+        \Session::flash('message', 'Successfully Updated!');
+        return redirect()->action('DrugsController@getIndex');
     }
 }

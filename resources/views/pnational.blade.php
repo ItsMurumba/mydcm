@@ -3,10 +3,10 @@
     <div id="body-container">
         <div class="page-title clearfix">
             <div class="pull-left">
-                <h1> National Level Disease Cost Report </h1>
+                <h1> County Level Projected Diseases Cost Report </h1>
             </div>
             <ol class="breadcrumb pull-right">
-                <li class="active"> CLDCR </li>
+                <li class="active"> CLPDCR </li>
                 <li><a href="../../public/dcm"><i class="fa fa-tachometer"></i></a></li>
             </ol>
         </div>
@@ -26,59 +26,46 @@
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                            <div class="form-group{{ $errors->has('county') ? ' has-error' : '' }}">
-                                <label for="county" class="col-md-4 control-label"></label>
-
-                                <div class="col-md-6">
-
-                                    <select name='county' id="county" >
-                                        @foreach($county as $county)
-                                            <option value="{{ $county->id }}">{{ $county->county_name }}</option>
-                                        @endforeach
-                                    </select>
-
-                                </div>
-                            </div>
                                 <table id="datatable" class="display table-striped table-bordered"  cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>Year</th>
-                                    <th>County</th>
-                                    <th>Facility</th>
-                                    <th>Age Group</th>
-                                    <th>Disease</th>
-                                    <th>Population</th>
-                                    <th>Salaries(Ksh)</th>
-                                    <th>Services Cost(Ksh)</th>
-                                    <th>Consulation Fee(Ksh)</th>
-                                    <th>Drugs Fee(Ksh)</th>
-                                    <th>NHIF Relief(Ksh)</th>
-                                    <th>Total-No Relief(Ksh)</th>
-                                    <th>Total-Relief(Ksh)</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th colspan="12" style="text-align:right"></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th>Year</th>
-                                    <th>County</th>
-                                    <th>Facility</th>
-                                    <th>Age Group</th>
-                                    <th>Disease</th>
-                                    <th>Population</th>
-                                    <th>Salaries(Ksh)</th>
-                                    <th>Services Cost(Ksh)</th>
-                                    <th>Consulation Fee(Ksh)</th>
-                                    <th>Drugs Fee(Ksh)</th>
-                                    <th>NHIF Relief(Ksh)</th>
-                                    <th>Total-No Relief(Ksh)</th>
-                                    <th>Total-Relief(Ksh)</th>
-                                </tr>
-                                </tfoot>
-                            </table>
+                                    <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>County</th>
+                                        <th>Facility</th>
+                                        <th>Age Group</th>
+                                        <th>Disease</th>
+                                        <th>Population</th>
+                                        <th>Salaries(Ksh)</th>
+                                        <th>Services Cost(Ksh)</th>
+                                        <th>Consulation Fee(Ksh)</th>
+                                        <th>Drugs Fee(Ksh)</th>
+                                        <th>NHIF Relief(Ksh)</th>
+                                        <th>Total-No Relief(Ksh)</th>
+                                        <th>Total-Relief(Ksh)</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th colspan="12" style="text-align:right"></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>County</th>
+                                        <th>Facility</th>
+                                        <th>Age Group</th>
+                                        <th>Disease</th>
+                                        <th>Population</th>
+                                        <th>Salaries(Ksh)</th>
+                                        <th>Services Cost(Ksh)</th>
+                                        <th>Consulation Fee(Ksh)</th>
+                                        <th>Drugs Fee(Ksh)</th>
+                                        <th>NHIF Relief(Ksh)</th>
+                                        <th>Total-No Relief(Ksh)</th>
+                                        <th>Total-Relief(Ksh)</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -91,7 +78,7 @@
             $('#datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: 'countylevel/serverSide',
+                ajax: 'pnationallevel/serverSide',
 
                 "footerCallback": function ( row, data, start, end, display ) {
                     var api = this.api(), data;
@@ -105,7 +92,7 @@
                     };
 
                     // Total over all pages
-                    Atotal = api
+                    total = api
                             .column(12)
                             .data()
                             .reduce(function (a, b) {
@@ -132,5 +119,4 @@
             });
         });
     </script>
-    </html>
 @endsection

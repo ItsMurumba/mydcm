@@ -44,7 +44,7 @@
                 }
 
                 var buyerData = {
-                    labels : labels/10000,
+                    labels : labels,
                     datasets : [
                         {
                             fillColor : "rgba(240, 127, 110, 0.3)",
@@ -57,7 +57,7 @@
                 };
                 var buyers = document.getElementById('total-graph').getContext('2d');
                 new Chart(buyers).Bar(buyerData, {
-
+                    responsive: true,
                  });
 
             });

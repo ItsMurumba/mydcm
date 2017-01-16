@@ -25,7 +25,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <canvas id="total-graph" width="1400" height="400"></canvas>
+                            <canvas id="total-graph" width="1300" height="400"></canvas>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                 labels : labels,
                 datasets : [
                     {
-                        fillColor : "rgba(240, 127, 110, 0.3)",
+                        fillColor : "#006400",
                         strokeColor : "#f56954",
                         pointColor : "#A62121",
                         pointStrokeColor : "#741F1F",
@@ -55,10 +55,11 @@
                     }
                 ]
             };
+//
             var buyers = document.getElementById('total-graph').getContext('2d');
-            new Chart(buyers).Line(buyerData, {
-
-            });
+           var myLine= new Chart(buyers).Line(buyerData, {
+               responsive: true,
+           });
 
         });
 
